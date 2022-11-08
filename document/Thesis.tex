@@ -16,7 +16,9 @@
 \usepackage{graphicx}
 \floatstyle{plaintop}
 \restylefloat{table}
+
 \addbibresource{Bibliography.bib}
+
 % \setlength{\parskip}{\baselineskip}%
 \renewcommand{\tablename}{Tabla}
 \renewcommand{\listalgorithmcfname}{Índice de Algoritmos}
@@ -49,10 +51,10 @@
 
 \lstset{style=mystyle}
 
-\title{Título de la tesis}
-\author{\\\vspace{0.25cm}Nombre del autor}
-\advisor{\\\vspace{0.25cm}Nombre del primer tutor\\\vspace{0.2cm}Nombre del segundo tutor}
-\degree{Licenciado en (Matemática o Ciencia de la Computación)}
+\title{Benchmark de AutoML Heterogéneo}
+\author{\\\vspace{0.25cm}Amanda González Borrell}
+\advisor{\\\vspace{0.25cm}Lic. Ernesto Luis Estevanell Valladares\\\vspace{0.2cm}Dr. Suilan Estévez Velarde}
+\degree{Licenciado en Ciencia de la Computación}
 \faculty{Facultad de Matemática y Computación}
 \date{Fecha\\\vspace{0.25cm}\href{https://github.com/username/repo}{github.com/username/repo}}
 \logo{Graphics/uhlogo}
@@ -63,7 +65,7 @@
 \newcommand{\me}[1]{\mathrm{e}^{#1}}
 \newcommand{\pf}{\mathfrak{p}}
 \newcommand{\qf}{\mathfrak{q}}
-%\newcommand{\kf}{\mathfrak{k}}
+%\newcommand{\kf}{\mathfrak{k}}--
 \newcommand{\kt}{\mathtt{k}}
 \newcommand{\mf}{\mathfrak{m}}
 \newcommand{\hf}{\mathfrak{h}}
@@ -90,8 +92,10 @@
 
 \include{MainMatter/Introduction}
 \include{MainMatter/Background}
-\include{MainMatter/Proposal}
+\include{MainMatter/Benchmark Design}
 \include{MainMatter/Implementation}
+\include{MainMatter/AutoML}
+\include{MainMatter/Experiments}
 
 \backmatter
 

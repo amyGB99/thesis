@@ -1,1 +1,322 @@
 \chapter{Estado del Arte}\label{chapter:state-of-the-art}
+
+Los sistemas AutoML son capaces de suplir en gran medida muchas de las tareas que antes debía realizar un experto de Machine Learning. Ellos crean sus propios pipelines 
+de ML, pueden realizar pre-procesamiento de los datos, selección del mejor modelo y la optimización de híper-parámetros (HPO). Existe una gran variedad de estrategias a 
+seguir para llevar a cabo cada una de las fases mencionadas anteriormente [36]. Es necesario definir sus diferencias y verificar que funcionen correctamente. Ante un 
+problema debe ser posible conocer qué sistema se adecua mejor al mismo.
+
+Un benchmark puede verse como una manera de identificar las debilidades y fortalezas de una metodología respecto a otra [2]. En el ámbito de ML ha sido de gran ayuda 
+como método de evaluación y comparación [46,5,6]. Esta forma ha sido adoptada también por los marcos de aprendizaje automático. En su formación se escoge un 
+conjunto de datos, una métrica y un formato de evaluación para evaluar los sistemas. La selección de tiempo de ejecución, memoria RAM y CPU, también son parte de este 
+proceso si así el programador lo dispone. Estas selecciones además de comparar en predicción permitirán que el benchmark sea una referencia de cuál emplear en caso de 
+que el problema tenga limitantes de tiempo y software.
+
+En aras de crear uno se realizó un estudio de los ya presentes en la literatura para determinar sus características más importantes, fallas y resultados más relevantes. 
+De esta manera evitar cometer los mismos errores e incursionar en sectores menos explorados. Se decidió incluir los más populares de ML para ver qué técnicas fueron 
+reintegradas en los de AutoML e identificar las más novedosas que puedan incluirse en la nueva propuesta a crear. Además, como trabajos relacionados una breve reseña 
+sobre los benchmark que evalúan partes de un pipeline de AutoML. El estudio del estado del arte se dividió en tres subsecciones:
+
+\begin{itemize}
+\item Benchmarks de ML. 
+\item Benchmarks de AutoML.
+\item Trabajos Relacionados.
+\end{itemize}
+\section{Benchmarks de ML}\label{section:bench_ML}
+
+Los sitios [43], [44] son muy conocidos por permitir la descarga de conjuntos de datos que involucran tareas de ML. A pesar de esto, existen muy pocos documentos que 
+recojan la experimentación con los mismos que ayuden a identificar cuáles incluir en una evaluación.
+
+Un paso en la creación de un benchmark es escoger los conjuntos de datos. Existen criterios de selección como el dominio. El incluir varios sets y evaluarlos en un 
+modelo permite obtener conclusiones generalizadas sobre el ámbito al que representan.  En ML los dominios más abordados son Imágenes [1,3], Texto [4], Tabular [2] y 
+Series Temporales [7], los problemas de grafo son los más escasos [5][6]. Cuando se habla de dominio no se hace alusión al formato en que se encuentran los datos. Estos 
+pueden estar representados como vectores de características y que sus instancias semánticamente sean imágenes. Los datos necesitan estar de una forma estandarizada para 
+que los expertos puedan emplearlos sin muchas transformaciones. En la mayoría de los ejemplos suelen estar representados en tablas (filas y columnas) [1,2,3,4], como 
+features, pero esto es independiente del dominio al que pertenecen.
+
+Otro criterio de selección es la tarea que se pretende resolver con cada uno de Ellos. Generalmente solo se enfocan en una tarea dígase clasificación [1,3,4], regresión [6] y 
+clustering [7]. La clasificación es la más utilizada en cada una de sus modalidades binaria [2,4,5] y multiclase [2,5]. También en imágenes se pudo encontrar 
+clasificación multilabel para identificar defectos en las tuberías de alcantarillado [3]. En el caso de series temporales el clustering ha demostrado ser de gran 
+utilidad [7].
+
+En la recopilación de los datasets los aspectos que más resaltaron fueron la búsqueda de diversidad [2,4,6,7]. Según [2] incluir variedad en las meta-características 
+reduce sesgos de selección en los conjuntos de datos. Se centraron en buscar distintos números de features, instancias, número de clases entre otras. A pesar de ello 
+dejaron de incluir datos con valores faltantes y con un número de instancias grandes.
+
+La variedad también puede estar relacionada al dominio y a las tareas que se resuelven. En grafo [5,6] buscaron tareas que abarcaran varios tipos de predicciones ya 
+sea a nivel de nodo, enlace o grafo completo. También utilizaron grafos semejantes a los de la vida real los cuales sufren de gran escalabilidad. En dominio texto específicamente 
+detección de falsas noticias [4] buscaron variedad en el ámbito de aplicación de la notica ya sea política, económica. El entorno en este tipo de predicciones influye 
+más debido a que los ambientes son engañosos. El tamaño de la noticia es otro aspecto importante que intentaron diversificar ya que mientras menor es la longitud del 
+texto de la noticia los sistemas suelen disminuir su rendimiento.
+
+La identificación de la métrica de evaluación es otro paso en la formación del benchmark. Estas se encargan de cuantificar el rendimiento de los modelos. [3,5,6,7] 
+decidieron usar varias métricas generales para todos los conjuntos y sacaron conclusiones a partir de todas ellas, la más utilizada fue precisión [1,2,4].
+
+Una vez se tienen los conjuntos y la métrica seleccionada sigue el proceso de evaluación. Para ello los benchmark de ML recrearon un ambiente que hace posible descargar 
+de una manera rápida los datasets de manera individual [2,3,5,6], y las partes en que se dividieron para la evaluación [3,4,7]. Entre las estrategias de división 
+utilizaron la aleatoriedad (k-fold) [1,2]. Otros [4,5,6] decidieron utilizar características del mismo dominio de aplicación pues resultaron más desafiante para los modelos, ejemplo 
+dividir en partes utilizando un feature de tiempo.
+
+Un ejemplo de utilización de estas evaluaciones es la comparación de modelos y en muchas ocasiones esta comparación se realiza de manera incorrecta. [1] 
+definieron los pros y los contras de varias estrategias. Una de ellas es contar el número de veces en el cual un modelo fue el que obtuvo mejor desempeño, lo que podría 
+conducir a sesgos producto a la distribución de los datos. Otra vía sería comparar por pares, pero ahí se asume que todos los algoritmos están diseñados para lograr el 
+mismo resultado.  También usar el promedio de las métricas de las evaluaciones en el conjunto de datos de prueba. [7,1] propusieron utilizar un método de 
+evaluación basado en fases, cada una de estas está diseñada para comparar en igualdad de condiciones y desigualdad de características.  
+
+Estos benchmark resolvieron la limitación de muchas suites de conjuntos de datos que carecen de la presentación de una métrica de optimización para sus conjuntos [44], 
+como también de un análisis detallado de los metadatos que los conforman. Entre sus experimentaciones más sobresalientes se encontraron la agrupación de las 
+características de los datasets en clusters para determinar cuál aporta mejores y peores resultados [2]. También la demostración que realizó [4] sobre la relación 
+existente entre una correcta extracción de features y el rendimiento del modelo. Además, en el dominio grafos los conjuntos de datos propuestos por [5,6] 
+presentan un desafío a gran escala. Estos han servido como muestra para incentivar a otras investigaciones.
+
+Estos en su mayoría solo incluyeron estudios basados en la predicción [2,3,4]. En diversas ocasiones se desea un modelo que aporte buenos resultados, pero también que 
+sea robusto y solo se dispone de cierta disponibilidad de tiempo y memoria lo que habría que investigar aún más es estos temas. En la tabla 1 se recogen todas las 
+características de los benchmark de ML abordadas en esta sección. 
+
+\section{Benchmarks de AutoML}\label{section:bench_AutoML}
+Los marcos de aprendizaje automático en su definición más simple pueden verse como un problema CASH. La tarea es seleccionar un modelo y una combinación de 
+híper-parámetros que permita predecir resultados sobre un conjunto de datos inicial.  Los modelos que conforman estos marcos pueden ser modelos clásicos de ML como SVM, 
+Árboles de decisión, Regresión Logística entre otros o bien pueden ser redes neuronales. En el último caso AutoML no estaría resolviendo un problema CASH sino un 
+problema NAS o conocido también como Búsqueda de Arquitecturas Neuronales. Los marcos que puramente están encaminados a aprendizaje profundo (DL) fueron denominados 
+marcos AutoDL los restantes que pueden incluir el aprendizaje profundo o solo los modelos clásicos de ML denominados AutoML clásico. Tanto los que utilizan modelos como 
+redes neuronales son sistemas AutoML, pero para mejor entendimiento se hizo la distinción antes mencionada.  
+
+El entrenamiento de las redes neuronales requiere de una alta potencia computacional y gran cantidad de memoria lo que frena los experimentos y pone una barrera de 
+entrada a los investigadores sin acceso a computación a gran escala [49] [46]. Esto podría ser uno de los factores del por qué la mayoría de los benchmark están 
+encaminados a sistemas AutoML clásicos y no a AutoDL. En el ámbito de DL existen benchmark para NAS, estos fueron discutidos en la siguiente sección ya que conforman 
+una parte de la conformación de un pipeline y no el proceso completo.
+
+Entre los sistemas AutoDL están AutoKeras y AutoPytorch y entre los AutoML clásico: AutoWeka, AutoSklearn y AutoGluon. El objetivo principal de las evaluaciones de 
+presentación de estos marcos [8] [9] [13] [17] [21] no era crear un benchmark que todos los demás pudieran utilizar; más bien fue realizar un estudio sobre las 
+estrategias y técnicas que ponen en práctica cada uno de ellos. Estas experimentaciones pueden ser utilizadas como punto de referencia para otras, así como la 
+posibilidad de evaluar otros marcos en los conjuntos de datos utilizados con las mismas métricas y limitaciones de tiempo, por esto se incluyeron en este estudio.
+
+Los challenges(competiciones) al igual que las evaluaciones [8] [9] [13] [17] [21] pueden verse como puntos de referencia (benchmarks), los conjuntos de datos que 
+propusieron han sido incluídos en otros benchmarks [14] [15]. Su naturaleza competitiva permitió que las construcciones automáticas que crearon los concursantes 
+pelearan para obtener un mejor rendimiento en igualdad de condiciones.  Estos tuvieron como meta incentivar a los científicos a crear nuevas soluciones automáticas e 
+investigar en nuevas técnicas que mejoraran los existentes. Se han creado tanto para los sistemas AutoML clásico [11], [12] que para los sistemas AutoDL [29].
+
+Para enfantizar en las características principales de los benchmark de AutoML dividimos la sección en varios aspectos:
+
+\begin{itemize}
+    \item Dominios y Tipos-Estructuras de los Datos de Entrada.
+    \item Objetivos Generles.
+    \item Estrategias de Selección de los Conjuntos de Datos.
+    \item Métodos de Evaluación y Métricas de Optimización. 
+    \item Restricciones de Tiempo y  Software.
+    \item Resultados.
+    \item Fallas. 
+    \end{itemize} 
+
+\begin{flushleft} 
+    {\large { \textbf{Dominios y Tipos-Estructuras de los Datos de Entrada}}}\label{subsection:dom_AutoML}
+\end{flushleft}
+
+De la misma forma que en los benchmark de ML en los de AutoML los conjuntos de datos pertenecen a un dominio. Del mismo se planteó con anterioridad que es el significado 
+semántico de las instancias del dataset. Se agrupan en los que abarcaron un solo ámbito NLP [20], visión [23], tabulares [14] [25] [26] [ 30] [32] y los que 
+incluyeron más de uno [10] [16] [31] [26]. Independientes del dominio estas instancias deben encontrarse en un formato entendible por los sistemas de aprendizaje 
+automático. El mismo puede estar estructurado o no. La forma estructurada son instancias que forman vectores de características y estas pueden ser de tipo numérico, 
+categóricas o tipos no estructurados como strings e imágenes. Los conjuntos de datos utilizados en los benchmarks de AutoML en su mayoría se presentaron con 
+características numéricas y/o categóricas [10] [11] [15] [18] [19] [31]. Algunos de los estudiados [13] [20] [21] [23] [29] decidieron incluirlos de forma no estructurada. 
+Otros [21][29] incluyeron ambas.
+
+Al formatear cada instancia como vectores de características se asume que son (iid) lo que muchas veces no se asocia con el significado general de los datos y perjudica 
+la semántica de los mismos.  [23] trataron las imágenes como matrices. [29] todos los conjuntos no estructurados de datos fueron formateados a bytes. En ambos 
+ejemplos fueron tratados como una entidad y no como características sin relación alguna. En [27] buscaron la mejor forma de procesar las entradas de texto/tabular de 
+tal manera que los sistemas lo entendieran y aprendieran del dominio al que pertenecen.
+
+Para tener una relación entre instancias y label a predecir los benchmark generalmente utilizaron vectores para esto. Solo [29] utilizó tensores.
+
+\begin{flushleft} 
+    {\large { \textbf{Objetivos Generales}}}\label{subsection:obj_AutoML}
+\end{flushleft}
+
+Los objetivos de los benchmark permiten definir el alcance de su futura utilización.  Todos tuvieron como propósito general medir el desempeño de los marcos de AutoML 
+en tareas de ML. Además de efectividad [11] [12] [29] buscaron eficiencia.  El desempeño de un sistema es la medición de su aprendizaje en varios conjuntos de datos. El 
+mismo puede medirse de forma aislada\footnote{Los sistemas cada vez que se entrenan aprenden desde cero, no acumulan el conocimiento [53].} o permanente\footnote{Los sistemas 
+aprenden continuamente. Acumulan el conocimiento, aprendiendo del pasado , luego lo adaptan y lo utilizan para ayudar en el aprendizaje futuro [53].}, solo [12] incursionó 
+en el aprendizaje permanente y también en el concepto drift\footnote{Este concepto hace alusión al cambio entre las relaciones de los datos de entrada y salida. Puede que las 
+etiquetas con las que se emtrenó el modelo a la hora de predecir ya no sean ciertas o no tan ciertas [54] }. Los resultados sobre el rendimiento en los benchmarks fueron utilizados para realizar 
+comparaciones con otros sistemas [10] [14] [15] [17] [18] [23] [24] [31] [32]. En [19] [20] [21] fueron comparados con expertos haciendo uso de los 
+algoritmos de ML.
+
+En cada una de las propuestas se pudo observar variedad de opiniones respecto a los criterios de selección de los datasets, métricas y demás procesos que intervienen en 
+la creación del benchmark.
+
+\begin{flushleft} 
+    {\large { \textbf{Estrategias de Selección de los Conjuntos de Datos}}}\label{subsection:sel_conj_AutoML}
+\end{flushleft}
+
+%\subsection{Estrategias de Selección de los Conjuntos de Datos} \label{subsection:sel_conj_AutoML}
+
+Cuando un sistema es evaluado para validar su efectividad, esta debe tratar de ser un desafío . Si todos ellos ante los 
+datasets aportan buenos resultados se incumple el objetivo principal al carecer de dificultad [15]. De lo anterior se deduce que el criterio de selección 
+de los conjuntos de datos falló.
+
+En los benchmarks de AutoML las normas de selección de los conjuntos de datos variaron entre darle más importancia a las tareas que se resuelven o a ciertas características que presentan cada uno. También 
+elegieron aquellos más utilizados, con más descargas [19] o que hayan sido partícipe de otro estudio [9]. Según [15] esto último puede causar sesgo en los sistemas de 
+nueva generación. En [18] lo más importante fue el tipo de tarea a solucionar: regresión. En [30] se escogieron porque estaban relacionadas al fraude, en [26] al phishing y en [32] 
+a la clasificación de enfermedades. El criterio predominante fue las meta-características de los sets [10] [11] [15] [16] [17] [27] [28], buscaron variedad en el número 
+de features, número de instancias, variables categóricas. Según [10] estas pueden ser causantes de desajustes en los resultados de los sistemas.
+
+Entre las características que más resaltaron para seleccionar un dataset se encontraron:
+\begin{itemize}
+    \item Todos los conjuntos debían tener etiquetas ya que solo se resuelven tareas de aprendizaje supervisado en todos los benchmarks estudiados
+    \item Incluían datos reales. Los datos artificiales los sistemas lo solucionan con facilidad [15].  En [10] [16] sí incluyeron datos artificiales. 
+    \item Diversidad en el número de features, instancias, variables categóricas [10] [15] [18] [22] [28] [16][17].
+    \item Incluían conjuntos con desequilibrio\footnote{El desequilibrio en las clases está dado por la razón entre la clase minoritaria frente a la mayoritaria.} en 
+    las clases [31] [16]. Cuando estas carecen de información producto al desequilibrio el rendimiento tiende a decaer [16]. Este desbalance en [11][29] fue calculado 
+    en los conjuntos de entrenamiento mientras que en [31] se calculó sobre todo el dataset. 
+    \item  Datasets que tuvieran ruido. En [47] se explica que el ruido es una malformación en los datos ya puede ser por presencia de outliers, instancias mal etiquetadas, 
+    redundantes. Además, que la mayoría de los datos reales por naturaleza están sometidos a algún nivel de ruido debido a errores de recopilación u otros. [24] añadió 
+    ruido a los conjuntos para aumentar las instancias.
+    \item Conjuntos con valores faltantes. A pesar de que muchos sistemas carecen de técnicas de procesamiento de valores faltantes [10] [11] los incluyó. Otros 
+    limitaron su utilización [18], para no requerir una limpieza previa.
+    \item Datasets con alta dimensionalidad\footnote{La maldicion de la dimensionalidad puede verse como el bajo número de ejemplos para tantos features.}. [11] [24] 
+    incluyen esto en sus conjuntos de datos. [47] explica que esta característica complejiza la resolución de la tarea pues los sistemas tienen muchos features básicos a escoger.
+    \item Datasets multimodales. Los desarrolladores de AutoGluon en [42] plantearon que la mayoría de los trabajos de AutoML se han centrado en tratar los datos 
+    tabulares (valores numéricos y categóricos), las imágenes y texto por separado. Además, estos tipos de datos en la vida real tienden a coexistir. AutoGluon 
+    multimodal [42] es capaz de tratar con estas características de manera sencilla. El primer benchmark de AutoML en tratar estas características para tabulares y 
+    texto es [27]. Este tiene una diferencia notable con los restantes benchmarks y lo hace parecerse a los challenges. [27] trataron de cubrir las variantes más 
+    populares de modelado de texto/tabular para resolver el problema inicial. Presentaron varios enfoques que incluyero la utilización de Transformers , técnicas de 
+    embending para mapear todas las características al mismo espacio vectorial y ensamblar Transformers con marcos AutoML tabular.   
+    \end{itemize} 
+\begin{flushleft} 
+    {\large { \textbf{Métodos de Evaluación y Métricas}}}\label{subsection:met_AutoML}
+\end{flushleft}
+%\subsection{Métodos de Evaluación y Métricas} \label{subsection:met_AutoML}
+
+Una vez se tienen los conjuntos de datos se escoge el método de evaluación, para ello se selecciona una forma de dividir los conjuntos y una métrica de optimización. La 
+división interviene en el desempeño de los marcos y puede evitar que se ejecuten correctamente. En [10] aquellas ejecuciones donde una clase completa quedaba en el set 
+de prueba al no tener referencias de esta en el entrenamiento los marcos fallaban.  Las divisiones más utilizadas fueron hold-out y cross-validation (ver tabla 2). [18] 
+recalcó la utilidad de utilizar cross-validation para evitar overfitting. 
+
+Las métricas para medir el rendimiento fueron escogidas en dependencia de los datos o del tipo 
+de tarea. Para clasificación las más utilizadas fueron F1[10], AUC [15] y precisión [19] [16] [24] y para regresión fue el error cuadrático medio [19] [10] [16]. En [32] 
+se empleó la precisión desequilibrada la cual halla la precisión por clase pues el conjunto estaba muy desequilibrado. En [29] debido a la limitante de tiempo se utilizó 
+'any time learning' para obtener las predicciones durante cualquier momento en la ejecución. Los benchmark [8] [9] [13] [20] [22] [26] presentaron varias métricas de 
+forma general para todos los conjuntos de datos. Estimaron que son de utilidad en todos los ejemplos por igual y la más utilizada fue precisión.   
+
+\begin{flushleft} 
+    {\large { \textbf{Restricciones de Tiempo y  Software}}}\label{subsection:tiempo_AutoML}
+\end{flushleft}
+
+Los marcos AutoML deberían ejecutarse por tiempo indefinido hasta que converjan a una solución que ellos consideren óptima, pero esto es muy costoso [16]. Varios de 
+ellos definieron un tiempo de ejecución, ya sea distintivo para cada tarea [11] [29], o el mismo para todas (Ver figura 2). Los creadores de [16] encontraron uno en donde al menos el 
+70 porciento de las tareas de un tipo determinado logró ejecutarse. Mientras que en [15] [31] probaron con varios tiempos para determinar cuál aportaba mejores resultados. En [18] buscaron 
+en la bibliografía referencias sobre los tiempos límites de los sistemas y escogieron el más adecuado. Algunos no especifican el porqué de la selección [14][22]. En [23] se seleccionó en dependencia de 
+la escala de sus datos.    
+
+Los benchmarks [10] [15] [31] [23] [28] para facilitar el proceso de variar el tiempo de prueba, reproducir los experimentos y permitir la descarga rápida de los datasets crearon un 
+software extensible y de código abierto. Los autores de [10] [15] [31] aportaron un entorno de máquina para correr las evaluaciones, pero también permiten ejecuciones de forma local. 
+Los de [17] [19] [20] [21] [26] [32] utilizaron el software de [15] y [31] es la versión 2 de [15]. Los challenges [11] [29] tienen accesibles algunos de sus conjuntos de datos. 
+Ellos mediante su plataforma facilitan la evaluación de soluciones y la obtención de los resultados, todos con restricciones de CPU, tiempo y memoria RAM. Las 
+experimentaciones en casi todos los benchmark se realizaron bajo restricciones de RAM y CPU, solo los que tienen un entorno para evaluación pueden hacer que esto se 
+cumpla. La mayoría utilizó un baseline como límite del rendimiento mínimo obtenido, el más utilizado RandomForest [] [29] [31].
+
+\begin{flushleft} 
+    {\large { \textbf{Resultados Relevantes}}}\label{subsection:result_AutoML}
+\end{flushleft}
+
+Ciertos benchmarks [10] [23] [15] [31] permiten la reproducción de sus experimentaciones aportándolas en su código fuente. Muchas de las técnicas empleadas en estas pueden ser 
+reutilizables en otras investigaciones ya que demostraron ser de gran utilidad. Ejemplo [10] [30] [26] que mediante la representación de gráficos establecieron la 
+relación entre las meta-características de los conjuntos y el rendimiento de los sistemas. En [18] las diferencias de los resultados de los sistemas se hicieron mediante 
+pruebas de distribución como Shapiro-Wilk, Wilcoxon y Friedman. Otros utilizaron diagramas de cajas y bigotes [10] [16] [22] [31], árboles de Bradley-Terry [31] u otros 
+gráficos de rendimiento [15] [23]. También se evidenciaron técnicas para establecer la relación entre los resultados y el tiempo, a partir de qué momento tienden a sufrir sobreajuste los 
+sistemas [15]. Además de verificar si este es suficiente para completar todas las tareas [29].
+
+Las estrategias de comparación fueron otra de sus contribuciones. En [15] definieron a los marcos como mejores por tipo de tareas utilizando el promedio de la métrica. También 
+nombraron como marco ganador aquel que obtuvo mejores resultados en la mayoría de los conjuntos de datos [18] [10] [9]. Mientras que [10] realizó la comparación por pares,  
+[25] siguió un enfoque lexicográfico por tarea primero tenían en cuenta el de mejor resultado y luego el que necesitó menos esfuerzo. Algo parecido realizó [14] que 
+mediante la puntuación de ciertas propiedades obtuvo su ganador (comparación narrativa). En la sección de ML se nombraron deficiencias de algunas de estas estrategias.
+
+Las evaluaciones realizadas en [19] [20] [21] posibilitaron conocer en cuánto supera un sistema AutoML a un experto que utiliza un algoritmo de ML. Esto permitió 
+cuantificar el acercamiento de los sistemas automáticos al llegar a imitar a los humanos. Según [22] a pesar de que los humanos superan a los marcos estos son más 
+rápidos lo que hace que los resultados sean notables. Respecto a los conjuntos de datos [30] deja en claro las limitaciones de alcance que sufren de manera general y más cuando están 
+relacionados a sectores en los que son confidenciales. Es el caso del fraude [33] en que los datos están formados por identidades , estados de cuenta y lo mismo ocurre con [33] que utiliza 
+datos médicos que contienen información de seguros y de más por lo que se vuelven inaccesibles para utilizarlos en un estudio.  
+
+Además, con las evaluaciones y comparaciones realizadas, los estudios de oblación [29] [17] y análisis cualitativos [31] reflejaron las 
+deficiencias y ventajas de utilizar ciertos sistemas. De las mencionadas aún está vigente la incapacidad de utilizar datos no etiquetados [26], bajo rendimientos en 
+conjuntos desequilibrados [30] [32]. También están restringidos respecto a los formatos de los datos de entrada que reciben [27]. Una de las más importantes es la 
+inferioridad de estos ante los humanos debido a su baja capacidad de reconocimiento de características de los dominios [19].
+
+\begin{flushleft} 
+    {\large { \textbf{Errores en los Benchmarks}}}\label{subsection:fallas_AutoML}
+\end{flushleft}
+Las fallas que se presentan en cada benchmark son igual de importantes que los resultados que se derivan de ellos, permitirán aprender de los errores. Estas pueden 
+dividirse en fallas en las ejecuciones de los sistemas, de los experimentos realizados y las fallas en la metodología de creación del punto de referencia.
+
+Los sistemas presentaron problemas durante ejecución debido a la incapacidad de tratar con valores faltantes [10] [22] [32] y con algunos tipos de variables [30]. También 
+por   conjuntos con un tamaño muy grande que no lograron completarse [12] [22]. Existieron fallas en la memoria [10] [11] [12] [22] [29], sistemas que no lograron 
+terminar todas las tareas debido al tiempo [10] [12] [19] [20] [29]. Algunos sistemas no pudieron dar resultados respecto a una métrica determinada [20] [32].
+
+Los errores en los experimentos son afectaciones que sufren las comparaciones y resultados producto de las fallas de los sistemas y malas decisiones para abordar estas 
+fallas. Durante las ejecuciones en [10] la memoria fue agotada, se presentó una manera de tratar este problema proporcionando un poco más de memoria a aquellos que lo 
+necesitaban. La solución anterior elimina la falla inicial, pero provoca otra: ya los sistemas no se compararon en igualdad de condiciones. También surgieron errores 
+cuando unos marcos se ejecutaron con limitaciones de tiempo y otros no [25] [10]. Los fracasos a la hora de evaluar en [32] se dieron cuando uno de los AutoML dejó de 
+optimizarse para una de las métricas. Una limitación general fue la incapacidad de atribuir los resultados del rendimiento a alguna parte de los sistemas AutoML ya que 
+se compararon sistemas que no tienen el mismo espacio de búsqueda [15] [31] [22].
+
+Respecto a la metodología de los benchmark se presentaron algunos inconvenientes como la incapacidad de descargar los datasets utilizados [32] [14] y de las divisiones de 
+los mismos [16] [34] [14] [10]. Los challenges [11] [29] específicamente ocultan ciertos conjuntos de datos y en [12] la mayoría están ocultos al público. A pesar de 
+esto, a través de la plataforma sí permiten la obtención de resultados, aunque estos son difíciles de interpretar y de que sobrepasen la línea base, debido a su 
+carácter competitivo [31]. También existieron limitaciones relacionados a las características de los datasets, estos eran demasiado pequeños [23] [15], sin valores 
+faltantes [18] [24] [25] y el dominio de los mismos fue irrelevante en su selección [10] [16] [18] [22] [31]. Además, se encuentran muy procesados\footnote{Limpieza en 
+los conjuntos puede incluir imputación de valores faltantes, codificación de variables categóricas, o de string.} que sufren de falta de similitud con los datos reales 
+[22] [18]. Los recursos de software y tiempo para las evaluaciones en algunos ejemplos fueron escogidos arbitrariamente [8] o no se especifica el porqué de la selección 
+[22] [13] [24].  
+
+\section{Trabajos Relacionados}\label{section:trabajos_relacionados}
+En lugar de comparar marcos completos de aprendizaje automático, a menudo es útil centrarse en varias subpartes y optimizarlas paso a paso.
+
+Entre estas partes se encuentra la optimización de Hiperparametros la cual ha sido un problema central en la línea de aprendizaje automático. Esta aún presenta 
+inconvenientes en la evaluación de sus modelos debido a las limitaciones computacionales para abordar el tamaño del espacio de búsqueda de los mismo. Estos algoritmos 
+están divididos en dos grandes vertientes: Black Box y Multi-Fidelity. El estudio de estas dos vertientes no se ha hecho esperar por lo que los investigadores se 
+propusieron crear benchmark que permitan resolver un problema general, la verificación de su rendimiento.  Esta necesidad surge cuando los resultados de un método que funciona 
+bien en el protocolo experimental de una publicación no se pueden replicar; o cuando el método tiene un rendimiento inferior en un protocolo empírico ligeramente 
+diferente (HPO-B). 
+
+Entre los métodos de caja negra se encuentran los de optimización bayesiana estos han sido ampliamente utilizados en las implementaciones de sistemas AutoML. Se ha 
+demostrado que aportan mejores resultados que Búsqueda en Cuadrícula y Aleatoria y superan en muchos casos a los humanos. HPOlib es una de las primeras librerías que 
+recoge puntos de referencias de la literatura y evaluó métodos bayesianos.  [HPOlib] recopiló 3 puntos de referencia que abarcan dimensionalidad alta baja y media de 
+híper-parámetros a optimizar. Utiliza datos reales y pruebas sintéticas. Bayesmark (Turner,  2022) de igual forma combina varios puntos de referencia de tareas del 
+mundo real y fue creado para pobar estos mismo tipos de algoritmos. Mientras que ACLIb encaminado a algoritmos de Búsqueda Local Estocástica (SLS) de manera 
+general. Este emplea contenedores para cada espacio de configuración de híper-parámetro lo q le permite garantizar que los límites de memoria y tiempo que imponen se 
+cumplen. 
+
+HPO-B y COCO tambien se crearon dirigidos a métodos de Caja Negra. HPO-B  en su momento de publicación era el más grande hasta el momento y sus conjuntos de datos fueron tomados de OpenML. Estos se encontraban sin procesar y fueron sometidos a limpieza, pre-procesamiento y organización. 
+Su objetivo específico era evaluar métodos por transferencia mediante un protocolo empírico. COCO por otro lado solo compara los de dimensión cero en donde los datos 
+provienen de naturaleza estocástica y deterministas y se evalúan en problemas mono y multiobjetos.
+
+Un sucesor de HPO-B en escalabilidad y en proveer varios puntos de referencia es HPO-Bench. Este hizo su enfoque en problemas de multifidelidad y los dispuso tanto en 
+formato tabular como no estructurado. 
+
+NAS es otra de las partes que pueden formar un pipeline de AutoML. Estos métodos han tenido una fuerte atención debido a su efectividad en el diseño de redes neuronales 
+de última generación. Sin embargo, al igual que HPO debido a su gran complejidad computacional hacen extremadamente difícil sus comparaciones y la reproducción de 
+investigaciones (One-shot, suite).
+
+La primera forma que se encontró para abordar estas limitaciones de costo y tiempo fue construir benchmarks de NAS tabulares. Estos permitieron tener las evaluaciones 
+pre calculadas para todas las arquitecturas posibles del espacio de búsqueda que describen. El primero que se presentó con estas características fue NAS-Bench-101. 
+(NAS-Ben 101) posibilitó la evaluación de muchos métodos NAS en un corto período de tiempo, pero aún tenía ciertas limitantes. Entre estas estaba la incapacidad de 
+evaluación y comparación de métodos one-shot. (NAS-Bench-1-shot) mediante una adaptación del espacio de búsqueda de (NAS-Bench’101) resolvió este inconveniente. 
+(NAS’Bench 201) tenía el mismo propósito que (NAS-BEnch shot) lo que prefirió crear un punto de referencia totalmente nuevo en vez de adaptar el existente. 
+(NAS bench 201) pretendió ser independiente del modelo de evaluación buscando aún más generalidad por lo que aumentó el número de celdas entrenada de su antecesor 
+(NASBENCH101).
+
+Estos benchmark cumplieron con su objetivo general el de verificar el rendimiento de los modelos de NAS. Sin embargo, al representarse tubularmente se basan en una 
+evaluación exhaustiva de todas las arquitecturas en un espacio de búsqueda poco realista. (Surrugate NAS) presenta un nuevo enfoque para puntos de referencia de NAS 
+denominado surrugate (sustituto). Estos proveen un método sustituto el cual pueden utilizar para predecir el rendimiento de cualquier arquitectura en el espacio de 
+búsqueda. (Surrugate NAS) definió una metodología general para la creación de los mismos. Al igual que los tabulares estos permiten la misma interfaz de consultar el 
+rendimiento económicamente. El primero fue NAS-BEN 301 luego siguieron NASBEnch111, 311, NLP.
+
+Todos estos benchmarks se centraron en crear espacios de búsqueda más grandes y sofisticados, pero están restringidos a tareas específicas como clasificación de imágenes 
+y NLP. NAS-Bench 360 dejó a un lado buscar el mejor espacio de búsqueda para ampliar el dominio de aplicación, el tamaño delos conjuntos de datos, dimensionalidad del 
+problema y los objetivos de aprendizaje.
+
+[suite] crea una suite de benchmark para NAS. Este agrupa casi todos los benchmark anteriores permitiendo probar tareas tanto de imágenes como nlp, y reconocimiento de 
+voz. Al contrario de bench-360 que la evaluación puede tardar horas de CPU, esta suite al utilizar benchmark consultables tarda 5 min.
+
+En la tabla 3 puede ver alguna de las características de los NAS expresadas en esta sección
+
+
+

@@ -1,2 +1,106 @@
 \chapter*{Introducción}\label{chapter:introduction}
+El aumento de los datos, así como la diversidad de formas en que estos pueden estar estructurados requieren técnicas 
+de procesamiento que a un humano por sí solo le sería dificultoso realizar. A parte de su procesamiento se necesita interpretarlos y hacer predecciones 
+sobre los mismos que permitan resolver problemas de la vida real. Los modelos de de Machine Learning surgieron para ayudar 
+a los humanos en esas tareas.
+En la actualidad estos son muy utilizados en ciencias como la biología y la medicina en la identificación de células cancerígenas, 
+en el análisis de genoma, creación de nuevos fármacos. También en otros sectores como la educación, construcción y robótica [39]. 
+Tareas más específicas de su utilización son: la detección de fraude (\cite{4}), en el procesamiento de imágenes (\cite{1}) (\cite{3}), 
+para solucionar problemas sociales y económicos (\cite{2}). Sin ML sería casi imposible realizar las cuestiones anteriores sin gastar demasiados 
+recursos de software y tiempo.
+
+
+A pesar de que estas técnicas han automatizado el proceso de toma de decisiones y la realización de tareas engorrosas que tomaban mucho 
+tiempo para su finalización; aún poseen muchas limitaciones. Un especialista debe distinguir de un conjunto de modelos aquel con 
+características más similares a la definición de su problema. Este modelo podría ser el adecuado, pero podría ser explotado para 
+conseguir mejores resultados mediante otra configuración de sus parámetros. Este podría tener parámetros continuos, 
+discretos, entre otros tipos, seleccionar una combinación de los mismos que optimice lo obtenido con anterioridad podría tomar mucho tiempo. 
+Luego de garantizar que con las selecciones anteriores se lograría un buen rendimiento puede ser que los datos de entrada se hallen de 
+una forma inadecuada para el modelo; de esta acción también debería encargarse el experto.
+
+Debido a la amplia utilización de los algoritmos de ML en diversos sectores de la sociedad suplir la demanda de personas que realicen este trabajo se ha convertido
+en una preoridad. Encontrarlas con un gran dominio en el tema para cubrir todas las peticiones existente es bastante difícil. Además de que deben invertir mucho tiempo en la 
+realización de todo el proceso antes descrito. Para resolver estos inconvenientes surgieron los sistemas Automated Machine Learning  (AutoML). Estos 
+softwares construyen los pipelines de ML de forma automática. Ellos describen un flujo de tareas a realizar como: el procesamiento de datos, 
+selección de modelo y optimización de hiper-parámetros. Todas esas etapas se realizan sin intervención de los humanos, al menos eso es lo que 
+describe la definición de AutoML. La realidad es que aún necesitan un poco de ayuda externa sobre todo en el proceso de limpieza de los datos[36].
+
+Los sistemas varían en características como el de espacio de búsqueda el cual incluye todas las posibles soluciones del problema. La estrategia de 
+optimización de dicho espacio que permite buscar soluciones eficientes. Por último la estrategias para estimar el rendimiento de cada uno de 
+los pipelines que se forman, la cual posibilita la compararación dos soluciones y escoger la mejor.[33] [37] [52]
+
+
+Estos softwares son ampliamente utilizados como baseline ya que la solución obtenida quizás no es la óptima, pero es capaz de hacer 
+predicciones cercanas al óptimo del problema en cuestión. Un experto con el empleo de los mismos podría identificar qué tipo de 
+modelos, parámetros serían buenos para atacar su problema inicial .Una personas sin muchos conocimientos de ML se beneficia de la simplicidad de los mismo, 
+lo que le permite una fácil y rápida utilización.
+
+AutoML acota la intervención de los expertos en la creación de pipeline de ML pero en su mayoría son muy lentos. Existen tareas 
+irresolubles para los sistemas producto a limitantes relacionadas al dominio de aplicación del conjunto de datos. Este dominio puede 
+que necesite técnicas de procesamiento que el marco de aprendizaje desconoce o puede que no cuente con los algoritmos para obtener 
+buenos resultados en ese ámbito de aplicación.
+
+La problemática anterior conduce a un nuevo enfoque de AutoML: AutoML heterogéneo. Este permite encontrar el mejor flujo que 
+transforme la entrada en una salida deseada. Con ellos la entrada puede abarcar una gran cantidad de tipos de datos, ya sean 
+imágenes textos, datos tabulares... etc y la mezcla de los mismos. [33].
+
+\begin{flushleft} 
+{\Large { \textbf{Motivación} }}
+\end{flushleft}
+Los marcos de AutoML heterogéneo disminuirían aún más el trabajo de los usuarios que lo utilicen. Además, aumentaría el número de 
+tareas que tendrían solución sin importar la estructura o el área al que pertenezca la entrada de los sistemas. Con todas las ventajas 
+que resaltan a la vista con el nuevo enfoque para modelar un problema de aprendizaje automático surge la necesidad de formas de evaluación para ver si los 
+resultados que aportan son correctos.
+
+
+\begin{flushleft} 
+    {\Large { \textbf{Antecedentes}}}
+\end{flushleft}
+Desde el surgimiento del aprendizaje automático la investigación sobre la construcción y estandarización de conjuntos de datos que 
+permitan evaluar las soluciones aportadas en el campo de ML se ha hecho notar. Existen muchos documentos científicos que proponen 
+datasets que abarcan muchas de las tareas de ML en dominios como tabulares (\cite{2}), imágenes (\cite{1})(\cite{3}), series temporales (\cite{7}).
+
+Los investigadores de AutoML apoyados en los Benchmark de ML han aportado varios softwares [31] [15] [10] y conjuntos de datos [28] 
+para resolver el problema de obtener un medio de comparación en igualdad de condiciones. Todos estos Benchmark se nutren de sitios 
+que posibilitan la obtención de los medios necesarios para llevar a cabo el proceso de experimentación ejemplos: Open ML[43] , 
+Kanggle[44] , UCI[45].
+
+\begin{flushleft} 
+    {\Large { \textbf{Problemática}}}
+\end{flushleft}
+Los benchmark de AutoML carecen de conjuntos de datos que logren recoger muchos problemas de la ciencia debido 
+a la estructura que presentan. En muchos casos los conjuntos de datos solo pertenecen a un dominio y además solo explotan un mínimo de todas las funcionalidades de 
+los sistemas. En el caso de que incluyan más de un dominio de aplicación se desprenden de su significado semántico. También en su mayoría 
+utilizan los mismos conjuntos de datos lo que puede incluir sesgos de selección y no ser desafíos para los AutoML de nueva generación.
+
+Además, las comparaciones realizadas sobre ellos sufren de falta de equidad en los sistemas que evalúan, entre otras fallas 
+relacionadas al tiempo y forma escogida para medir el rendimiento; dichas fallas son resultado de una incorrecta investigación de la 
+naturaleza de los datos. Existen muchos datasets en los cuales se pueden evaluar estos softwares automatizados, pero carecen de 
+uniformidad en su estructura lo que dificulta su procesamiento y utilización.
+
+
+\textbf{Hipótesis}: Asumiendo que es posible que los sistemas AutoML sean heterogéneos y que se podrá establecer una comparación lo más 
+justa posible entre los mismos.
+
+\begin{flushleft} 
+    {\Large {\textbf{Objetivos}}}
+\end{flushleft}
+
+\textbf{Objetivo General:} Construir un benchmark que cuantifique la eficiencia de los sistemas AutoML en conjuntos de datos de distintos dominios y 
+que sean una mezcla de los mismo, 
+diferentes tipos de tareas de tarea de ML, datos que constituyen un desafío debido a sus meta-características.\newline
+
+\begin{flushleft} 
+\textbf{Objetivos Específicos:}
+\begin{itemize}
+    \item Realizar un estudio que permita identificar las características, aportes y fallas de algunos benchmark y comparaciones de AutoML que se recogen en la 
+    literatura. 
+    Los benchamrk de machine learning que aporten características importantes también serán incluidos como objeto de estudio.
+    \item Recopilación de conjuntos de datos que evalúen la heterogeneidad de los sistemas.
+    \item Implementación de un sistema que permita descargar dichos datos y los transforme a un formato común.  
+    \item Evaluación de AutoMLs seleccionados.
+    \item Estudio de los resultados obtenidos.
+\end{itemize}
+\end{flushleft}
+    
 \addcontentsline{toc}{chapter}{Introducción}

@@ -22,8 +22,8 @@
 \RequirePackage{footmisc}
 \RequirePackage{csquotes}
 \RequirePackage[
-	style=apa,
-	citestyle=authoryear,
+	style=ieee,
+	citestyle=numeric,
   hyperref=true,
 	backref=true
 	]{biblatex}
@@ -202,9 +202,9 @@
 
 
 \AtBeginDocument{%
-  % \hypersetup{pdftitle=\@title,pdfauthor=\@author}%
-  % Renaming cuadro to tabla.
-  \renewcommand{\listtablename}{Índice de tablas}%
+  %\hypersetup{pdftitle=\@title,pdfauthor=\@author}%
+  %Renaming cuadro to tabla.
+ \renewcommand{\listtablename}{Índice de tablas}%
   \renewcommand{\tablename}{Tabla}%
 }
 
