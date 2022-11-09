@@ -267,6 +267,28 @@ los conjuntos puede incluir imputación de valores faltantes, codificación de v
 [22] [13] [24].  
 
 \section{Trabajos Relacionados}\label{section:trabajos_relacionados}
+
+\begin{table}[]
+    \centering
+    \resizebox{15cm}{!} {
+    \begin{tabular}{|l|c|c|c|c|c|c|}
+    \hline
+    Bench&Tabular&Sustituto&Tarea& \# Conjunt &Varias Tareas&Consultante\\ \hline
+    NAS-Bench101  & \checkmark  &  & Image & 1  &  &  \checkmark  \\
+    NAS-Bench1-Shot & \checkmark & &Image  & 1 & & \checkmark   \\
+    NAS-Bench201  & \checkmark  &   & Image & 3 & &  \checkmark   \\ 
+    NAS-Bench-301  & & \checkmark &  Image & 1  & &   \checkmark   \\
+    NAS-Bench-111  & & \checkmark &  Image & 1  & &   \checkmark   \\
+    NAS-Bench-311  & & \checkmark &  Image & 1  & &   \checkmark   \\
+    NASBenchNLP11  & & \checkmark &  NLP & 1 & &  \checkmark     \\
+    Suite  & \checkmark  & \checkmark & Image/NLP /VC &  & \checkmark &      \checkmark         \\
+    NAS-Bench-360  & &  & NAS & 10 & \checkmark &  \\ \hline
+    \end{tabular}
+    \caption{Benchmarks NAS}
+    \label{tab:NAS}
+    }
+\end{table}
+
 En lugar de comparar marcos completos de aprendizaje automático, a menudo es útil centrarse en varias subpartes y optimizarlas paso a paso.
 
 Entre estas partes se encuentra la optimización de Hiperparametros la cual ha sido un problema central en la línea de aprendizaje automático. Esta aún presenta 
@@ -316,7 +338,36 @@ problema y los objetivos de aprendizaje.
 [suite] crea una suite de benchmark para NAS. Este agrupa casi todos los benchmark anteriores permitiendo probar tareas tanto de imágenes como nlp, y reconocimiento de 
 voz. Al contrario de bench-360 que la evaluación puede tardar horas de CPU, esta suite al utilizar benchmark consultables tarda 5 min.
 
-En la tabla 3 puede ver alguna de las características de los NAS expresadas en esta sección
+En la tabla \ref{tab:NAS} puede ver alguna de las características de los NAS expresadas en esta sección
 
 
+
+
+%\begin{table}[]
+ %   \caption{Benchmarks NAS}
+  %  \vspace{20pt}
+   % \centering
+    %\begin{tabular}{|c|c|c|c|c|c|}
+
+    %\begin{tabular}{p{2.2cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}}
+     %   \hline
+       % Feature & NAS-Bench101 & NAS-Bench201 & NAS-Bench-301 & NAS-Bench-111 & NAS-Bench-311 & NASBenchNLP11 & Suite & NAS Bench 
+        %\multicolumn{1,4}{ |c| }{Feature} \\ \hline
+      %  Bench  & Tabular  & Sustituto & Tarea & Cantidad (Tareas) & tipos de tareas & Benchmark consultante  \\
+      
+       % NAS-Bench101  & \checkmark  & \checkmark &  &  & &     \\ \hline
+       
+        %NAS-Bench1-Shot  & \checkmark & \checkmark &  &  & &  \\ \hline
+       
+        %NAS-Bench201  & \checkmark  & \checkmark &  &  & & \\ \hline
+       % NAS-Bench-301  & \checkmark  & \checkmark &  &  & & \\ \hline
+       % NAS-Bench-111  & \checkmark  & \checkmark &  &  & &  \\ \hline
+       % NAS-Bench-311  & \checkmark  & \checkmark &  &  & & \\ \hline
+        %NASBenchNLP11  & \checkmark  & \checkmark &  &  & &  \\ \hline
+        %Suite  & \checkmark  & \checkmark &  &  & &  \\ \hline
+        %NAS-Bench-360  & \checkmark  & \checkmark &  &  & & \\
+        %\hline
+    %\end{tabular}
+    %\label{bs2}
+%{table}
 

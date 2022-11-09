@@ -1,4 +1,4 @@
-\chapter{Diseño y Detalles de Implementación del Benchmark}\label{chapter:design}
+\chapter{Diseño e Implementación de la Propuesta}\label{chapter:design}
 El creciente aumento de los datos ha impulsado a que surjan más sistemas AutoML. Estos han demostrado que en gran medida disminuyen 
 el desgaste de los científicos de datos en tareas que requieran mucho tiempo y que sean engorrosas de realizar. También aceleran 
 el proceso de predicción y en los ensayos realizados sobre los mismos han confirmado ser bastante eficientes. En aras de justificar 
@@ -14,18 +14,18 @@ la estructura de los datos ha pasado desapercibido para cada uno de estos. El do
 así como los datos estructurados y procesados, y está claro que estos son los menos abundantes en el mundo.
 
 Debido a la ineficacia y errores de los anteriores benchmarks para medir el rendimiento de los actuales sistemas AutoML se propuso 
-crear uno nuevo llamado \textbf{HAutoMLBench}. La meta es verificar la flexibilidad de los sistemas AutoML ante diferentes tipos de entrada, 
+crear uno nuevo llamado \textbf{HAutoML-Bench}. La meta es verificar la flexibilidad de los sistemas AutoML ante diferentes tipos de entrada, 
 diferentes dominios y distintas tareas. También validar su heterogeneidad viendo si permiten enfrentarse a problemas reales en donde 
 los datos se encuentran sin mucho procesamiento.
 
-\section{Diseño}\label{section:diseño}
+\section{Metodología del Diseño }\label{section:design}
 
 Las características principales que definieron la metodología del diseño de \textbf{HAutoMLBench} fueron los conjuntos de datos y las métricas de 
 rendimiento que permitieron realizar una experimentación con los mismos. Sobre los conjuntos fue necesario definir su estrategia de selección,
 forma de división y problemas que surgieron durante su procesamiento.
 
 \begin{flushleft} 
-    {\large { \textbf{Estrategias de selección del conjunto de de Datos del Benchmark}}}\label{section:selection}
+    {\large { \textbf{Estrategias de selección del conjunto de Datos del Benchmark}}}\label{section:selection}
 \end{flushleft}
 La selección de los conjuntos de datos determina la vertiente a la que va dirigida la evaluación de los sistemas. Estos deben ser los encargados de someter con 
 pruebas complicadas al software evaluado en aras de resaltar las buenas y las malas funcionalidades del mismo.
@@ -41,7 +41,7 @@ técnicas de procesamiento especializadas por parte de los sistemas, se decidió
 uno es multilingual.
 
 Con respecto a los multimodales forman parte algunos presentes en el benchmark (Text Multimodal), solo se utilizó su referencia original porque en este los conjuntos 
-fueron procesados, lo que se desvía del objetivo principal de HAutoMLBench. Respecto a las columnas corresponden a texto, oraciones, palabras, columnas categóricas, 
+fueron procesados, lo que se desvía del objetivo principal de \textbf{HAutoML-Bench}. Respecto a las columnas corresponden a texto, oraciones, palabras, columnas categóricas, 
 booleanas, valores numéricos tanto discretos como continuos, columnas de tiempo y que responden a urls de páginas y de imágenes.
 
 A modo general se buscó incluir conjuntos de datos que tuvieran valores faltantes y desequilibrio de clases, ya que como se dejó claro en (Cap1) suelen ser 
@@ -58,11 +58,16 @@ cada datasets.
 \end{flushleft}
 La mayoría de los benchmark vistos en el capítulo 1 utilizaron validación k-fold como método de evaluación, dividiendo de forma 
 aleatoria en cada prueba los conjuntos en entrenamiento y validación. HAutoMLBench provee un conjunto de entrenamiento y un conjunto de prueba (método hold hot). 
-Muchos de los datasets originales estaban previamente divididos de esta forma. Otros estaban separados en entrenamiento, validación y test, para este caso se 
+Se utililizó esa forma debido a que muchos de los datasets originales estaban previamente divididos así por reglas del dominio al que pertenecen. 
+Además de que cross-validation resulta ser mas costoso y evaluar en un conjunto de datos nunca antes visto resultó una mejor opción.  
+
+Otros estaban separados en entrenamiento, validación y test, para este caso se 
 tomaron varias estrategias. Para paws-x-es, paws-x-es, wikineural-es y wikineural-en se unieron validación con prueba, ya que los datos de entrenamiento era 
 demasiado grande en comparación con la unión de prueba con validación. Los restantes se unieron validación y entrenamiento. Aquellos datasets que no se encontraban 
 divididos en partes, en dependencia de su tamaño, se escogió entre el 80 y 70 porciento para entrenamiento y lo restante para prueba. En la tabla se muestran 
-los resultados de las divisiones realizadas. Se decidió optar por la estrategia de división antes descrita en lugar de entrenamiento-validación-prueba, ya que 
+los resultados de las divisiones realizadas. 
+
+Se decidió optar por la estrategia de división antes descrita en lugar de entrenamiento - validación-prueba, ya que 
 todos los sistemas no permiten como entrada la división del conjunto de entrenamiento. Además, es interés de este benchmark que todos los sistemas exploten todas sus 
 funcionalidades. Entre estas está la división del conjunto de entrenamiento.
 
@@ -94,6 +99,142 @@ La selección de métrica de optimización quedó libre debido a que esta es dep
 restringen sus modelos a unas específicas. Se recomienda usar para clasificación balanced-accuracy debido a que existe un gran desequilibrio en algunos de 
 los conjuntos de datos que modelan este tipo de tarea, mientras que para la regresión rmse que permite una interpretación directa con el error entre el resultado 
 predictivo y el verdadero.
+
+\section{Detalles de Implementación}\label{section:Implementation}
+\textbf{HAutoML-Bench} es un sistema extensible , de código abierto y que aún continúa en desarrollo. Permite la descarga de datasets y la incluisión de otros. 
+Además contiene funcionalidades para cuantificar el rendimieto en los mismos y para filtarlos según sus metadatos.
+
+\begin{flushleft} 
+    {\large { \textbf{ Instrucciones de Instalación e Inicialización}}}\label{section:instructions}
+\end{flushleft}
+
+ 
+\begin{itemize}
+    \item Para su instalación solo es necesario descargarlo desde su repositorio oficial de github. 
+    \item Instalar poetry un gestor de paquetes.   
+    \item instalar todas las dependencias del benchmark con el comando ¨poetry install¨.
+    \item Luego debe colocar el archivo en donde va a realizar las pruebas en la carpeta source e importar la clase HAutoML-Bench
+    \item LLamar al metodo create de la siguiente forma HAutoML-Bench.create(). 
+\end{itemize}
+\begin{flushleft} 
+    {\large { \textbf{Estructura del software}}}\label{section:struct}
+\end{flushleft}
+
+
+\textbf{HAutoML-Bench} está formado por dos clases la clase HAutoMLBench y clase Dataset. En la figura \ref{fig:image1} se muestra la estructura de sus archivos inicialmente.
+En el directorio source archivo test se provee algunos ejemplos de uso del benchmark para su fácil utilizacion.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Graphics/directory.png}
+    \caption{Directorio del Benchmark}
+    \label{fig:image1}
+ \end{figure}
+
+\begin{flushleft} 
+    {\large { \textbf{ Clase Benchamrk y Dataset}}}\label{section:class}
+\end{flushleft}
+
+La clase HAutoMLBench es la encargada de interactuar con el usuario , en ella están los métodos que el usuario debe utilizar para 
+probar sus sistemas. Estos son estáticos de tal forma que no se necesite instanciar la clase para utilizar sus funcionalidades.
+
+La clase dataset modela las propiedades de un dataset: información,nombre, url utilizada para su descarga y función load.
+
+\begin{flushleft} 
+    {\large { \textbf{ Metodos de interaccion del usuario }}}\label{section:methods}
+\end{flushleft}
+
+
+El método create'datasets como se mencionó anteriormente en las instruccionde de instalación es el encargado de crear los archivos que guardan el estado del benchmark
+, almacena los nombres de los datsets registrados así como su ur, nombre de la función load y sus información propia. Además se encarga de crear las intancias de los dastasets y 
+serializarlas para su futuro uso. Es importante que solo se ejecute esta función una sola vez debido a que perderá todos los cambios guardados y volverá a su estado inicial por defecto.
+En la figura \ref{fig:image2} se muestra el flujo de ejecución de la función. 
+
+\begin{flushleft} 
+    { \textbf{ Método create-datasets }}\label{section:create}
+\end{flushleft}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Graphics/methods/create-datasets.png}
+    \caption{Flujo de trabajo: Método create-datasets}
+    \label{fig:image2}
+ \end{figure}
+
+\begin{flushleft} 
+    { \textbf{Método init }}\label{section:init}
+\end{flushleft}
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Graphics/methods/init.png}
+    \caption{Flujo de trabajo: Método init}
+    \label{fig:image2}
+ \end{figure}
+
+\begin{flushleft} 
+    { \textbf{Método new-dataset }}\label{section:new}
+\end{flushleft}
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Graphics/methods/new-dataset.png}
+    \caption{Flujo de trabajo: Método new-dataset}
+    \label{fig:image3}
+ \end{figure}
+
+ 
+\begin{flushleft} 
+    { \textbf{Método remove-dataset }}\label{section:remove}
+\end{flushleft}
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Graphics/methods/remove-dataset.png}
+    \caption{Flujo de trabajo: Método remove-dataset}
+    \label{fig:image4}
+ \end{figure}
+
+\begin{flushleft} 
+    { \textbf{Método load-dataset }}\label{section:load_d}
+\end{flushleft}
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width=1 \textwidth]{Graphics/methods/load-dataset.png}
+    \caption{Flujo de trabajo: load-dataset}
+    \label{fig:image5}
+ \end{figure}
+
+\begin{flushleft} 
+    { \textbf{Método load-info }}\label{section:load_i}
+\end{flushleft}
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width= 0.9\textwidth]{Graphics/methods/load_info.png}
+    \caption{Flujo de trabajo: load-info}
+    \label{fig:image6}
+ \end{figure}
+
+\begin{flushleft} 
+    { \textbf{Método filter }}\label{section:filter}
+\end{flushleft}
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Graphics/methods/filter.png}
+    \caption{Flujo de trabajo: Método filter}
+    \label{fig:image7}
+ \end{figure}
+
+
+metodos auxiliares
+
+
+
+
+
 
 
 
