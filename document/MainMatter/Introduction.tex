@@ -1,82 +1,71 @@
 \chapter*{Introducción}\label{chapter:introduction}
-El aumento de los datos, así como la diversidad de formas en que estos pueden estar estructurados requieren técnicas 
-de procesamiento que a un humano por sí solo le sería dificultoso realizar. A parte de su procesamiento se necesita interpretarlos y hacer predecciones 
-sobre los mismos que permitan resolver problemas de la vida real. Los modelos de de Machine Learning surgieron para ayudar 
-a los humanos en esas tareas.
-En la actualidad estos son muy utilizados en ciencias como la biología y la medicina en la identificación de células cancerígenas, 
-en el análisis de genoma, creación de nuevos fármacos. También en otros sectores como la educación, construcción y robótica [39]. 
-Tareas más específicas de su utilización son: la detección de fraude (\cite{4}), en el procesamiento de imágenes (\cite{1}) (\cite{3}), 
-para solucionar problemas sociales y económicos (\cite{2}). Sin ML sería casi imposible realizar las cuestiones anteriores sin gastar demasiados 
-recursos de software y tiempo.
+\addcontentsline{toc}{chapter}{Introducción}
+En la actualidad, debido a los avances en la tecnología, la información suele almacenarse de manera digital. Los modelos de Machine Learning(ML) surgen para 
+ayudar a los humanos a procesar e interpretar esta información, la cual luego es utilizada para resolver problemas de la vida real. Estos modelos 
+son empleados en ciencias como la biología y la medicina, en la identificación de células cancerígenas, en el análisis de genoma y creación de nuevos fármacos. 
+Además, en otros sectores como la educación, construcción y robótica [\cite{39}]. También son empleados en la detección de fraude [\cite{4}], en el procesamiento de 
+imágenes [\cite{1},\cite{3}], para solucionar problemas sociales y económicos [\cite{2}]. Sin los modelos de ML sería casi imposible realizar estas tareas sin 
+gastar demasiados recursos de software y tiempo.
 
+Si bien estos algoritmos de aprendizaje han automatizado el proceso de toma de decisiones, aún tienen mucha dependencia hacia los humanos. 
+Los especialistas deben escoger de un conjunto de modelos, aquel con características más similares a la definición de su problema. Los datos de entrada 
+deben ser procesados según el tipo de estructura que soporta el modelo. Además, cada uno puede tener tanto parámetros continuos como discretos y se debe seleccionar 
+una configuración de los mismos que permita resolver el problema con buenos resultados.
 
-A pesar de que estas técnicas han automatizado el proceso de toma de decisiones y la realización de tareas engorrosas que tomaban mucho 
-tiempo para su finalización; aún poseen muchas limitaciones. Un especialista debe distinguir de un conjunto de modelos aquel con 
-características más similares a la definición de su problema. Este modelo podría ser el adecuado, pero podría ser explotado para 
-conseguir mejores resultados mediante otra configuración de sus parámetros. Este podría tener parámetros continuos, 
-discretos, entre otros tipos, seleccionar una combinación de los mismos que optimice lo obtenido con anterioridad podría tomar mucho tiempo. 
-Luego de garantizar que con las selecciones anteriores se lograría un buen rendimiento puede ser que los datos de entrada se hallen de 
-una forma inadecuada para el modelo; de esta acción también debería encargarse el experto.
+Una de las limitaciones de su utilización es que cada vez es más difícil suplir la demanda de expertos que realicen este trabajo. El entrenamiento de los modelos de 
+ML requiere de un gran dominio de temas como probabilidades, estadísticas y programación. Además de que es necesario invertir mucho tiempo en el proceso.
 
-Debido a la amplia utilización de los algoritmos de ML en diversos sectores de la sociedad suplir la demanda de personas que realicen este trabajo se ha convertido
-en una preoridad. Encontrarlas con un gran dominio en el tema para cubrir todas las peticiones existente es bastante difícil. Además de que deben invertir mucho tiempo en la 
-realización de todo el proceso antes descrito. Para resolver estos inconvenientes surgieron los sistemas Automated Machine Learning  (AutoML). Estos 
-softwares construyen los pipelines de ML de forma automática. Ellos describen un flujo de tareas a realizar como: el procesamiento de datos, 
-selección de modelo y optimización de hiper-parámetros. Todas esas etapas se realizan sin intervención de los humanos, al menos eso es lo que 
-describe la definición de AutoML. La realidad es que aún necesitan un poco de ayuda externa sobre todo en el proceso de limpieza de los datos[36].
+Los sistemas de aprendizaje automático(AutoML) surgen para resolver estos inconvenientes. Estos construyen canalizaciones de ML de forma automática describiendo un 
+flujo de tareas a realizar. Estas tareas son: el procesamiento de datos, selección de modelo y optimización de hiperparámetros entre otras. Todas esas etapas se 
+realizan sin intervención de los humanos, al menos eso es lo que describe la definición de AutoML. La realidad es que aún necesitan un poco de ayuda externa, sobre 
+todo en el proceso de limpieza de los datos [\cite{36}].
 
-Los sistemas varían en características como el de espacio de búsqueda el cual incluye todas las posibles soluciones del problema. La estrategia de 
-optimización de dicho espacio que permite buscar soluciones eficientes. Por último la estrategias para estimar el rendimiento de cada uno de 
-los pipelines que se forman, la cual posibilita la compararación dos soluciones y escoger la mejor.[33] [37] [52]
+Los softwares AutoML varían en características como el de espacio de búsqueda, el cual incluye todas las posibles soluciones del problema que pretenden solucionar. 
+La estrategia de optimización de dicho espacio que permite buscar soluciones eficientes. Por último, la estrategia para estimar el rendimiento de cada una de las 
+canalizaciones que forman, la cual posibilita comparar dos soluciones y escoger la mejor[\cite{33},\cite{37},\cite{52}].
 
+Estos sistemas se emplean como baseline, ya que la solución obtenida quizás no es la óptima, pero es capaz de hacer predicciones cercanas al óptimo de un 
+problema en cuestión. Un experto con el empleo de los mismos podría identificar qué tipo de modelos, parámetros, serían buenos para atacar su problema inicial. 
+Una persona sin muchos conocimientos de ML se beneficia de su simplicidad, lo que le permite una fácil y rápida utilización.
 
-Estos softwares son ampliamente utilizados como baseline ya que la solución obtenida quizás no es la óptima, pero es capaz de hacer 
-predicciones cercanas al óptimo del problema en cuestión. Un experto con el empleo de los mismos podría identificar qué tipo de 
-modelos, parámetros serían buenos para atacar su problema inicial .Una personas sin muchos conocimientos de ML se beneficia de la simplicidad de los mismo, 
-lo que le permite una fácil y rápida utilización.
+AutoML acota la intervención de los humanos en la creación de canalizaciones de ML, pero en su mayoría son muy lentos. Existen tareas irresolubles para los 
+sistemas producto a limitantes relacionadas con el dominio de aplicación de sus datos de entrada. Este dominio puede que necesite técnicas de procesamiento que el 
+sistema de aprendizaje desconoce o que sus algoritmos obtienen malos resultados en ese ámbito de aplicación.
 
-AutoML acota la intervención de los expertos en la creación de pipeline de ML pero en su mayoría son muy lentos. Existen tareas 
-irresolubles para los sistemas producto a limitantes relacionadas al dominio de aplicación del conjunto de datos. Este dominio puede 
-que necesite técnicas de procesamiento que el marco de aprendizaje desconoce o puede que no cuente con los algoritmos para obtener 
-buenos resultados en ese ámbito de aplicación.
-
-La problemática anterior conduce a un nuevo enfoque de AutoML: AutoML heterogéneo. Este permite encontrar el mejor flujo que 
-transforme la entrada en una salida deseada. Con ellos la entrada puede abarcar una gran cantidad de tipos de datos, ya sean 
-imágenes textos, datos tabulares... etc y la mezcla de los mismos. [33].
+La problemática anterior conduce a un nuevo enfoque de AutoML: AutoML heterogéneo. Este permite encontrar la mejor forma de transformar una entrada en una 
+salida deseada. Con ellos, tanto la entrada como la salida pueden tener variada estructura y abarcar varios tipos de datos, ya sean imágenes, textos, datos 
+tabulares y la mezcla de los mismos [\cite{33}].
 
 \begin{flushleft} 
 {\Large { \textbf{Motivación} }}
 \end{flushleft}
 Los marcos de AutoML heterogéneo disminuirían aún más el trabajo de los usuarios que lo utilicen. Además, aumentaría el número de 
-tareas que tendrían solución sin importar la estructura o el área al que pertenezca la entrada de los sistemas. Con todas las ventajas 
-que resaltan a la vista con el nuevo enfoque para modelar un problema de aprendizaje automático surge la necesidad de formas de evaluación para ver si los 
-resultados que aportan son correctos.
+tareas que tendrían solución sin importar la estructura o el área al que pertenezcan los datos de entrada de los sistemas. Con todas las ventajas 
+que resaltan a la vista con el nuevo enfoque surge la necesidad de formas de evaluación para ver si los resultados que aportan son correctos.
 
 
 \begin{flushleft} 
     {\Large { \textbf{Antecedentes}}}
 \end{flushleft}
-Desde el surgimiento del aprendizaje automático la investigación sobre la construcción y estandarización de conjuntos de datos que 
-permitan evaluar las soluciones aportadas en el campo de ML se ha hecho notar. Existen muchos documentos científicos que proponen 
-datasets que abarcan muchas de las tareas de ML en dominios como tabulares (\cite{2}), imágenes (\cite{1})(\cite{3}), series temporales (\cite{7}).
+Desde el surgimiento de los modelos de machine learning se han hecho notar las investigaciones sobre la construcción de conjuntos de datos de evaluación. 
+Existen muchos documentos científicos que proponen softwares para medir rendimiento en tareas de ML [\cite{1},\cite{3},\cite{2},\cite{7}]. A estos sistemas se les 
+denomina Benchmark.
 
-Los investigadores de AutoML apoyados en los Benchmark de ML han aportado varios softwares [31] [15] [10] y conjuntos de datos [28] 
-para resolver el problema de obtener un medio de comparación en igualdad de condiciones. Todos estos Benchmark se nutren de sitios 
-que posibilitan la obtención de los medios necesarios para llevar a cabo el proceso de experimentación ejemplos: Open ML[43] , 
-Kanggle[44] , UCI[45].
+Los investigadores de AutoML apoyados en los Benchmark de ML han aportado puntos de referencia [\cite{10},\cite{15},\cite{31}] y conjuntos de datos [\cite{28}]. 
+El objetivo de cada uno de estos sistemas es evaluar y comparar eficiencia en igualdad de condiciones. Además, se nutren de sitios que posibilitan la obtención de los 
+medios necesarios para cumplir con sus objetivos: OpenML[\cite{43}], Kaggle[\cite{44}] y UCI[\cite{45}].
 
 \begin{flushleft} 
     {\Large { \textbf{Problemática}}}
 \end{flushleft}
-Los benchmark de AutoML carecen de conjuntos de datos que logren recoger muchos problemas de la ciencia debido 
-a la estructura que presentan. En muchos casos los conjuntos de datos solo pertenecen a un dominio y además solo explotan un mínimo de todas las funcionalidades de 
-los sistemas. En el caso de que incluyan más de un dominio de aplicación se desprenden de su significado semántico. También en su mayoría 
-utilizan los mismos conjuntos de datos lo que puede incluir sesgos de selección y no ser desafíos para los AutoML de nueva generación.
+Los benchmark de AutoML poseen muchas limitaciones en sus conjuntos de datos. Estos tienen poca similitud con los problemas de la vida real. Además, suelen 
+pertenecer a un solo dominio y solo explotan un mínimo de todas las funcionalidades de los sistemas AutoML. En caso de que incluyan más de un dominio de aplicación, 
+se desprenden de su significado semántico. También muchos de estos conjuntos se crearon para sistemas antecedentes y puede que sean demasiado fáciles para los AutoML 
+de nueva generación.
 
-Además, las comparaciones realizadas sobre ellos sufren de falta de equidad en los sistemas que evalúan, entre otras fallas 
-relacionadas al tiempo y forma escogida para medir el rendimiento; dichas fallas son resultado de una incorrecta investigación de la 
-naturaleza de los datos. Existen muchos datasets en los cuales se pueden evaluar estos softwares automatizados, pero carecen de 
-uniformidad en su estructura lo que dificulta su procesamiento y utilización.
+Las comparaciones de los softwares de aprendizaje automático que realizan los benchmark, muchas veces sufren de falta de equidad. Además, tienen fallas en su 
+metodología producto de una incorrecta investigación de la naturaleza de los dataset que utilizan. Más allá de los conjuntos que usualmente son empleados en las 
+evaluaciones, existen otros, pero por carecer de uniformidad en su estructura y por necesitar procesamiento son apartados.
 
 
 \textbf{Hipótesis}: Asumiendo que es posible que los sistemas AutoML sean heterogéneos y que se podrá establecer una comparación lo más 
@@ -86,9 +75,9 @@ justa posible entre los mismos.
     {\Large {\textbf{Objetivos}}}
 \end{flushleft}
 
-\textbf{Objetivo General:} Construir un benchmark que cuantifique la eficiencia de los sistemas AutoML en conjuntos de datos de distintos dominios y 
-que sean una mezcla de los mismo, 
-diferentes tipos de tareas de tarea de ML, datos que constituyen un desafío debido a sus meta-características.\newline
+\textbf{Objetivo General}: Construir un benchmark que cuantifique la eficiencia de los sistemas AutoML, que sus conjuntos pertenezcan a distintos dominios y tareas 
+de ML. Los datos deben ser un desafío debido a sus meta-características.
+
 
 \begin{flushleft} 
 \textbf{Objetivos Específicos:}
@@ -101,6 +90,4 @@ diferentes tipos de tareas de tarea de ML, datos que constituyen un desafío deb
     \item Evaluación de AutoMLs seleccionados.
     \item Estudio de los resultados obtenidos.
 \end{itemize}
-\end{flushleft}
-    
-\addcontentsline{toc}{chapter}{Introducción}
+\end{flushleft} 
