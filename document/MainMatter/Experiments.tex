@@ -1,92 +1,169 @@
 \chapter{Experimentación}\label{chapter:experiments}
+
 En este capítulo se presentan tres marcos experimentales con el objetivo de verificar que es posible evaluar sistemas AutoML en los conjuntos de datos de 
 \textit{HAutoML-Bench}. 
 
-El primer marco \ref{section:diversidad} realiza una comprobación visual de la diversidad en las metacaracterísticas que presentan los dataset. El propósito 
-de esta experimentación es mostrar que no existen sesgos de selección en los conjuntos escogidos.
+El primer marco \ref{section:data} realiza un análisis visual de las propiedades que presentan dichos conjuntos. El propósito de esta experimentación es mostrar que 
+existe complejidad y diversidad en sus propiedades. Esto permite asegurar que se tiene un conjunto de calidad en donde su estrategia de creación mitiga los sesgos de 
+selección.
 
-Los dos marcos restantes proponen una evaluación cualitativa y cuantitativa de sistemas de aprendizaje automático sobre los dataset de \textit{HAutoML-Bench}.
-La evaluación cualitativa \ref{section:AutoML} tiene el fin de efectuar una búsqueda para determinar cuáles herramientas de AutoML contienen 
-las funcionalidades necesarias para pasar al siguiente marco de experimentación.
+Los dos marcos restantes proponen una evaluación cualitativa y cuantitativa de los sistemas de aprendizaje automático.
+La evaluación cualitativa \ref{section:qualitative} tiene el fin de efectuar un estudio sobre las características de las herramientas de AutoML. La tarea es determinar 
+cuáles herramientas poseen las funcionalidades necesarias para evaluarse en cada uno de los datasets de \textit{HAutoML-Bench}.
 
-El último marco, el de evaluaciones cuantitativas, presenta sus configuraciones experimentales \ref{section:seetings} y tiene como meta cuantificar el 
-rendimiento de los sistemas seleccionados \ref{section:results}. En un apéndice de esta sección se discuten los resultados obtenidos \ref{section:discussions}.
+El último marco, el de evaluaciones cuantitativas, efectúa las mediciones de rendimiento de los sistemas seleccionados en el marco experimental anterior. En su inicio 
+se especifican las diferentes etapas de evaluación y sus configuraciones \ref{subsection:seetings}. Luego se presentan los valores de 
+rendimiento obtenidos y las comparaciones realizadas \ref{subsection:results}.
 
-\section{Diversidad de los Conjuntos de Datos}\label{section:diversidad}
+En la última sección se discuten los resultados de cada uno de los marcos experimentales \ref{subsection:discussions}.  
 
-%········pending··················
-Una vez seleccionados los conjuntos de datos es necesario verificar que existe diversidad con respecto a sus metadatos.   
-En la figura \ref{fig:columns} se muestra la cantidad de columnas que presenta cada dataset siendo google-guest el mayor con 40 columnas, las cantidades que más predominan son 2 y 3.
-Con respecto a la número de instancias en la figura: \ref{fig:instances} se puede ver que la mayoría se encuentra por debajo de 50 000, el mayor es haha que posee 800000 instancias. 
-Los valores faltantes fig: \ref{fig:null} están presentes en la minoría de los conjuntos, sin embargo en cada uno de ellos hay una gran cantidad de los mismo. 
-En las clases se puede observar en la gráfica: \ref{fig:clases} que predomina más la clasificación binaria, mientras que la gráfica: \ref{fig:balance} muestra que existen conjuntos fuertemente desequilibrados con un porciento menor a 0.4. 
-El dataset language-identification para todas sus clases posee la misma cantidad de instancias.
+\section{Análisis de los Conjuntos de Datos}\label{section:data}
 
-\begin{figure}[!h]
-    \begin{minipage}[b]{0.5\textwidth}
-      
-        \includegraphics[width=\textwidth]{Graphics/results/columns.png}
-          \caption{Columnas}
-          \label{fig:columns}
-    \end{minipage}      
-    \hspace{0.02cm}
-    \begin{minipage}[b]{0.5\textwidth}
-      
-        \includegraphics[width=\textwidth]{Graphics/results/instances.png}
-          \caption{Instancias}
-          \label{fig:instances}
-        \end{minipage} 
+\textit{HAutoML-Bench} está formado por 11 conjuntos multimodales y 11 conjuntos de texto puro.
+La estrategia de selección de estos conjuntos asegura que sus selecciones son un reto para los sistemas AutoML.
+Su fortaleza se hace presente en la mezcla de varios dominios y en la presencia de datos no estructurados en sus conjuntos. 
+En las figuras (\ref{fig:columns-t},\ref{fig:columns-d},\ref{fig:columns-i},\ref{fig:columns-e}) se muestra que los dataset de evaluación poseen una gran cantidad de 
+datos no estructurados y que estas se unen a las característica 
+tabulares\textit{Columnas que son numéricas,booleanas y categóricas} (\ref{fig:columns-n},\ref{fig:columns-b},\ref{fig:columns-c}) para dar más complejidad a la tarea.
+
+Otro de los puntos de dificultad de los dataset de \textit{HAutoML-Bench} son sus metacaracterísticas. Cuando estas propiedades presentan
+variedad, aseguran que todo el conjunto está formado por varias muestras representantivas del total de problemas de la vida real.
+
+En la figura \ref{fig:columns} se muestran los diferentes números de columnas que presenta cada dataset siendo \textit{google-guest} el mayor con 40. 
+Los números que más predominan son 2 y 3. 
+Con respecto a la cantidad de instancias en la figura: \ref{fig:instances} se puede ver que hay conjuntos pequeños, grandes y medianos.
+El mayor de todos es \textit{project-kickstarter} y el menor \textit{wnli-es}.
+Los valores faltantes figura: \ref{fig:null} están presentes en la minoría de los conjuntos; sin embargo, en cada uno de ellos hay una 
+gran cantidad de los mismos. 
+En los ejemplos de clasificación existe un balance entre los de clasificación binaria y multiclase. De las tareas de clasificación unas de sus propiedades más interesantes 
+son el número de conjuntos que poseen desequilibrio y el grado que presentan, es muchos menor que 0.4 porciento. 
+
+
+\begin{figure}
+  \begin{minipage}[b]{0.31\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Graphics/results/instances.png}
+      \caption{Instancias}
+      \label{fig:instances}
+    \end{minipage} 
+\hspace{0.01cm}
+  \begin{minipage}[b]{0.31\textwidth}
+    \centering
+      \includegraphics[width=\textwidth]{Graphics/results/columns.png}
+        \caption{Columnas}
+        \label{fig:columns}
+  \end{minipage}      
+\hspace{0.01cm}
+  \begin{minipage}[b]{0.31\textwidth}
+    \centering
+      \includegraphics[width=\textwidth]{Graphics/results/null_values.png}
+        \caption{Null}
+        \label{fig:null}
+    \end{minipage} 
 \end{figure}
 
-\begin{figure}[!h]
-    \begin{minipage}[b]{0.5\textwidth}
+\begin{figure}
+  \centering
+    \begin{minipage}[b]{0.31\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Graphics/results/class.png}
           \caption{Clases}
           \label{fig:clases}
     \end{minipage}      
-    \hspace{0.02cm}
-    \begin{minipage}[b]{0.5\textwidth}
+\hspace{0.03cm}
+    \begin{minipage}[b]{0.31\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Graphics/results/balance.png}
-          \caption{Balance de Clases}
+          \caption{\% Balance}
           \label{fig:balance}
+        \end{minipage} 
+      \end{figure}
+
+\begin{figure}
+  \centering
+    \begin{minipage}[b]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Graphics/results/columns_t.png}
+          \caption{Columnas: Texto}
+          \label{fig:columns-t}
+    \end{minipage}      
+\hspace{0.03cm}
+    \begin{minipage}[b]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Graphics/results/columns_d.png}
+          \caption{Columnas: Tiempo}
+          \label{fig:columns-d}
+        \end{minipage} 
+\end{figure}
+
+\begin{figure}
+  \centering
+    \begin{minipage}[b]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Graphics/results/columns_i.png}
+          \caption{Columnas: Imagen}
+          \label{fig:columns-i}
+    \end{minipage}      
+\hspace{0.03cm}
+    \begin{minipage}[b]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Graphics/results/columns_e.png}
+          \caption{Columnas: Especiales}
+          \label{fig:columns-e}
+        \end{minipage} 
+\end{figure}
+
+\begin{figure}
+  \centering
+    \begin{minipage}[b]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Graphics/results/columns_n.png}
+          \caption{Columnas: Numericas}
+          \label{fig:columns-n}
+    \end{minipage}    
+\hspace{0.01cm}
+    \begin{minipage}[b]{0.31\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{Graphics/results/columns_b.png}
+        \caption{Columnas: Boleanas}
+        \label{fig:columns-b}
+  \end{minipage}      
+\hspace{0.01cm}
+    \begin{minipage}[b]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Graphics/results/columns_c.png}
+          \caption{Columnas: Categoricas}
+          \label{fig:columns-c}
         \end{minipage} 
 \end{figure}
 
 
-\begin{figure}[!tbp]
-    \centering
-    \includegraphics[width= 0.6\textwidth]{Graphics/results/null_values.png}
-        \caption{Valores Null}
-        \label{fig:null}
-\end{figure}
+\section{Evaluaciones Cualitativas}\label{section:qualitative}
 
-\section{Sistemas AutoML}\label{section:AutoML}
-
-En los ultimos años se han desarrollado una gran cantidad de marcos de aprendizaje automático, ya sea mediante la mejora iterativa de diseños antiguos o mediante 
+En los últimos años se han desarrollado una gran cantidad de marcos de aprendizaje automático, ya sea mediante la mejora iterativa de diseños antiguos o mediante 
 el uso de enfoques novedosos. Estos se clasifican atendiendo a sus características internas y externas [\cite{52}]. Las características internas definen su 
-funcionamiento, tales como el tipo y la variedad de algoritmos sobre los cuales realizan la búsqueda(características del espacio de búsqueda). Las externas 
+funcionamiento, tales como el tipo y la variedad de algoritmos sobre los cuales realizan la búsqueda. Las externas 
 destacan la utilidad de los sistemas. En esta categoría se encuentran los dominios a los que son aplicables. También las tareas que resuelven, ya sean las clásicas de 
-aprendizaje automático o las específicas de dominios: relacionadas a imágenes, textos y series temporales. 
+aprendizaje automático o las específicas de dominios: relacionadas con imágenes, textos y series temporales. 
 
 La unión de las características internas y externas determinan cuan eficientes y rápidos son los sistemas, aún más importante determinan qué problemas de la 
 vida real resuelven.
 Los problemas que agrupa \textit{HAutoML-Bench} poseen una complejidad en su estructura debido a la naturaleza de sus datos. Además, 
 requieren técnicas de sus dominios de aplicación para su resolución. Este benchmark va dirigido a sistemas AutoML que sean capaces de flexibilizar sus tipos de entrada 
 y que contengan los algoritmos necesarios para atacar la mayor cantidad de tareas. 
+
 Se propone realizar un estudio de herramientas de AutoML para identificar cuáles pueden evaluarse en \textit{HAutoML-Bench} solo atendiendo a sus características.
 Aunque existe una gran cantidad de herramientas de AutoML, solo se analiza una selección entre todas las existentes.
 
 %Auto-Weka
-Auto-Weka[\cite{8}] es uno de los primeros sistemas en darse a conocer, utiliza la biblioteca de aprendizaje Weka y está implementado en el lenhuaje Java. 
-Su estrategia de recorrido del Espacio de Búsqueda está encaminado a los algoritmos basados en optimizacion bayesiana. El mismo está formado por modelos de ML 
-clásicos ya sean lineales, basados en árboles, ensambles y otras familias. Sus técnicas de preprocesamiento son deficientes y con respecto al dominio son nulas, 
+Auto-Weka[\cite{8}] es uno de los primeros sistemas en darse a conocer, utiliza la biblioteca de aprendizaje Weka y está implementado en el lenguaje Java. 
+Su estrategia de recorrido del Espacio de Búsqueda está encaminado a los algoritmos basados en optimización bayesiana. El mismo está formado por modelos de ML 
+clásicos, ya sean lineales, basados en árboles, ensambles y otras familias. Sus técnicas de preprocesamiento son deficientes y con respecto al dominio son nulas, 
 lo limitan a enfrentarse solo a problemas tabulares.
 
 %AutoSklear
 Auto-Sklearn[\cite{9}] extiende la propuesta de Auto-Weka en mejoramientos de eficiencia y Robustez. Ambos incluyen como estrategia de búsqueda la optimización 
-bayesiana. Una de sus diferencias radica en la biblioteca de algoritmos, ya que este se implementa sobre Scikit-Learn de Python y además incluye meta-aprendizaje. 
+bayesiana. Una de sus diferencias radica en la biblioteca de algoritmos, ya que este se implementa sobre Scikit-Learn de Python. Además incluye meta-aprendizaje. 
 Las técnicas de preprocesamiento de Auto-Sklearn son superiores a las de Auto-Weka, aun así solo puede ser aplicable a problemas en donde sus datos tienen forma 
 numérica y/o categórica. 
 
@@ -116,25 +193,33 @@ se evaluaron en conjuntos de dominio imagen y tabular. A pesar de esto, en el be
 Auto-Keras tiene componentes para tratar con el dominio texto y problemas multimodales, sobre AutoPytorch no hay indicios de que sea flexible 
 ante estos. 
 Auto-Keras dice poder enfrentarse a conjuntos de texto y multimodales y en sus ejemplos de uso solo se demuestra con conjuntos juguetes, los cuales carecen de 
-semántica al estar transformados. En conclusión no existe evidencia de que el sistema pueda evaluarse en datasets en donde los datos se encuentran no estructurados. 
+semántica al estar transformados. En conclusión, no existe evidencia de que el sistema pueda evaluarse en datasets en donde los datos se encuentran no estructurados. 
 
-Por último dos sistemas que son relativamente nuevos y que incluyen ambos enfoques: modelos de machine learning clásico y redes neuronales. 
+Por último, dos sistemas que son relativamente nuevos y que incluyen ambos enfoques: modelos de machine learning clásico y redes neuronales. 
 Estos sistemas son AutoGOAL y AutoGluon.
 
 AutoGOAL[\cite{40},\cite{41}] es una propuesta de AutoML heterogéneo que construye un espacio de búsqueda jerárquico mediante gramáticas libres del contexto y 
-probabilidades. A diferencia de los anteriores sistemas, posee un proceso 
-de introspección de código que se encarga de explorar sus bibliotecas base en búsqueda de algoritmos, en vez de utilizar implementaciones directas de las mismas.
-Sus bibliotecas base son Scikit-learn, Nltk, Keras, Gensim y Pytorch.
-Resuelve tareas clásicas de machine learning como clasificación, regresión y clustering. Además, problemas relacionados con dominios específicos como procesamiento 
-del lenguaje natural. También resuelve tareas con imágenes y tabulares puros, como un extra permite resolver problemas de reconocimiento de entidades y relaciones.
-Su implementación de tipos semánticos para la declaración de la entrada y salida de los problemas le permite utilizar datos estructurados y no estructurados. Sus 
-tipos y la forma en que construye y recorre el espacio de búsqueda es lo que le permite resolver el problema de AutoML Heterogéneo. 
-Existe evidencia de que AutoGOAL puede evaluarse en conjuntos de datos que contienen una y más columnas de texto. Sin embargo, en conjuntos de datos multimodales 
-carecen de un tipo definido que permita modelar estas entradas.   
+probabilidades. A diferencia de los anteriores sistemas, posee un proceso de introspección de código que se encarga de explorar sus bibliotecas base en búsqueda de 
+algoritmos, en vez de utilizar implementaciones directas de las mismas. Sus bibliotecas base son Scikit-learn, Nltk, Keras, Gensim y Pytorch. Resuelve tareas clásicas 
+de machine learning como clasificación, regresión y clustering. Además, problemas relacionados con dominios específicos como procesamiento del lenguaje natural. También 
+resuelve tareas con imágenes y tabulares puros, como un extra permite resolver problemas de reconocimiento de entidades y relaciones.Su implementación de tipos 
+semánticos para la declaración de la entrada y salida de los problemas le permite utilizar datos estructurados y no estructurados. Sus tipos y la forma en que construye 
+y recorre el espacio de búsqueda es lo que le permite resolver el problema de AutoML Heterogéneo. Existe evidencia de que AutoGOAL puede evaluarse en tareas de  NLP, 
+en conjuntos de datos que contienen una y más columnas de texto. Sin embargo, en conjuntos de datos multimodales carecen de un tipo definido que permita modelar estas 
+entradas.   
 
-AutoGluon[\cite{17},\cite{42}]
-%······················pending········································
+AutoGluon[\cite{17},\cite{42}] es un sistema AutoML el cual definen de antemano los posibles modelos y las formas de combinarlos para construir su espacio de búsqueda.
+Se adapta a varios modelos que van desde árboles potenciados listos para usar hasta modelos personalizados de redes neuronales [\cite{37}]. Tiene modelos predictores 
+para tipo de datos imágenes, texto, datos tabulares y series temporales. AutoGluon es capaz de predecir cual de los modelos usar en dependencia de la entrada.
+Este posee una inferncia de tipos bastante robusta. Es capaz de inferir los tipos de las columnas de entrada de texto, series temporales, numéricas, categóricas y 
+booleanas. Además, a partir de la columna salida infiere el tipo de tarea. AutoGluon puede resolver problemas de ML clásicos y también específicos de un dominio. En 
+sus evaluaciones se recogen problemas tabulares, de procesamiento del lenguaje natural y de imágenes. Recientemente con su modelo Multimodal es capaz de resolver 
+problemas multimodales en donde los tipos de datos de imágenes, texto y tabulares se encuentran en gran escala. Desde antes con su modelo Tabular, estos tipos de 
+problema podían resolverse para columnas de texto y tabulares, estas últimas deben representar la mayoría. 
+Se puede decir que por sus características AutoGluon está preparado para enfrentarse a los conjuntos multimodales y de texto de \textit{HAutoML-Bench}, excepto a 
+las tareas de entidades y relaciones. En el estado del arte no se tiene evidencia de que AutoGluon se enfrente a este tipo de tareas.  
 
+En la figura \ref{fig:eval-cuali} se muestran un resumen de las tareas en donde las propiedades de los sistemas permiten resolver. 
 \begin{table}[H]
   \centering
   \resizebox{10cm}{!} {
@@ -150,7 +235,7 @@ AutoGluon[\cite{17},\cite{42}]
   Auto-Keras            &          &          &          &          &          \\
   AutoGOAL              &\checkmark&\checkmark&\checkmark&          &          \\
   AutoGluon             &\checkmark&\checkmark&          &\checkmark&\checkmark\\ \hline
-                        &  10      &  2       &  4       &   8      &  3       \\ \hline
+  &  10      &  2       &  4       &   8      &  3       \\ \hline
   \end{tabular}
   \caption{Evaluación Cualitativa de los sistemas sobre los conjuntos de datos del benchmark}
   \label{fig:eval-cuali}
@@ -158,62 +243,130 @@ AutoGluon[\cite{17},\cite{42}]
 \end{table}
 
 
-\section{Configuración Experimental}\label{section:seetings}
-Las evidencias presentadas en el apartado \ref{section:AutoML} permiten concluir que tanto AutoGOAL como AutoGluon atendiendo a sus característica pueden evaluarse en 
-algunos conjuntos del benchmark.
-Para la evaluación cuantitativa AutoGluon es el sistema seleccionado. Este posee inicialmente la mayor cantidad de tareas que pudiera resolver con un total de 23. 
-Además existen limitantes de tiempo y software que impiden la evaluación de ambos sistemas. 
-En las próximas subsecciones se explica todo el marco experimental cuantitativo que pone a prueba el rendimiento de AutoGluon.
+\section{Evaluaciones Cuantitativas}\label{section:quantitative}
 
-\subsection{Hadware}\label{subsection:hadware}
+Las evidencias presentadas en el apartado (\ref{section:qualitative}) permiten concluir que AutoGOAL y AutoGluon atendiendo a sus características pueden 
+evaluarse en 16 y 23 conjuntos de \textit{HAutoML-Bench} respectivamente.
+Para la evaluación cuantitativa, el sistema seleccionado es AutoGluon. Este posee inicialmente la mayor cantidad de tareas que sus características afirman puede resolver. 
+La selección incluye solo uno de los sistemas debido a limitantes de tiempo y software. 
+En las próximas subsecciones se explica todo el marco experimental cuantitativo que pone a prueba el rendimiento de AutoGluon (\ref{subsection:seetings}). Se muestran 
+los resultados del rendimiento del sistema (\ref{subsection:results}) y se explican los errores que surgieron en las evaluaciones (\ref{subsection:errors})
+
+\subsection{Descripción y Configuración de las Evaluaciones}\label{subsection:seetings}
+
+La experimentación cuantitativa propone realizar tres rondas de evaluaciones de AutoGluon sobre todos los conjuntos de datos.
+
+La primera ronda tiene como objetivo medir el rendimiento de AutoGluon con todos sus parámetros de entrada en sus valores por defecto. En esta solo se especifican los 
+relacionados con la métrica de optimización y el tiempo de entrenamiento. 
+
+La segunda ronda pretende evaluar el sistema en las mismas condiciones de la primer ronda, excepto por el tiempo que pretende superar el anterior.
+Estas primeras etapas de ejecuciones tienen como fin evaluar al sistema realizando su propia inferencia de tipos, se pretende que la herramienta obtenga la mínima
+ayuda externa. La segunda, su objetivo más importante es verificar si el rendimiento de la herramienta es sensible a los cambios de tiempo, posibilitando alguna 
+mejora en la mayoría de los conjuntos.
+
+En la última ronda se introducen como entrada los tipos semántico de cada columna de los dataset. La meta es validar la consistencia de los resultados de AutoGluon en 
+comparación con los obtenidos con inferencia de tipos durante el mismo tiempo de entrenamiento. 
+
+En la subsección \ref{seetings:hadware} se presenta el entorno de ejecución en donde se realizan las pruebas y en la subsección \ref{seetings:marcos} se definen las 
+configuraciones adicionales del sistema. 
+
+\begin{flushleft} 
+  { \textbf{Hadware}}\label{seetings:hadware}
+\end{flushleft}
+
 El hadware de evaluación seleccionado es la plataforma Colab. Esta cuenta con un entorno de ejecución en la nube que provee recursos para ejecutar programas 
 escritos en el lenguaje Python. Los recursos presentes en la evaluación son: CPU de 12 GB de RAM máximo, 120 GB de almacenamiento de disco duro y 188 unidades de GPU.
 
-\subsection{Configuración de los Sistemas AutoML}\label{subsection:conf-marcos}
+
+\begin{flushleft} 
+  { \textbf{Configuración del Sistema AutoML}}\label{seetings:marcos}
+\end{flushleft}
+
 AutoGluon se utiliza en su versión estable v0.5.2. Esta herramienta tiene muchos parámetros configurables en cada uno de sus modelos, tabular, multimodal, imagen y texto. 
 Estos presentan su configuración predeterminada, exceptuando los que se describen a continuación.
 \begin{itemize}
     \item Restricciones de software: AutoGluon se instala con GPU en vista a verificar su rápidez y rendimiento durante las pruebas. No existen limitaciones de RAM salvo
     las inpuestas por el entorno de ejecución.
     \item Métrica de optimización: Se utilizan para clasificación binaria: F1, clasificación multiclase: accuracy y para regresión el error cudrático medio. Todas se 
-    ecuentran dentro de las métricas medidas en la evaluación.
+    ecuentran dentro de las métricas medidas en la evaluación. Se emplean estas y no las ideales recomendadas porque AutoGluon es restrictivo con las métricas que 
+    pueden utilizarse en cada modelo. La \textit{balanced-accuracy} está fuera de las permitidas.
     \item Restricciones de tiempo: selección de dos instantes de tiempo para la realización de las evaluaciones 5 min y 15 min. 
     \item Tamaño del conjunto de validación: utilizar un tamaño 0.2 del total de instancias que equivale a un 20\%. 
     \item Parámetros obligatorios: la etiqueta de la columna salida.  
 \end{itemize}
-\section{Resultados}\label{section:results}
-La experimentación cuantitativa incluye tres evaluaciones de AutoGluon sobre todos los conjuntos de datos.
-La primera ronda de ejecuciones tiene como objetivo medir el rendimiento de AutoGluon durante 5 minutos de entrenamiento por conjunto. Sus parámetros 
-se encuentran en sus valores por defecto, solo se especifican los mencionados anteriormente \ref{subsection:conf-marcos}. 
 
-La segunda ronda pretende obtener resultados aumentado la cantidad de tiempo a 15 minutos de entrenamiento por conjunto. Se mantienen los mismos parámetros por defecto.
 
-Estas primeras ejecuciones tienen como meta evaluar al sistema realizando su propia inferencia de tipos en intento de mitigar la ayuda externa hacia el sistema. Además 
-se quiere ver si la herramienta es sencible a los cambios de tiempo, posibilitando alguna mejora en todos los conjuntos.
+\subsection{Resultados}\label{subsection:results}
+AutoGluon realiza 3 etapas de evaluaciones sobre los conjuntos de datos. La primera y la segunda con sus parámetros por defecto y un tiempo de 5 y 15 minutos de entrenamiento
+por conjunto respectivamente. La tercera se realiza durante 5 minutos por conjunto introduciendo como entrada el tipo de las columnas. 
 
-En la última ronda se quiere ver si al introducir el tipo semántico de cada columna, AutoGluon mantiene su consistencia en los resultados. 
+Los valores obtenidos durante cada una de estas etapas se muestran en esta sección. Los resultados se encuentran separados en los diferentes tipos de tareas
+en las figuras (\ref{fig:class-binary}, \ref{fig:class-multi}, \ref{fig:regression}) que corresponden a clasificación binaria, multiclase y regresión.  
 
-En las figuras se muestran los valores obtenidos durante la evaluación, se encuentran separados en los diferentes tipos de tareas. Las métricas que se muestran
-para cada tareas son la utilizada para la optimización y la métrica ideal propuesta en el apartado \ref{subsection:metrics}. 
-Recordar que para la clasificación es \textit{balanced-accuracy} y para regresión \textit{RMSE}.
+Las métricas de evaluación que se muestran para cada tarea es la utilizada para la optimización del sistema y la métrica ideal propuesta en la 
+sección(\ref{subsection:metrics}). Recordar que para las tareas de clasificación es \textit{balanced-accuracy} y para regresión \textit{RMSE}.
+En el caso de la regresión, los valores de la variable de salida no se encuentran en el mismo rango, ni los resultados obtenidos en la métrica \textit{RMSE} 
+durante la evaluación del benchmark. Producto a esto, los valores del error de un conjunto impiden su comparación. Para resolver este inconveniente,
+como evaluación independiente\footnote{Los resultados originales junto a las otras métricas que se excluyeron en esta descripción se encuentran en el repositorio del 
+benchmark.} se estandarizan los valores de las variables de salida y las predicciones de cada conjunto de regresión, luego se calcula la métrica 
+\textit{RMSE}.
 
-\subsection{Errores de los sistemas durante el marco experimental}\label{subsection:errors}
-AutoGluon presenta fallas durante las ejecuciones de algunos conjuntos. Estos para poder evaluarse tienen que ser sometidos a transformaciones.
+En las figuras tambíen se muestra el promedio de los resultados de cada métrica en cada tarea. Este promedio permite analizar de manera general los cambios que 
+sufren los valores de rendimiento de AutoGluon en las 3 etapas de evaluaciones.
 
-El dataset women-clothing contiene una clase que solo posee una intancia. También posee valores faltantes en su columna salida. En ambos casos AutoGluon se 
-limita a resolver problemas de este tipo. Para que el sistema pueda ejecutarse las instancias con problemas son removidas.
+En esta sección se ofrece una descripción de los resultados obtenidos en todas las etapas de la evaluación en cada uno de los tipos de tareas por 
+separado (\ref{results:task}). 
+Luego se compara el rendimiento del sistema en las distintas etapas (\ref{results:comparation}). Las comparaciones se efectuan ente aquellas que 
+mantienen sus parámetros por defecto y existe un aumento del tiempo (etapa 1 y 2). 
+También cuando se mantiene el mismo tiempo y lo que varía es la introducción de los tipos de las columnas de entrada (etapa 1 y 3).
 
-El conjunto google-guest tiene en su etiqueta final un número de valores distintos bastante pequeño. En su definición original este modela una tarea de regresión, en 
-donde los valores de la etiqueta final pueden estar en el rango [0,1]. AutoGluon infiere incorrectamente el tipo de tarea, lo que produce errores en la ejecución, para 
-dar una solución se introduce el tipo de tarea solamente para este conjunto.
 
-Estas ejecuciones fallidas ocurren durante la primera ronda de pruebas. Las soluciones a estos problemas deben ser utilizadas en las restantes rondas. 
-En la última ocurren errores al introducir los tipos semánticos de cada una de las columnas. Las primeras limitaciones se dan al no poder introducir como 
-parámetro de entrada el tipo datetime, que hace referencia a los tipos de tiempo y fecha. Además, en el procesamiento del tipo path\_image de AutoGluon si este no 
-coincide con el directorio o un archivo tipo imagen, el sistema reporta errores. Ambos tipos fueron apartados de la entrada. 
-El conjunto spanish-wine en sus entradas etiquetadas como numéricas y que presentan datos faltantes AutoGluon detiene la ejecución. Al ser pocas instancias se remueven.
+\begin{flushleft} 
+  {\large { \textbf{Resultados de AutoGluon por Tipo de Tarea}}}\label{results:task}
+\end{flushleft}
+Los resultados en las distintas tareas se manifiestan similares en cada una de las etapas. Esta similitud es teniendo en cuenta los mejores y peores conjuntos en 
+rendimiento.
 
-\begin{table}[H]
+En la clasificación atendiendo a los valores de la métrica \textit{balanced-accuracy} común en ambas, el mayor promedio de desempeño durante todas rondas de evaluación 
+lo posse la clasificación binaria.
+
+En esta tarea, el conjunto en el que AutoGluon tiene mejor rendimiento durante todos las evaluaciones es \textit{paw-x-en}. Los peores resultados varían en dependencia de la etapa y la 
+métrica. El que más resalta es \textit{stroke-prediction} que posse un valor de \textit{F1} igual a cero durante todas las etapas. Las evaluaciones del conjunto 
+\textit{fradulent-job} tienen un comportamiento similar excepto en la etapa 2 en donde aumenta el valor de su rendimiento. En la métrica \textit{balanced-accuracy} 
+los conjuntos \textit{project-kickstarter} y \textit{wnli-es} se unen a aquellos en donde el rendimiento es malo.
+
+En las tareas de regresión, al igual que en la clasificación binaria, existe un conjunto en donde AutoGluon tiene buenos resultados durante todas las rondas de ejecuciones.
+Este es \textit{language-identification}. En la tercera ronda de evaluaciones el mejor rendimiento es compartido con \textit{trec}. El peor desempeño durante todo el 
+proceso es en el conjunto \textit{predict-salary}.
+
+En la tarea regresión los mejores resultados los obtiene AutoGluon en el conjunto \textit{stsb-en}, mientras que el error es mayor en \textit{price-book} de manera 
+general para todas las rondas de ejecuciones.
+
+
+\begin{flushleft} 
+  {\large { \textbf{Comparación de los Resultados de las Etapas de Evaluación de AutoGluon}}}\label{results:comparation}
+\end{flushleft}
+
+La evaluación de los conjuntos de una etapa a la otra poseen poca variabilidad.  
+
+Los resultados del sistema con sus parámetros de entrada por defecto, muestran un promedio de desempeño superior en 15 minutos que en 5 minutos. 
+En todos los conjuntos de clasificación binaria, AutoGluon aumenta su rendimiento con el incremento del tiempo. 
+Las variaciones mayores en este tipo de tareas son en los conjuntos \textit{fradulent-job} y \textit{project-kickstarter}, mientras que \textit{stroke-prediction}, 
+es el único en donde no se observa una variación en sus resultados.
+
+En la clasificación multiclase existe una disminución del rendimiento del sistema a medida que aumenta el tiempo en los conjuntos \textit{predict-salary} y 
+\textit{vaccine-es}. En todos los restantes de esta categoría los valores de eficiencia muestran un aumento, el mayor de todos es en el conjunto \textit{wikicat-es}.
+
+En las dos tareas de clasificación, el cambio en los valores de eficiencia de un tiempo a otro es más significativo en la clasificación binaria.
+
+En estas etapas, las tareas de regresión  mejoran sus resultados en todos sus conjuntos, excepto \textit{price-book}.
+
+AutoGluon con La introducción de los tipos de datos de las columnas de los conjuntos en la etapa 3, no muestra una gran variación en sus resultados.
+Este en la mayoría de los dataset tiende a mantener o disminuir su eficiencia al tener como entrada los tipos de las columnas. Los conjuntos en los que muestra un 
+notable incremento en su rendimiento son \textit{project-kickstarter} en clasificación binaria, en multiclase women-clothing y regresión 
+\textit{google-guest}. AutoGluon en la tarea regresión muestra su mayor disminución de eficiencia de una etapa a la otra en el conjunto \textit{spanish-wine}.
+
+\begin{table}
   \centering
   \resizebox{15cm}{!} {
   \begin{tabular}{|l|cccccc|}
@@ -230,6 +383,8 @@ El conjunto spanish-wine en sus entradas etiquetadas como numéricas y que prese
   haha                  & 0.764 & 0.807 & 0.761 & 0.803 & 0.774 & 0.814 \\
   sentiment-lexicons-es & 0.747 & 0.770 & 0.747 & 0.770 & 0.775 & 0.794 \\ 
   twitter-human-bots    & 0.680 & 0.770 & 0.676 & 0.759 & 0.721 & 0.791 \\ \hline
+  \textbf{Promedio}     & 0.516 & 0.682 & 0.530 & 0.679 & 0.621 & 0.728 \\ \hline
+
 
   \end{tabular}
   \caption{Resultados en tareas de Clasificación Binaria}
@@ -237,14 +392,14 @@ El conjunto spanish-wine en sus entradas etiquetadas como numéricas y que prese
   }
 \end{table}
 
-\begin{table}[H]
+\begin{table}
   \centering
   \resizebox{15cm}{!} {
-  \begin{tabular}{|l|cccccc|}
+    \begin{tabular}{|l|cccccc|}
   \hline
           & \multicolumn{4}{p{8cm}|}{Tiempo: 5 min}  & \multicolumn{2}{p{4cm}|}{Tiempo: 15 min}\\  \hline
-          & \multicolumn{2}{p{4cm}|}{Valores por defecto} & \multicolumn{2}{p{4cm}|}{Entradad de Tipo} & \multicolumn{2}{p{4cm}|}{Valores por defecto}\\ \hline
-  Dataset & acc & bala-acc & acc  & bal-acc & acc & bal-acc  \\ \hline
+          & \multicolumn{2}{p{4cm}|}{Entrada: Defecto} & \multicolumn{2}{p{4cm}|}{Entrada: Tipos} & \multicolumn{2}{p{4cm}|}{Entrada: Defecto}\\ \hline
+          Dataset & acc & bala-acc & acc  & bal-acc & acc & bal-acc  \\ \hline
   wikicat-es              & 0.385 & 0.268 & 0.385 & 0.268 & 0.603 & 0.518 \\
   sst-en                  & 0.580 & 0.549 & 0.580 & 0.549 & 0.577 & 0.545 \\
   women-clothing          & 0.671 & 0.449 & 0.677 & 0.456 & 0.760 & 0.642 \\ 
@@ -254,25 +409,32 @@ El conjunto spanish-wine en sus entradas etiquetadas como numéricas y que prese
   vaccine-es              & 0.780 & 0.756 & 0.779 & 0.743 & 0.779 & 0.766 \\
   pub-health              & 0.609 & 0.370 & 0.609 & 0.370 & 0.759 & 0.576 \\ 
   trec                    & 0.962 & 0.912 & 0.966 & 0.933 & 0.970 & 0.972 \\ \hline
+  \textbf{Promedio}       & 0.649 & 0.569 & 0.723 & 0.567 & 0.684 & 0.658 \\ \hline
 
-  \end{tabular}
+
+    \end{tabular}
   \caption{Resultados en tareas de Clasificación Multiclase}
   \label{fig:class-multi}
   }
 \end{table}
 
-\begin{table}[H]
+
+
+
+\begin{table}
   \centering
   \resizebox{15cm}{!} {
-  \begin{tabular}{|l|c|c|c|}
+  \begin{tabular}{|l|ccc|}
   \hline
-  Dataset & 5 min sin inferencia  & 5min con Inferencia & 15min con Inferencia \\ \hline
-               & RMSE   & RMSE  & RMSE  \\ \hline
-  spanish-wine & 13.8   & 14.709 & Image  \\
-  stsb-en      & 0.72   & 0.693  & Image  \\
-  stsb-es      & 0.955  & 0.955  & Image  \\ 
-  price-book   & 596.9  & 477.47 &  Image  \\
-  google-guest & 0.443  & 0.50   &  Image  \\ \hline
+  & \multicolumn{2}{p{8cm}|}{Tiempo: 5 min}  & \multicolumn{1}{p{4cm}|}{Tiempo: 15 min}\\  \hline
+  & \multicolumn{1}{p{4cm}|}{Entrada: Defecto} & \multicolumn{1}{p{4cm}|}{Entrada: Tipos} & \multicolumn{1}{p{4cm}|}{Entrada: Defecto}\\ \hline
+               & RMSE  & RMSE  & RMSE  \\ \hline
+  spanish-wine & 0.8274  & 36.62  & 0.5581 \\
+  stsb-en      & 0.4548  & 0.472  & 0.4349 \\
+  stsb-es      & 0.6265  & 0.6265 & 0.6231   \\ 
+  price-book   & 32.537  & 40.675 & 40.864  \\
+  google-guest & 1.7156  & 1.5171 & 1.5355  \\ \hline
+  \textbf{Promedio} & 0.1741 & 0.1652 & 0.1556 \\ \hline
 
 \end{tabular}
   \caption{Regresión}
@@ -280,6 +442,98 @@ El conjunto spanish-wine en sus entradas etiquetadas como numéricas y que prese
   }
 \end{table}
 
-\section{Discusiones}\label{section:discussions}
-AutoGluon con respecto a sus méricas
-de optimización es bastante restrictivo, se intentó cambiar de métricas en ciertos modelos y no se obtuvo buenos resultados. A pesar de ello las métricas esco
+
+% \begin{table}[H]
+%   \centering
+%   \resizebox{15cm}{!} {
+%   \begin{tabular}{|l|cccccc|}
+%   \hline
+ 
+%   & \multicolumn{4}{p{8cm}|}{Tiempo: 5 min}  & \multicolumn{2}{p{4cm}|}{Tiempo: 15 min}\\  \hline
+%   & \multicolumn{2}{p{4cm}|}{Entrada: Defecto} & \multicolumn{2}{p{4cm}|}{Entrada: Tipos} & \multicolumn{2}{p{4cm}|}{Entrada: Defecto}\\ \hline
+%   Dataset           & RMSE   & NRMSE & RMSE & NRMSE  & RMSE & NRMSE  \\ \hline
+%   spanish-wine      & 14.70  & 0.0047 & 13.82 & 0.0044 & 9.922 & 0.0031 \\
+%   stsb-en           & 0.693  & 0.138  & 0.720 & 0.144  & 0.663 & 0.132 \\
+%   stsb-es           & 0.955  & 0.191  & 0.955 & 0.191  & 0.950 & 0.191  \\ 
+%   price-book        & 477.47 & 0.033  & 596.9 & 0.0424 & 599.6 & 0.0031\\
+%   google-guest      & 0.501  & 0.502  & 0.443 & 0.4443 & 0.448 & 0.4493\\ \hline
+%   \textbf{Promedio} & 98.863 & 0.1737 & 122.40 &       &122.31 &      \\ \hline
+
+%   \end{tabular}
+%   \caption{Resultados en tareas de Regresión}
+%   \label{fig:class-regression}
+%   }
+% \end{table}
+
+
+\subsection{Errores de los sistemas durante el marco experimental}\label{subsection:errors}
+AutoGluon presenta fallas durante las ejecuciones de algunos conjuntos. Estos para poder evaluarse tienen que ser sometidos a transformaciones.
+
+El dataset \textit{women-clothing} contiene una clase que solo posee una intancia. También posee valores faltantes en su columna salida. En ambos casos AutoGluon se 
+limita a resolver problemas de este tipo. Para que el sistema pueda ejecutarse las instancias con problemas son removidas.
+
+El conjunto \textit{google-guest} tiene en su etiqueta final un número de valores distintos bastante pequeño. En su definición original este modela una tarea de regresión, en 
+donde los valores de la etiqueta final pueden estar en el rango [0,1]. AutoGluon infiere incorrectamente el tipo de tarea, lo que produce errores en la ejecución, para 
+dar una solución se introduce el tipo de tarea solamente para este conjunto.
+
+Estas ejecuciones fallidas ocurren durante la primera ronda de pruebas. Las soluciones a estos problemas deben ser utilizadas en las restantes rondas. 
+En la última ocurren errores al introducir los tipos semánticos de cada una de las columnas. Las primeras limitaciones se dan al no poder introducir como 
+parámetro de entrada el tipo \textit{datetime}, que hace referencia a los tipos de tiempo y fecha. Además, en el procesamiento del tipo \textit{path\_image} de AutoGluon. 
+Este solo permite imágenes ubicadas en un directorio, carece de la funcionalidad de descargar imágenes de una url.  Esrtos tipos fueron apartados de la entrada.
+
+El conjunto \textit{spanish-wine} en sus entradas etiquetadas como numéricas y que presentan datos faltantes AutoGluon detiene la ejecución. Al ser pocas instancias 
+se remueven.
+En el caso de \textit{price-book} contiene columnas que su tipo semántico es numeral y su tipo concreto es cadena de texto. AutoGluon carece de técnicas para 
+enfrentarse a este tipo de situaciones. En este ejemplo se transformaron las columnas a números y se le pasaron al sistema de esa forma.
+
+En todas las rondas de evaluaciones existieron errores de falta de RAM, la plataforma Colab se reinicia constantemente producto al gasto excesivo de recursos. Los 
+experimentos no pudieron ejecutarse secuencialmente debido a esta limitante.
+
+
+\section{Discusiones}\label{subsection:discussions}
+
+
+Los resultados que aporta AutoGluon al ser evaluado en 23 conjuntos de datos, de ellos 11 multimodales y 12 de texto puro, a modo general son ineficientes.
+
+En las comparaciones de los tres marcos experimentales la métrica seleccionada es la métrica de optimización de cada tipo de tarea. En tareas de regresión 
+se emplea \textit{RMSE} , clasificación binaria \textit{F1} y en multiclase \textit{accuracy}.
+
+De manera general los resultados de los tres marcos possen poca variabilidad. En los ejemplos en que se mantienen los mismos parámetros de entrada y deferencia de 
+tiempo 5 y 15 minutos(etapa 1 y 2), el promedio de los resultados de la segunda etapa supera en las tareas de clasificación a los de 5 minutos. En las tareas de 
+regresión  entre la etapa 1 y 2 el error aumenta.
+
+
+
+Para el segundo marco que tiene una duración de 15 min de entrenamiento con los parámetros por defecto 
+
+% \begin{minipage}[b]{0.31\textwidth}
+%   \centering
+%     \includegraphics[width=\textwidth]{Graphics/results/instances.png}
+%       \caption{Instancias}
+%       \label{fig:instances}
+%     \end{minipage} 
+% \hspace{0.01cm}
+
+% \begin{figure}
+%     \begin{minipage}[b]{0.4\textwidth}
+%       \centering
+%         \includegraphics[width=\textwidth]{Graphics/results/columns.png}
+%           \caption{Columnas}
+%           \label{fig:columns}
+%     \end{minipage}      
+%     \hspace{0.02cm}
+%     \begin{minipage}[b]{0.4\textwidth}
+%       \centering
+%         \includegraphics[width=\textwidth]{Graphics/results/instances.png}
+%           \caption{Instancias}
+%           \label{fig:instances}
+%         \end{minipage} 
+% \end{figure}
+
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[width= 0.4\textwidth]{Graphics/results/columns.png}
+%     \caption{Columnas}
+%           \label{fig:columnss}
+% \end{figure}

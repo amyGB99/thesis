@@ -1,0 +1,188 @@
+\begin{annexes}
+   
+En este apartado se ofrece una descripción de cada uno de los conjuntos de datos que pertenecen al benchmark \textit{HAutoML-Bench}.
+
+
+\begin{flushleft} 
+    { \textbf{Conjunto: SST-en}}\label{description:sst-en}
+\end{flushleft}
+
+Sentimiento Sentiment Treebank: Es un conjunto de datos que contiene 215 154 frases con etiquetas de opinión detalladas (5 clases). 
+La tarea es predecir de cada instancia relacionada a la opinión sobre una película el sentimiento que se manifiesta desde más negativa a más positiva 
+(clasificación multiclase).
+
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Vaccine-es}}\label{description:vaccine}
+\end{flushleft}
+
+La tarea VaxxStance fue parte de la competencia IberLEF 2021. El objetivo principal es detectar la postura en las redes sociales 
+sobre un tema muy controvertido y de moda, como es el movimiento Antivacunas. La tarea final es determinar si un tweet expresa una postura a favor , 
+en contra o neutral (ninguno) hacia un tema previamente definido. El conjunto de datos escogido pertenece al idioma español. 
+
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Wikkian-es}}\label{description:wikkian}
+\end{flushleft}
+
+WikiANN (a veces llamado PAN-X) es un conjunto de datos de reconocimiento de entidades nombradas multilingüe que consta de artículos de Wikipedia expresados en secuencias de tokens y 
+anotados con etiquetas LOC (ubicación), PER (persona) y ORG (organización) en el formato IOB2. Cada una de las etiquetas se encuentran transformadas a números. 
+La versión original admite 176 idiomas, se seleccionó  solo el idioma español.  
+
+\begin{flushleft} 
+    { \textbf{Conjuntos: Paws-x-es y Paws-x-en}}\label{description:paws}
+\end{flushleft}
+
+Paws-x el conjunto original posee instancias de dos oraciones traducidos del inglés por humanos y por máquinas en seis idiomas tipológicamente distintos. La tarea es 
+identificación de paráfrasis\footnote{Frase que expresa el mismo contenido que otra pero con diferente estructura sintáctica.} a partir de una clasificación binaria. 
+Se seleccionaron el idioma español y el inglés. 
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Language-Identification}}\label{description:languaje}
+\end{flushleft}
+
+El conjunto de datos de identificación de idioma es una colección de 90 000 muestras que consisten en la entrada de texto y la etiqueta de idioma correspondiente. 
+Este conjunto de datos se creó mediante la recopilación de datos de otras 3 fuentes. La tarea es entrenar un modelo para la identificación de idiomas, que es una tarea 
+de clasificación de texto de varias clases.
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Wikicat-es}}\label{description:wikicat}
+\end{flushleft}
+
+WikiCAT-es es un corpus español para tareas de clasificación de textos temáticos. Se crea automáticamente a partir de fuentes de Wikipedia y Wikidata clasificados 
+en 19 categorías diferentes. 
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Price-Book}}\label{description:price}
+\end{flushleft}
+
+El dataset es una gran base de datos de libros. Libros de diferentes géneros, de miles de autores. La tarea es utilizar el conjunto de datos para predecir el precio de 
+los libros en función de un conjunto determinado de características. Entre estas se encuentran el título, autor, edición, las opiniones y calificaciones de los 
+clientes, la sinopsis, el departamento donde suele estar categoría del libro y el género. 
+
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Predict-Salary}}\label{description:predict}
+\end{flushleft}
+
+El dataset trata sobre los trabajos de los científico de datos en la India en 2017. La tarea consiste en predecir el rango del salario según características del 
+trabajo como años de experiencia que necesita, descripción, designación de tareas, tipo, locación entre otras. Se traduce a una clasificación multiclase donde el rango 
+del salario es la etiqueta a predecir.
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Inferes}}\label{description:inferes}
+\end{flushleft}
+
+InferES, un corpus original para la inferencia del lenguaje natural (NLI) en español europeo. Contiene 8.055 pares de texto. En la tarea de Inferencia del Lenguaje 
+Natural (NLI), un sistema automatizado tiene que determinar el significado relación que se da entre dos textos. El modelo tiene que hacer una elección de tres vías 
+entre la vinculación: una hipótesis (h) es verdadera dada una premisa (p); contradicción: una hipótesis (h) es falsa dada una premisa (p); o neutral: el valor de verdad 
+de la hipótesis (h) no puede determinarse únicamente basado en la premisa (p) .
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Wnli-es}}\label{description:wnli}
+\end{flushleft}
+
+
+Este conjunto de datos es una traducción profesional al español del conjunto de datos Winograd NLI[original]. Los mismos presentan un esquema de Winograd, en donde su 
+par de oraciones de entrada difieren en solo una o dos palabras. Además que contienen una ambigüedad que se resuelve de manera opuesta en las dos oraciones y requiere 
+el uso del conocimiento del mundo y el razonamiento para su resolución.
+
+\begin{flushleft} 
+    { \textbf{Conjuntos: Wikineural-es y Wikineural-en}}\label{description:wikineural}
+\end{flushleft}
+
+El original WikiNEuRal consiste en una técnica novedosa que se basa en una base de conocimiento léxico multilingüe (es decir, BabelNet) y arquitecturas basadas en 
+transformadores para producir anotaciones de alta calidad para NER (Named Entity Recognition) multilingüe. Se generaron automáticamente datos de entrenamiento para 
+NER en 9 idiomas. Se limitó el uso solo al idioma español e inglés.
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Meddocan}}\label{description:meddocan}
+\end{flushleft}
+
+Meddocan es un problema de reconocimiento de entidades presentado en IberLEF 2019, con el objetivo de detectar información sensible en documentos médicos de habla española. 
+EL conjunto de datos se compone de 1 000 casos clínicos de estudio donde 750 se utilizan para entrenamiento y 250 para pruebas. La tarea es reconocer la entidad y etiquetarla 
+con el formato IOB2.
+
+\begin{flushleft} 
+    { \textbf{Conjunto: HAHA}}\label{description:haha}
+\end{flushleft}
+
+La campaña de evaluación HAHA presentada en la competición IberLEF 2019 propone diferentes subtareas relacionadas con la detección automática de humor. A partir del 
+corpus comentado de tweets en español proporcionado se pretende clasificar cada tweet en una broma o no (humor intencionado por el autor).
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Fraudulent-Jobs}}\label{description:fraudulent}
+\end{flushleft}
+
+Este conjunto de datos contiene 18 000 descripciones de puestos de trabajo, de las cuales unas 800 son falsas. Los datos consisten tanto en información textual como en 
+metainformación sobre los trabajos. La tarea es identificar si los mismos son fraudulentos o no. Contiene entradas de texto, numéricas categóricas, relacionadas a las 
+caracteristicas que tiene un trabajo como el salario,el departamento, la descripción, etc. 
+
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Stroke-Predictions}}\label{description:stroke}
+\end{flushleft}
+
+Según la Organización Mundial de la Salud (OMS), el accidente cerebrovascular es la segunda causa de muerte en todo el mundo, responsable de aproximadamente el 11% del total de muertes.
+Este conjunto de datos se utiliza para predecir si es probable que un paciente sufra un accidente cerebrovascular en función de los parámetros de entrada como el sexo, la edad, diversas enfermedades y el tabaquismo. Cada fila de los datos proporciona información relevante sobre el paciente.
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Project-Kickstarter}}\label{description:project}
+\end{flushleft}
+
+Predecir si un proyecto de Kickstarter propuesto logrará el objetivo de financiación en función de las características de cada uno. Posee características de texto, como el título, la descripción de cada proyecto. Las características numéricas, como la cantidad de dinero solicitada, la fecha de publicación. Las características categóricas, como el país, la moneda, etc. Este conjunto de datos representa una tarea compleja en la que los modelos deben considerar las interacciones entre las modalidades para abordar una cuestión central del negocio de Kickstarter.
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Spanish-Wine}}\label{description:wine}
+\end{flushleft}
+
+Este conjunto de datos está relacionado con las variantes rojas de los vinos españoles. El conjunto de datos describe varias métricas de popularidad y descripción y su efecto en su calidad . Los conjuntos de datos se pueden utilizar para tareas de clasificación o regresión. La tarea escogida (regresión) es predecir los precios utilizando los datos proporcionados.
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Human-Bot}}\label{description:human}
+\end{flushleft}
+
+Este conjunto de datos está compuesto por 37438 filas correspondientes a diferentes cuentas de usuarios en Twitter. Cada fila contiene 20 columnas que son las funciones recopiladas a través de la API de Twitter. Estas varían entre categorías, textos , url y datos de tiempo, relacionadas a las características de las páginas de los usuarios. La tarea es predecir si el usuario es un bots o un humano. 
+
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Women-Clothing}}\label{description:women}
+\end{flushleft}
+
+El conjunto trata sobre datos del comercio electrónico de ropa de mujer que gira entorno a las reseñas escritas por los clientes.  La tarea es predecir el nombre (categoría) a la que corresponde un producto, para ello se apoyan en nueve característica más. Entre estas se encuentran las calificaciones, el título de la reseña , el nombre del departamento del producto, el texto de la reseña , la edad de los revisores, si recomiendan o no la prenda entre otras. 
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Sentiments-Lexicons}}\label{description:sentiments}
+\end{flushleft}
+
+El conjunto está formado por palabras con sentimientos positivos (buenos, excelente, increíble) y negativos (malos, asquerosos, terribles) para 81 idiomas. La tarea es etiquetar cada una de estas en positiva y negativa para idioma español. 
+
+\begin{flushleft} 
+    { \textbf{Conjuntos: Stsb-es y Stsb-en}}\label{description:stsb}
+\end{flushleft}
+
+Stsb-Multi recoge las traducciones multilingües y el original en inglés del conjunto de datos STSbenchmark. La traducción se realizó con deepl.com.
+Este conjunto de datos proporciona pares de oraciones y una puntuación de su similitud entre las mismas un float ente 0.0 y 5.0. Se seleccionaron el idioma español e inglés. 
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Google-Guest}}\label{description:google}
+\end{flushleft}
+
+Los datos de la competencia Google QUEST Q\&A Labeling incluyen preguntas y respuestas de varias propiedades de StackExchange. Su tarea es predecir los valores objetivo de 30 etiquetas para cada par de preguntas y respuestas. Cada fila contiene una sola pregunta y una sola respuesta a esa pregunta, junto con funciones adicionales. Los datos de entrenamiento contienen filas con algunas preguntas duplicadas (pero con respuestas diferentes). Los datos de la prueba no contienen preguntas duplicadas. Este no es un desafío de predicción binaria. Las etiquetas objetivo se agregan a partir de múltiples evaluadores y pueden tener valores continuos en el rango [0,1]. Por lo tanto, las predicciones también deben estar en ese rango. El dataset se transformó para predecir una sola salida que puede ser cualquiera de las 30 etiquetas originales. 
+
+
+\begin{flushleft} 
+    { \textbf{Conjunto: PUBHEALTH}}\label{description:pubhealth}
+\end{flushleft}
+
+PUBHEALTH es un conjunto de datos integral para la verificación de hechos automatizada explicable de afirmaciones de salud pública. Cada instancia en el conjunto de datos de PUBHEALTH tiene una etiqueta de veracidad asociada (verdadero, falso, no probado, mixto). Además, cada instancia en el conjunto de datos tiene un campo de texto de explicación. La explicación es una justificación por la cual a la afirmación se le ha asignado una etiqueta de veracidad particular. Además tiene otras informaciones como la fecha de creación , el sitio donde se encontró la información  y el autor.
+
+\begin{flushleft} 
+    { \textbf{Conjunto: Trec}}\label{description:trec}
+\end{flushleft}
+
+El conjunto de datos de clasificación de preguntas de la Conferencia de recuperación de texto (TREC) tiene como tarea clasificar la idea esencial de la pregunta en una categoría de 6 existentes.
+
+\end{annexes}
+
+
