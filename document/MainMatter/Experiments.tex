@@ -3,19 +3,19 @@
 En este capítulo se presentan tres marcos experimentales con el objetivo de verificar que es posible evaluar sistemas AutoML en los conjuntos de datos de 
 \textit{HAutoML-Bench}. 
 
-El primer marco \ref{section:data} realiza un análisis visual de las propiedades que presentan dichos conjuntos. El propósito de esta experimentación es mostrar que 
+El primer marco (\ref{section:data}) realiza un análisis visual de las propiedades que presentan dichos conjuntos. El propósito de esta experimentación es mostrar que 
 existe complejidad y diversidad en sus propiedades. Esto permite asegurar que se tiene un conjunto de calidad en donde su estrategia de creación mitiga los sesgos de 
 selección.
 
 Los dos marcos restantes proponen una evaluación cualitativa y cuantitativa de los sistemas de aprendizaje automático.
-La evaluación cualitativa \ref{section:qualitative} tiene el fin de efectuar un estudio sobre las características de las herramientas de AutoML. La tarea es determinar 
+La evaluación cualitativa (\ref{section:qualitative}) tiene el fin de efectuar un estudio sobre las características de las herramientas de AutoML. La tarea es determinar 
 cuáles herramientas poseen las funcionalidades necesarias para evaluarse en cada uno de los datasets de \textit{HAutoML-Bench}.
 
-El último marco, el de evaluaciones cuantitativas, efectúa las mediciones de rendimiento de los sistemas seleccionados en el marco experimental anterior. En su inicio 
-se especifican las diferentes etapas de evaluación y sus configuraciones \ref{subsection:seetings}. Luego se presentan los valores de 
-rendimiento obtenidos y las comparaciones realizadas \ref{subsection:results}.
+El último marco (\ref{section:quantitative}), el de evaluaciones cuantitativas, efectúa las mediciones de rendimiento de los sistemas seleccionados en el marco experimental anterior. En su inicio 
+se especifican las diferentes etapas de evaluación y sus configuraciones (\ref{subsection:seetings}). Luego se presentan los valores de 
+rendimiento obtenidos y las comparaciones realizadas (\ref{subsection:results}).
 
-En la última sección se discuten los resultados de cada uno de los marcos experimentales \ref{subsection:discussions}.  
+En la última sección se discuten los resultados de cada uno de los marcos experimentales (\ref{subsection:discussions}).  
 
 \section{Análisis de los Conjuntos de Datos}\label{section:data}
 
@@ -24,19 +24,19 @@ La estrategia de selección de estos conjuntos asegura que sus selecciones son u
 Su fortaleza se hace presente en la mezcla de varios dominios y en la presencia de datos no estructurados en sus conjuntos. 
 En las figuras (\ref{fig:columns-t},\ref{fig:columns-d},\ref{fig:columns-i},\ref{fig:columns-e}) se muestra que los dataset de evaluación poseen una gran cantidad de 
 datos no estructurados y que estas se unen a las característica 
-tabulares\textit{Columnas que son numéricas,booleanas y categóricas} (\ref{fig:columns-n},\ref{fig:columns-b},\ref{fig:columns-c}) para dar más complejidad a la tarea.
+tabulares\footnote{Columnas que son numéricas,booleanas y categóricas} (\ref{fig:columns-n},\ref{fig:columns-b},\ref{fig:columns-c}) para dar más complejidad a la tarea.
 
 Otro de los puntos de dificultad de los dataset de \textit{HAutoML-Bench} son sus metacaracterísticas. Cuando estas propiedades presentan
 variedad, aseguran que todo el conjunto está formado por varias muestras representantivas del total de problemas de la vida real.
 
 En la figura \ref{fig:columns} se muestran los diferentes números de columnas que presenta cada dataset siendo \textit{google-guest} el mayor con 40. 
 Los números que más predominan son 2 y 3. 
-Con respecto a la cantidad de instancias en la figura: \ref{fig:instances} se puede ver que hay conjuntos pequeños, grandes y medianos.
+Con respecto a la cantidad de instancias (\ref{fig:instances}) se puede ver que hay conjuntos pequeños, grandes y medianos.
 El mayor de todos es \textit{project-kickstarter} y el menor \textit{wnli-es}.
-Los valores faltantes figura: \ref{fig:null} están presentes en la minoría de los conjuntos; sin embargo, en cada uno de ellos hay una 
+Los valores faltantes (\ref{fig:null}) están presentes en la minoría de los conjuntos; sin embargo, en cada uno de ellos hay una 
 gran cantidad de los mismos. 
-En los ejemplos de clasificación existe un balance entre los de clasificación binaria y multiclase. De las tareas de clasificación unas de sus propiedades más interesantes 
-son el número de conjuntos que poseen desequilibrio y el grado que presentan, es muchos menor que 0.4 porciento. 
+En los ejemplos de clasificación existe un balance entre los de clasificación binaria y multiclase ((\ref{fig:clases})). De las tareas de clasificación unas de sus 
+propiedades más interesantes son el número de conjuntos que poseen desequilibrio (\ref{fig:balance}) y el grado que presentan, es muchos menor que 0.4 porciento. 
 
 
 \begin{figure}
@@ -137,7 +137,6 @@ son el número de conjuntos que poseen desequilibrio y el grado que presentan, e
         \end{minipage} 
 \end{figure}
 
-
 \section{Evaluaciones Cualitativas}\label{section:qualitative}
 
 En los últimos años se han desarrollado una gran cantidad de marcos de aprendizaje automático, ya sea mediante la mejora iterativa de diseños antiguos o mediante 
@@ -216,8 +215,9 @@ booleanas. Además, a partir de la columna salida infiere el tipo de tarea. Auto
 sus evaluaciones se recogen problemas tabulares, de procesamiento del lenguaje natural y de imágenes. Recientemente con su modelo Multimodal es capaz de resolver 
 problemas multimodales en donde los tipos de datos de imágenes, texto y tabulares se encuentran en gran escala. Desde antes con su modelo Tabular, estos tipos de 
 problema podían resolverse para columnas de texto y tabulares, estas últimas deben representar la mayoría. 
-Se puede decir que por sus características AutoGluon está preparado para enfrentarse a los conjuntos multimodales y de texto de \textit{HAutoML-Bench}, excepto a 
-las tareas de entidades y relaciones. En el estado del arte no se tiene evidencia de que AutoGluon se enfrente a este tipo de tareas.  
+Se puede decir que por sus características AutoGluon está preparado para enfrentarse a los conjuntos multimodales y de texto de \textit{HAutoML-Bench} excepto a las 
+tareas de reconocimiento de entidades. AutoGluon tiene técnicas para tratar las tareas de econocimiento de entidades; sin embargo, la entrada para este tipo de problemas
+presentan una estructura diferentes a las que poseen los conjuntos de \textit{HAutoML-Bench}.  
 
 En la figura \ref{fig:eval-cuali} se muestran un resumen de las tareas en donde las propiedades de los sistemas permiten resolver. 
 \begin{table}[H]
@@ -241,7 +241,6 @@ En la figura \ref{fig:eval-cuali} se muestran un resumen de las tareas en donde 
   \label{fig:eval-cuali}
   }
 \end{table}
-
 
 \section{Evaluaciones Cuantitativas}\label{section:quantitative}
 
@@ -324,20 +323,21 @@ También cuando se mantiene el mismo tiempo y lo que varía es la introducción 
 \begin{flushleft} 
   {\large { \textbf{Resultados de AutoGluon por Tipo de Tarea}}}\label{results:task}
 \end{flushleft}
+
 Los resultados en las distintas tareas se manifiestan similares en cada una de las etapas. Esta similitud es teniendo en cuenta los mejores y peores conjuntos en 
 rendimiento.
 
-En la clasificación atendiendo a los valores de la métrica \textit{balanced-accuracy} común en ambas, el mayor promedio de desempeño durante todas rondas de evaluación 
-lo posse la clasificación binaria.
+En la clasificación atendiendo a los valores de la métrica \textit{balanced-accuracy} común en ambas, el mayor promedio de desempeño durante tdas rondas de evaluación 
+lo posee la clasificación binaria.
 
 En esta tarea, el conjunto en el que AutoGluon tiene mejor rendimiento durante todos las evaluaciones es \textit{paw-x-en}. Los peores resultados varían en dependencia de la etapa y la 
-métrica. El que más resalta es \textit{stroke-prediction} que posse un valor de \textit{F1} igual a cero durante todas las etapas. Las evaluaciones del conjunto 
+métrica. El que más resalta es \textit{stroke-prediction} que posee un valor de \textit{F1} igual a cero durante todas las etapas. Las evaluaciones del conjunto 
 \textit{fradulent-job} tienen un comportamiento similar excepto en la etapa 2 en donde aumenta el valor de su rendimiento. En la métrica \textit{balanced-accuracy} 
 los conjuntos \textit{project-kickstarter} y \textit{wnli-es} se unen a aquellos en donde el rendimiento es malo.
 
-En las tareas de regresión, al igual que en la clasificación binaria, existe un conjunto en donde AutoGluon tiene buenos resultados durante todas las rondas de ejecuciones.
-Este es \textit{language-identification}. En la tercera ronda de evaluaciones el mejor rendimiento es compartido con \textit{trec}. El peor desempeño durante todo el 
-proceso es en el conjunto \textit{predict-salary}.
+En la clasificación multiclase, al igual que en la clasificación binaria, existe un conjunto en donde AutoGluon tiene buenos resultados durante todas las rondas de 
+ejecuciones. Este es \textit{language-identification}. En la tercera ronda de evaluaciones el mejor rendimiento es compartido con \textit{trec}. El peor desempeño 
+durante todo el proceso es en el conjunto \textit{predict-salary}.
 
 En la tarea regresión los mejores resultados los obtiene AutoGluon en el conjunto \textit{stsb-en}, mientras que el error es mayor en \textit{price-book} de manera 
 general para todas las rondas de ejecuciones.
@@ -347,6 +347,7 @@ general para todas las rondas de ejecuciones.
   {\large { \textbf{Comparación de los Resultados de las Etapas de Evaluación de AutoGluon}}}\label{results:comparation}
 \end{flushleft}
 
+
 La evaluación de los conjuntos de una etapa a la otra poseen poca variabilidad.  
 
 Los resultados del sistema con sus parámetros de entrada por defecto, muestran un promedio de desempeño superior en 15 minutos que en 5 minutos. 
@@ -354,8 +355,9 @@ En todos los conjuntos de clasificación binaria, AutoGluon aumenta su rendimien
 Las variaciones mayores en este tipo de tareas son en los conjuntos \textit{fradulent-job} y \textit{project-kickstarter}, mientras que \textit{stroke-prediction}, 
 es el único en donde no se observa una variación en sus resultados.
 
-En la clasificación multiclase existe una disminución del rendimiento del sistema a medida que aumenta el tiempo en los conjuntos \textit{predict-salary} y 
-\textit{vaccine-es}. En todos los restantes de esta categoría los valores de eficiencia muestran un aumento, el mayor de todos es en el conjunto \textit{wikicat-es}.
+En la clasificación multiclase existe una disminución del rendimiento del sistema, a medida que aumenta el tiempo, en los conjuntos \textit{predict-salary} y 
+\textit{vaccine-es}. En todos los conjuntos restantes de esta categoría, sus valores de eficiencia muestran un aumento, el mayor de todos es en el 
+conjunto \textit{wikicat-es}.
 
 En las dos tareas de clasificación, el cambio en los valores de eficiencia de un tiempo a otro es más significativo en la clasificación binaria.
 
@@ -363,8 +365,10 @@ En estas etapas, las tareas de regresión  mejoran sus resultados en todos sus c
 
 AutoGluon con La introducción de los tipos de datos de las columnas de los conjuntos en la etapa 3, no muestra una gran variación en sus resultados.
 Este en la mayoría de los dataset tiende a mantener o disminuir su eficiencia al tener como entrada los tipos de las columnas. Los conjuntos en los que muestra un 
-notable incremento en su rendimiento son \textit{project-kickstarter} en clasificación binaria, en multiclase women-clothing y regresión 
-\textit{google-guest}. AutoGluon en la tarea regresión muestra su mayor disminución de eficiencia de una etapa a la otra en el conjunto \textit{spanish-wine}.
+notable incremento en su rendimiento son \textit{project-kickstarter} en clasificación binaria, en multiclase \textit{women-clothing} y regresión 
+\textit{google-guest}. Estos grandes incrementos provocan que el promedio de rendimiento de la tercera etapa sea mayor al de la primera. Si bien el promedio es mayor, 
+esto no significa, que para los conjuntos sea favorable el introducir como entrada el tipo de las columnas. 
+AutoGluon en la tarea regresión muestra su mayor disminución de eficiencia de una etapa a la otra en el conjunto \textit{spanish-wine}.
 
 \begin{table}
   \centering
@@ -418,9 +422,6 @@ notable incremento en su rendimiento son \textit{project-kickstarter} en clasifi
   }
 \end{table}
 
-
-
-
 \begin{table}
   \centering
   \resizebox{15cm}{!} {
@@ -441,29 +442,6 @@ notable incremento en su rendimiento son \textit{project-kickstarter} en clasifi
   \label{fig:regression}
   }
 \end{table}
-
-
-% \begin{table}[H]
-%   \centering
-%   \resizebox{15cm}{!} {
-%   \begin{tabular}{|l|cccccc|}
-%   \hline
- 
-%   & \multicolumn{4}{p{8cm}|}{Tiempo: 5 min}  & \multicolumn{2}{p{4cm}|}{Tiempo: 15 min}\\  \hline
-%   & \multicolumn{2}{p{4cm}|}{Entrada: Defecto} & \multicolumn{2}{p{4cm}|}{Entrada: Tipos} & \multicolumn{2}{p{4cm}|}{Entrada: Defecto}\\ \hline
-%   Dataset           & RMSE   & NRMSE & RMSE & NRMSE  & RMSE & NRMSE  \\ \hline
-%   spanish-wine      & 14.70  & 0.0047 & 13.82 & 0.0044 & 9.922 & 0.0031 \\
-%   stsb-en           & 0.693  & 0.138  & 0.720 & 0.144  & 0.663 & 0.132 \\
-%   stsb-es           & 0.955  & 0.191  & 0.955 & 0.191  & 0.950 & 0.191  \\ 
-%   price-book        & 477.47 & 0.033  & 596.9 & 0.0424 & 599.6 & 0.0031\\
-%   google-guest      & 0.501  & 0.502  & 0.443 & 0.4443 & 0.448 & 0.4493\\ \hline
-%   \textbf{Promedio} & 98.863 & 0.1737 & 122.40 &       &122.31 &      \\ \hline
-
-%   \end{tabular}
-%   \caption{Resultados en tareas de Regresión}
-%   \label{fig:class-regression}
-%   }
-% \end{table}
 
 
 \subsection{Errores de los sistemas durante el marco experimental}\label{subsection:errors}
@@ -489,51 +467,80 @@ enfrentarse a este tipo de situaciones. En este ejemplo se transformaron las col
 En todas las rondas de evaluaciones existieron errores de falta de RAM, la plataforma Colab se reinicia constantemente producto al gasto excesivo de recursos. Los 
 experimentos no pudieron ejecutarse secuencialmente debido a esta limitante.
 
-
 \section{Discusiones}\label{subsection:discussions}
 
+Las evaluaciones cuantitativas y cualitativas realizadas en las secciones (\ref{section:quantitative}) y (\ref{section:qualitative}) denotan la complejidad que poseen 
+los conjuntos de \textit{HAutoML-Bench}.
+El análisis que se realiza sobre sus propiedades ya habían anticipado su dificultad, producto a los tipos de datos no estructurados que poseen y a sus metacaracterísticas.
 
-Los resultados que aporta AutoGluon al ser evaluado en 23 conjuntos de datos, de ellos 11 multimodales y 12 de texto puro, a modo general son ineficientes.
+Las experimentaciones cualitativas evidencian que en su mayoría los sistemas AutoML son incapaces de evaluar su eficiencia en los conjuntos de \textit{HAutoML-Bench}. 
+En los casos de la herramienta AutoDL, que ya poseen técnicas para procesar tareas de un dominio específico, deben agregar técnicas para lidiar con datos no estructurados. 
+En los ejemplos de sistemas AutoML que solo se ejecutan en datos tabulares, deben desprenderse de esta limitante con el fin de lograr la heterogeneidad. 
+El sistema AutoGOAL debe añadir más tipos semánticos para poder evaluarse en dataset multimodales. AutoGluon debe ampliar las formas en que recibe el tipo de entrada 
+de las tareas de reconocimiento de entidades.
 
-En las comparaciones de los tres marcos experimentales la métrica seleccionada es la métrica de optimización de cada tipo de tarea. En tareas de regresión 
-se emplea \textit{RMSE} , clasificación binaria \textit{F1} y en multiclase \textit{accuracy}.
+AutoGluon es el sistema con características más maduras que permiten la evaluación en 23 conjuntos de datos de \textit{HAutoML-Bench}.
+Los resultados de su evaluación cuantitativa presenta algunas de las deficiencias que este sistema aún posee. Además, resalta sus fortalezas, ya que obtuvo buenos resultados 
+en algunos casos.
 
-De manera general los resultados de los tres marcos possen poca variabilidad. En los ejemplos en que se mantienen los mismos parámetros de entrada y deferencia de 
-tiempo 5 y 15 minutos(etapa 1 y 2), el promedio de los resultados de la segunda etapa supera en las tareas de clasificación a los de 5 minutos. En las tareas de 
-regresión  entre la etapa 1 y 2 el error aumenta.
+Los valores de rendimiento que obtiene el sistema, buenos o malos, se agrupan, atendiendo a las características que presentan los datos en cada conjunto.
 
+Los buenos resultados de AutoGluon suelen ser en conjuntos con un índice de balance elevado en sus clases. Ejemplo son \textit{paws-x-en} y 
+\textit{language-identification} que son los más balaceados de \textit{HAutoML-Bench}. El idioma inglés parece ser otra ventaja para el buen rendimiento.
+Existen conjuntos creados para el idioma español y el inglés. Autogluon en todos los casos, obtiene una mayor eficiencia en los de idioma inglés.
 
+El desbalance de clase y los conjuntos multimodales parecen ser la mayor fuente de ineficiencia. Ejemplo son los conjuntos \textit{stroke-prediction} y 
+\textit{fraudulent-job}, que durante durante casi todas las etapas de evaluación mantienen un rendimiento bastante bajo e invariante. Ambos solo predicen 
+correctamente la clase negativa. El dataset \textit{fraudulent-job} en un intervalo mayor de tiempo que el inicial logra aumentar sus resultados, a pesar de ser un 
+conjunto con muchos valores faltantes. AutoGluon parece enfrentar bien estos faltantes cuando la característica no se especifican como numérica. Otra desventaja es los 
+pocos datos de entrenamiento en conjuntos multimodales. Los datasets \textit{Wnli-es} y \textit{stroke-prediction} son muestra de esta deficiencia. \textit{Wnli-es} al 
+contrario de los anteriores conjuntos mencionados, tiende a predecir con mayor frecuencia la clase positiva.
 
-Para el segundo marco que tiene una duración de 15 min de entrenamiento con los parámetros por defecto 
+El rango de los valores de la variable de salida elevado, muestra un aumento en el error del rendimiento de AutoGluon en tareas de regresión. 
+Este es el caso de \textit{price-book}. También infieren sus características multimodales. En las tareas de clasificación multiclase, se repiten los bajos rendimientos
+en tareas multimodales, con valores faltantes y desbalance de clase. Ejemplo el conjunto \textit{predict-salary} que obtiene los resultados más bajos de esta tarea. 
 
-% \begin{minipage}[b]{0.31\textwidth}
-%   \centering
-%     \includegraphics[width=\textwidth]{Graphics/results/instances.png}
-%       \caption{Instancias}
-%       \label{fig:instances}
-%     \end{minipage} 
-% \hspace{0.01cm}
+Los resultados en todas los conjuntos demuestran la superioridad del rendimiento en tareas de texto puro sobre las multimodales. 
 
-% \begin{figure}
-%     \begin{minipage}[b]{0.4\textwidth}
-%       \centering
-%         \includegraphics[width=\textwidth]{Graphics/results/columns.png}
-%           \caption{Columnas}
-%           \label{fig:columns}
-%     \end{minipage}      
-%     \hspace{0.02cm}
-%     \begin{minipage}[b]{0.4\textwidth}
-%       \centering
-%         \includegraphics[width=\textwidth]{Graphics/results/instances.png}
-%           \caption{Instancias}
-%           \label{fig:instances}
-%         \end{minipage} 
-% \end{figure}
+Con respecto a los objetivos de cada etapa de evaluación. En aquellas donde se comparan los resultados con diferente tiempo, AutoGluon demuestra un aumento en 
+su rendimiento. Se estima que el tiempo máximo de entrenamiento es suficiente para completar las tareas, considerando que todos los conjuntos se evaluan con GPU y que 
+logran alcanzar como mínimo la etapa 2 de entrenamiento. En este tiempo, los resultados por tarea, presentan un promedio menor al 75 por ciento. El valor promedio, 
+comparado con las épocas de entrenamiento, es ineficiente. 
+
+En las comparaciones en donde se quiere verificar la fortaleza de la inferencia de tipos, AutoGluon demuestra que no existen variaciones drásticas entre las etapas 
+comparadas. Existen conjuntos en donde el sistema disminuye su rendimiento cuando se introducen los tipos de entrada. Esto afirma que los tipos que se infieren, 
+en muchos casos, no coincide con el correcto, a pesar de ello, AutoGluon se las ingenia para obtener un resultado medio.
 
 
-% \begin{figure}
-%     \centering
-%     \includegraphics[width= 0.4\textwidth]{Graphics/results/columns.png}
-%     \caption{Columnas}
-%           \label{fig:columnss}
-% \end{figure}
+
+% Los buenos resultados de AutoGluon en los conjuntos \textit{paws-x-en} y \textit{language-identification}, son producto a 
+% que poseen un elevado índice de balance de clases. El dataset \textit{language-identification} que pertenece a clasificación multiclase se encuentra 
+% completamente balanceado, mientras que \textit{paws-x-en} de clasificación binaria posee un índice cercano a 1, el ideal. También, ambos tienen un gran número de 
+% instancias, que con un correcto tiempo de entrenamiento significan más información de la que aprender. 
+
+% El conjunto \textit{trec}, en la ejecución de mayor tiempo, se suma a la lista de los mejores resultados. Este, a pesar de poseer un gran desbalance de clases, carece 
+% de valores faltantes y no mezcla diferentes tipos de datos. Además, pertenece al idioma inglés, lo que puede influir en sus buenos resultados. AutoGluon tiende a tener 
+% mejores resultados en los conjuntos de idioma inglés. Los conjuntos \textit{paws-x-en}, \textit{paws-x-es} de clasificación binaria y los conjuntos \textit{stsb-en} y 
+% \textit{stsb-es} de regresión, tratan sobre el mismo ambiente y se encuentran en idioma inglés y español. Ambos afirman la hipótesis de que AutoGluon resuelve con 
+% mejor rendimiento, aquellos conjuntos que están en el idioma inglés. El conjunto \textit{stsb-en} es el de mejor rendimiento en la tarea de regresión.
+
+% En el lado opuesto de los dataset mencionados, se encuentran aquellos con malos valores de rendimiento. Entre estos está el dataset \textit{stroke-prediction} que 
+% durante ninguna de sus ejecuciones, a lo largo de las distintas etapas, logra aumentar su desempeño. Esto es producto, a que la clase positiva de esta tarea de 
+% clasificación binaria posee muy pocos ejemplos de entrenamiento, en comparación con la clase negativa. En este caso, la clase negativa abarca todos los resultados 
+% predictivos. El aumento de tiempo para este dataset no significa un avance, ya que el conjunto es pequeño. El dataset logra avanzar hasta la época 5 de evaluación sin 
+% cambios en sus resultados. El conjunto \textit{fraudulent-job} se comporta similar a \textit{stroke-prediction} durante las dos primeras etapas. Este en un intervalo 
+% mayor de tiempo logra aumentar su rendimiento drásticamente. La diferencia entre ambos conjuntos es que \textit{fraudulent-job} posee un mayor balance y número de 
+% instancias, su multimodalidad carece de columnas numéricas. Estas características superan a su gran número de valores faltantes. El dataset \textit{wnli-es} le debe 
+% su mal rendimiento a que es el más pequeño de todos los conjuntos. \textit{Wnli-es} al contrario de los anteriores conjuntos mencionados, tiende a predecir con mayor 
+% frecuencia la clase positiva.
+
+% En la clasificación multiclase en donde los rendimientos son similares entre todos los conjuntos, \textit{predict-salary} muestra el peor de todos. Este posee 
+% valores faltantes y varias columnas categóricas y de texto. En la regresión, el peor es \textit{price-book}, su complejidad está en la mezcla de varios tipos de datos y 
+% en el rango en que varían los valores de su variable de salida.
+
+% Los buenos resultados están encabezados por los dataset de texto puro, mientras que los malos en su mayoría son multimodales. La característica que más 
+% resulta ser desafiante para AutoGluon, es el desbalance de clases.
+
+% En la mayoría de los conjuntos durante la etapa en que se introducen los tipos de entrada, existe una disminución o mantenimiento de su rendimiento respecto a la etapa
+% con parámetros por defecto. Esto, demuestra la fortaleza de la inferencia de tipos de AutoGluon, al no existir variaciones drásticas. 
+% Sin embargo, también afirma,

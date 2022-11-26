@@ -186,8 +186,8 @@
 \newenvironment{recomendations}%
   {\cleardoublepage%
    \phantomsection%
-   \addcontentsline{toc}{chapter}{Recomendaciones}%
-    \chapter*{Recomendaciones}}%
+   \addcontentsline{toc}{chapter}{Trabajos Futuros}%
+    \chapter*{Trabajos Futuros}}%
   {}
 
 \newenvironment{annexes}%
