@@ -6,15 +6,18 @@
 \lstset{language=Python, captionpos=b, keywordstyle=\color{cerulean},stringstyle=\color{burntorange},commentstyle=\color{burntorange}}
 
 
-El capítulo \ref{chapter:state-of-the-art} demuestra que los benchmark son una pieza esencial en la verificación del correcto funcionamiento de un sistema AutoML.
-En su mayoría cumplen con su objetivo principal de medir y comparar el rendimiento de una herramienta automatizada, pero algunos presentan fallas. Hasta los más actuales 
-tienen limitaciones en su metodología de creación, lo que troncha la veracidad de sus evaluaciones. También el dominio y 
-la estructura de los datos pasa desapercibido para muchos de estos, siendo el dominio tabular, los datos estructurados y procesados los protagonistas.
-Además producto al avance y evolución de los softwares que evalúan y a la aparición de otros nuevos, muchas de estas pruebas se reconocen como obsoletas. 
-Debido a esto se propone crear uno nuevo benchmark llamado \textit{HAutoML-Bench}. Este posee un objetivo completamente distinto a sus anteriores. Su tarea, más allá de 
-probar si una herramienta es eficiente, tiene como meta verificar la flexibilidad de ellos para resolver problemas con diferentes tipos de entrada, diferentes dominios y 
-distintas tareas.\textit{HAutoML-Bench} debe encargarse de validar la heterogeneidad de un sistema AutoML. Esta heterogeneidad es medida por la capacidad de los sistemas a enfrentarse a 
-tareas del mundo real en donde los datos se encuentran sin mucho procesamiento y en donde su semántica es importante.
+El capítulo \ref{chapter:state-of-the-art} muestra la utilidad de los benchmarks en la verificación del correcto funcionamiento de los sistema Auto-ML.
+Estos sistemas de prueba en su mayoría cumplen con su objetivo principal, pero algunos presentan fallas. Hasta los más actuales 
+tienen limitaciones  su metodología de creación, lo que troncha la veracidad de las evaluaciones. 
+EL dominio y la estructura de los datos de los conjuntos presentes en las evaluaciones pasan desapercibidos.
+El dominio tabular, los datos estructurados y procesados son los protagonistas en cada uno uno de ellos. 
+Además, producto al avance y evolución de los frameworks que evalúan y a la aparición de otros nuevos, muchas de estas pruebas se reconocen como obsoletas. 
+
+Se desarrolla uno nuevo llamado \textit{HAutoML-Bench} que posee un objetivo completamente distinto a sus anteriores. Su tarea es verifica la flexibilidad de los 
+sistemas para resolver problemas con diferentes tipos de entrada, diferentes dominios y 
+distintas tareas. \textit{HAutoML-Bench} se encarga de validar la heterogeneidad de un sistema AutoML. Esta heterogeneidad es medida 
+por la capacidad de las herramientas automatizadas para enfrentarse a tareas del mundo real, en donde los datos se encuentran sin mucho procesamiento y en 
+donde su semántica es importante.
 
 
 \section{Metodología del Diseño }\label{section:design}
@@ -25,44 +28,44 @@ en cada etapa de la construcción de la propuesta de su diseño.
 \subsection{Estrategias de selección de los Conjuntos de Datos}\label{subsection:selection}
 
 La selección de los conjuntos de datos determina la dirección a la que va dirigida la evaluación de los sistemas. Estos deben ser los encargados de someter con 
-pruebas complicadas al software evaluado para lograr resaltar sus buenas y malas funcionalidades.
+pruebas complicadas a la herramienta evaluada para lograr resaltar sus buenas y malas funcionalidades.
 
-Para cumplir con lo anteriormente planteado: \textit{HAutoML-Bench} incluye problemas difíciles, semejantes a los de la vida real y en donde el dominio de los datos 
-es importante. Los conjuntos originales pertenecen a sitios como Hungging Face [\cite{67}], Kaggle [\cite{44}], IberLEF[\cite{68}] y Machine Hack[\cite{69}]. La 
-selección contiene un total de 27 conjuntos: 16 son de dominio texto puro y 11 son multimodales. Esta última categoría pertenece debido a su similitud con los 
-problemas de la vida real. Todos los dataset se encuentran representados en tablas, aun así presentan su semántica, ya que ninguna de sus columnas internas 
-presenta procesamiento. Cada una posee su significado y estructura original relacionado con el dominio al que pertenecen.
+\textit{HAutoML-Bench} incluye problemas difíciles, semejantes a los de la vida real y en donde el dominio de los datos 
+es importante. Los conjuntos de datos originales pertenecen a sitios como Hungging Face [\cite{67}], Kaggle [\cite{44}], IberLEF[\cite{68}] y Machine Hack[\cite{69}]. La 
+selección contiene un total de 27 conjuntos: 16 son de dominio texto puro y 11 son multimodales. Esta última categoría se incluye por su similitud con los 
+problemas de la vida real. Cada uno de los conjuntos se encuentran representados en tablas, aun así presentan su semántica, ya que ninguna de sus columnas internas 
+presenta procesamiento. Las columnas presentan su significado y estructura original relacionado con el dominio al que pertenecen.
 
-En el dominio texto los conjuntos presentan diversidad respecto a tener como tipo de entrada documentos, oraciones, palabras. El solo tratar con una entrada de texto 
-requiere técnicas de procesamiento especializadas por parte de los sistemas. Los pertenencientes a \textit{HAutoML-Bench} poseen una y más entradas de este tipo. 
-También existen conjuntos en idioma español y en inglés, uno es multilingual.
+En el dominio texto los conjuntos presentan diversidad respecto al tipo de entrada que incluyen documentos, oraciones, palabras entre otras. 
+El tratar con una entrada de texto requiere técnicas de procesamiento especializadas por parte de los sistemas. Los pertenencientes a \textit{HAutoML-Bench} poseen una y 
+más entradas de este tipo. Los conjuntos se encuentran en idioma español y en inglés, uno es multilingual.
 
 Los autores de \textit{Benchmarking Multimodal AutoML for Tabular Data with Text Fields} [\cite{67}] agrupan una serie de conjuntos multimodales. \textit{HAutoML-Bench}
-utiliza la referencia orginal de estos con el fin de incluirlos sin tanto procesamiento. Los tipos de columnas en esta categoría corresponden a texto, 
+utiliza la referencia original de estos, con el fin de incluirlos sin tanto procesamiento. Los tipos de columnas en esta categoría corresponden a texto, 
 oraciones, palabras, columnas categóricas, booleanas, valores numéricos tanto discretos como continuos, columnas de tiempo y que responden a url de imágenes.
 
-La búsqueda agrupa aquellos con característica de desequilibrio de clases y valores faltantes, para retar a los sistemas con la dificultad de este tipo de 
-propiedades. Respecto al ambiente de aplicación, forman parte dataset relacionados con el fraude, a la medicina y problemas sociales. Las tareas que resuelven 
+La búsqueda de conjuntos selecciona aquellos con característica de desequilibrio de clases y valores faltantes, para retar a los sistemas con la dificultad de este tipo de 
+propiedades. Respecto al ambiente de aplicación, forman parte conjuntos relacionados con el fraude, a la medicina y problemas sociales. Las tareas que resuelven 
 requieren técnicas de análisis de sentimientos y búsqueda de similitud entre texto, oraciones. También precisan la utilización de procedimientos de identificación 
 del lenguaje, interpretación y análisis de series temporales. Todas las tareas presentes se reducen a una clasificación binaria, multiclase, regresión o 
 reconocimiento de entidades.
 
-Como última estrategia para evitar caer en sesgos de selección. \textit{HAutoML-Bench} posee dataset de diferente número de instancias en el rango de los cientos, 
+\textit{HAutoML-Bench} posee conjuntos de diferente número de instancias en el rango de los cientos, 
 miles, 10 miles y 100 miles. También poseen variedad en el número de columnas y de clases. Además, en la forma en que se modelan las salidas ejemplo, la clasificación 
 puede darse a través de valores numéricos o de etiquetas que representen las categorías. 
-En la tabla (tal) puede verse las características que cumple cada dataset.
+En la tabla (tal) se listan las características que cumple cada conjunto de datos.
 
 \subsection{Método de división de los Conjuntos}\label{subsection:division}
 
 La mayoría de los benchmark vistos en el capítulo \ref{chapter:state-of-the-art} utilizan validación k-fold como método de evaluación. Dividen de forma 
 aleatoria en cada prueba los conjuntos en entrenamiento y validación. \textit{HAutoML-Bench} provee un conjunto de entrenamiento y un conjunto de prueba 
-(método hold hot) para cada uno de sus dataset. Se emplea esa forma porque muchos de los dataset originales se encuentran previamente divididos así por reglas 
-del dominio al que pertenecen. Además de que cross-validation resulta ser más costoso. También, evaluar en un conjunto de datos de prueba nunca antes visto es una buena 
-estrategia para disminuir el sobreajuste.  
+(método hold hot) para cada uno de sus conjuntos. Se emplea esa forma porque muchos los conjuntos originales se encuentran previamente divididos así por reglas 
+del dominio al que pertenecen. Además de que cross-validation resulta ser más costoso producto a todas las operaciones que realiza. También, evaluar en un 
+conjunto de datos de prueba nunca antes visto es una buena estrategia para disminuir el sobreajuste.  
 
 Los conjuntos que su estructura original es separado en entrenamiento, validación y prueba, en dependencia de su tamaño se siguen varias estrategias. 
 En aquellos donde la parte que se utiliza para entrenamiento es mucho mayor que la unión de las partes de validación y prueba, se unen estas últimas.
-En los restantes que presentan esta estructura se mezclan entrenamiento con validación. Los dataset que están fusionados en una sola parte, en dependencia 
+En los restantes que presentan esta estructura se mezclan entrenamiento con validación. Los conjuntos que están fusionados en una sola parte, en dependencia 
 de su tamaño, se fraccionan entre el 70 y 80 porciento para el entrenamiento y lo restante para prueba. En la tabla (tal) se muestran los resultados de 
 las separaciones. 
 
@@ -72,10 +75,10 @@ Entre estas está particionar este conjunto.
 
 \subsection{Problemas en los Conjuntos de Datos}\label{subsection:dataproblems}
 
-Los datos de evaluación originales presenten en los sitios, tienen una estructura y un formato bastante asequible y entendible. Sin embargo, algunos sufren ciertas 
-transformaciones en \textit{HAutoML-Bench} por presentar ciertos problemas. Los más sobresalientes son en texto por presencia de caracteres corruptos, los cuales
-se eliminan o se sustituyen por su igual sin corromper. También falta de los delimitadores que conllevan a utilizar otras técnicas de lectura en vez de las propias 
-del formato original del archivo.
+Los datos de evaluación originales presentes presentes en los sitios de descarga, tienen una estructura y un formato bastante asequible y entendible. 
+Sin embargo, algunos presentar ciertos problemas por lo que sufren ciertas transformaciones en \textit{HAutoML-Bench}. Los más sobresalientes son en texto por presencia 
+de caracteres corruptos, los cuales se eliminan o se sustituyen por su igual sin corromper. También, ausencia de los delimitadores que conllevan a utilizar otras 
+técnicas de lectura en vez de las propias del formato original del archivo.
 
 \subsection{Métricas de Rendimiento}\label{subsection:metrics}
 
@@ -86,9 +89,9 @@ entrenamiento en el proceso de validación. La segunda permite obtener caracter�
 
 Es ideal que la misma métrica que se utilice para optimizar se emplee en una evaluación para validar la eficiencia del sistema. También es cierto que muchos conjuntos 
 de datos para su entendimiento necesitan evaluarse en más de una métrica. Debido a esto \textit{HAutoML-Bench} selecciona un conjunto de métricas para cada 
-tipo de tarea. Cada una de ellas puede usarse para la optimización, porque todas son medidas durante el proceso de evaluación.
+tipo de tarea. Cualquiera de ellas puede usarse para la optimización de la herramienta AutoML, porque todas son medidas durante el proceso de su evaluación.
 
-La tarea clasificación se evalúa en \textit{accuracy} (exactitud), \textit{balanced-accuracy} (exactitud balanceada), \textit{precisión}, \textit{recobrado} y 
+La tarea clasificación se evalúa en \textit{accuracy}, \textit{balanced-accuracy} (exactitud balanceada), \textit{precisión}, \textit{recobrado} y 
 \textit{f1}. En la clasificación binaria para las tres últimas métricas se utiliza su versión \textit{normal} y \textit{micro} , en la 
 multiclase la \textit{macro} y la \textit{ponderada}. Para la regresión se emplean las medidas relacionadas con el error medio y 
 absoluto, entre estas \textit{RMSE}, \textit{MSE} y \textit{MAE}. 
@@ -103,18 +106,18 @@ valor verdadero. En las tareas de reconocimiento de entidades se recomienda la m
 \section{Detalles de Implementación}\label{section:Implementation}
 \textit{HAutoML-Bench} es un benchmark de AutoML heterogéneo. Se encarga de verificar la flexibilidad de las herramientas de aprendizaje automático en el enfrentamiento
 de tareas en donde la forma en que se presentan los datos y el dominio es variada. Es un sistema extensible, escrito en Python, de código abierto y que aún continúa en 
-desarrollo. Permite la descarga de dataset y la inclusión de otros. Además, contiene funcionalidades para cuantificar el rendimiento en los mismos y para filtrarlos 
+desarrollo. Permite la descarga de conjuntos y la inclusión de otros. Además, contiene funcionalidades para cuantificar el rendimiento en los mismos y para filtrarlos 
 según sus metadatos. 
 
-En esta sección se describen los pasos para su empleo (subsección: \ref{subsection:instructions}) y se muestran los directorios que lo conforman 
-(subsección: \ref{subsection:struct}). También se ofrecen detalles sobre sus funcionalidades (secciones: \ref{subsection:class} y \ref{subsection:methods} )
+En esta sección se describen los pasos para su empleo (\ref{subsection:instructions}) y se muestran los directorios que lo conforman 
+(\ref{subsection:struct}). También, se ofrecen detalles sobre sus funcionalidades (\ref{subsection:class}, \ref{subsection:methods} ),
 con el fin de agilizar el proceso de su utilización.
 
 \subsection{Instrucciones de Instalación e Inicialización}\label{subsection:instructions}
-La instalación e inicialización es sencilla basta con tener instalado python 3.7 y seguir los pasos que se describen a continuación.
+La instalación e inicialización es sencilla: basta con tener instalado python 3.7 y seguir los pasos que se describen a continuación.
 \begin{itemize}
 \item Descargar el código fuente desde su repositorio oficial de Github, el link: . 
-\item Instalar poetry un gestor de paquetes mediante el siguiente comando:
+\item Instalar el gestor de paquetes poetry mediante el siguiente comando:
 \begin{lstlisting}[language = bash, caption= Instalar poetry]
 pip3 install poetry
 \end{lstlisting}   
@@ -124,7 +127,7 @@ pip3 install poetry
 poetry install
 \end{lstlisting}  
 
-\item Luego colocar el archivo en donde se insertará el código de pruebas en la carpeta source e importar en él la clase HAutoMLBench.
+\item Importar la clase HAutoMLBench ubicada en el archivo \textit{\_init\_.py} de la carpeta \textit{source}.
 \begin{lstlisting}[caption= Importar HAutoMLBench,label = code:import]
 from benchmark import HAutoMLBench
 \end{lstlisting}
@@ -142,14 +145,14 @@ HAutoMLBench.init()
 \textit{HAutoML-Bench} está formado por 4 archivos principales. El archivo \newline \textit{\_init\_.py} contiene la lógica de ejecución del benchmark.
 Los ficheros \textit{dataset.py} y \textit{functions\_load.py} modelan las funcionalidades de cada conjunto de datos. Por otro lado el fichero \textit{utils.py} 
 contiene métodos auxiliares de la construcción de los conjuntos y del benchmark. 
-Los archivos \textit{columns\_types.json} y \textit{properties.json} almacenan los metadatos de los dataset del software de pruebas. 
+Los archivos \textit{columns\_types.json} y \textit{properties.json} almacenan los metadatos de los conjuntos del software de pruebas. 
  
 En la figura \ref{fig:image1} se muestra la estructura del directorio inicialmente. Luego de ejecutar el método \textit{init} se crean dos nuevos archivos que 
 guardan el estado del benchmark: \textit{datasets\_info} y \textit{variables}. También se forma una carpeta \textit{data} que contiene todos los conjuntos 
 serializados junto a su función de carga que le permite acceder a su contenido.
 
 En el directorio source archivo \textit{test.py} se provee algunos ejemplos de uso. En el directorio \textit{experimentation}, se encuentra el notebook en donde se 
-ejecutaron las pruebas del capítulo siguiente \ref{chapter:experiments}.
+ejecutaron las experimentaciones (\ref{chapter:experiments}).
 
 \begin{figure}
     \centering
@@ -166,21 +169,21 @@ métodos que permiten probar los sistemas. Estos métodos son estáticos para ev
 al estado del benchmark y sus funcionalidades. En la subsección \ref{subsection:methods} se discuten cada uno de ellos. 
 
 La clase \textit{Dataset} por otro lado se encarga de modelar cada uno de los conjuntos que pertenecen al benchmark y 
-almacena sus propiedades. Las propiedades de un dataset son el nombre, url utilizada para la descarga de su 
-contenido, informaciones de la naturaleza de sus datos y una función de carga o llamada 
+almacena sus propiedades. Las propiedades de un conjunto son el nombre, url utilizada para la descarga de su 
+contenido, informaciones de la naturaleza de sus datos y una función de carga llamada 
 \textit{loader\_function}. Esta función es la que permite acceder a su contenido. 
 Esta clase hereda de la clase \textit{YamlAble}. Esto le brinda la posibilidad  de serializarse como un objeto \textit{.yaml}, 
 permitiendo guardar cada uno de sus valores y acceder a ellos de forma rápida y fácil. 
 
 \begin{flushleft} 
-    { \textbf{Estructura de las propiedades de un Dataset}}\label{class:dataset_pro}
+    { \textbf{Estructura de las propiedades de un Conjunto}}\label{class:dataset_pro}
 \end{flushleft}
-Las propiedades en los dataset permiten almacenar información relevante para su utilización. El nombre, la url y su función de carga posibilitan acceder a su contenido.
+Las propiedades en los conjuntos permiten almacenar información relevante para su utilización. El nombre, la url y su función de carga posibilitan acceder a su contenido.
 La información sobre sus metadatos permite identificar la complejidad de la tarea que resuelve.
-Estos metadatos contienen el número de columnas, el número de instancias de sus partes: entrenamiento y prueba. También la tarea que resuelven y el número de 
+Estos metadatos contienen el número de columnas, el número de instancias de sus partes: entrenamiento y prueba, la tarea que resuelven y el número de 
 valores null que poseen. Además, se brinda para cada conjunto el tipo semántico inferido para cada una de sus columnas. Esta inferencia se realiza a partir de la 
-interpretación de la descripción del dataset original. El nombre de la etiqueta de salida es otro de los metadatos, para el dataset \textit{google-guest} se guarda una 
-lista ya que posee varias etiquetas que pueden utilizarse como salida. 
+interpretación de la descripción del conjunto original. El nombre de la etiqueta de salida es otro de los metadatos, para el conjunto \textit{google-guest} 
+se guarda una lista ya que posee varias etiquetas que pueden utilizarse como salida. 
 
 En las tareas de clasificación se tiene una lista con los distintos valores de la etiqueta a predecir. En la binaria se tiene una propiedad \textit{positive\_class} 
 que indica la clase positva. Por último se tiene un metadato para el número de clases en la tareas de clasificación y el balance de las mismas. 
@@ -211,6 +214,7 @@ class Dataset:
 Los tipos semánticos de cada columna aportan información sobre el dominio al que pertencen los datos. El brindarlos como información garantiza que el conjunto 
 es procesado respetando el significado de cada una de las entradas. Estos se dividen atendiendo a los diferentes tipo de datos y 
 se agregan unas clasificaciones especiales para ayudar a entender aun más el problema.
+La estructura de los conjuntos es independiente de los tipos semánticos de sus columnas. Los usuarios pueden decidir si usar los tipos o no, en la evaluación. 
 
 \begin{itemize}
     \item Entradas de texto
@@ -257,22 +261,19 @@ se agregan unas clasificaciones especiales para ayudar a entender aun más el pr
     \end{itemize}
 \end{itemize}
 
-Muchos sistemas son incapacez de tratar con todos estos tipos semánticos o muchos trabajan con los tipo concreto.
-Los que sean capaces de tratar con los mismos o con similares, solo necesitan realizar la traducción, sin necesidad de cambiar
-la estructura del dataset ya que su estructura y sus tipos son independiente.
 
 \begin{flushleft} 
-    { \textbf{Función de carga de cada Dataset: \textit{loader\_function}}}\label{class:loader-function}
+    { \textbf{Función de carga de cada tipo Dataset: \textit{loader\_function}}}\label{class:loader-function}
 \end{flushleft}
 La clase \textit{Dataset} posee un metodo para descargar, abrir y leer el contenido propio de cada una de sus instancias.
 Este metodo es abstracto por lo que cada conjunto de datos debe realizar su propia implementacion para realizar las tareas antes descritas. 
 
-En el caso de los conjuntos ya pertenecientes al benchamrk sus implementaciones poseen ciertos parámetros de entrada para describir las características del 
-contenido que retornan. Es posible especificar el formato de salida del contenido mediante el parámetro \textit{format} este corresponde con el tipo lista o 
+En el caso de los conjuntos ya pertenecientes al benchmark sus implementaciones poseen ciertos parámetros de entrada para describir las características del 
+contenido que retornan. Es posible especificar el formato de salida del contenido mediante el parámetro \textit{format}, este corresponde con el tipo lista o 
 dataframe de pandas. 
 El parámetro \textit{samples} indica si el conjunto se divide en dos: entrenamiento y prueba o se retorna completo. 
 También es posible separar la columna de salida de las de entrada mediante el parámetro booleano \textit{in\_x\_y}. 
-Cada conjunto conoce su etiqueta a predecir. El conjunto \textit{google-guest} posee otras que pueden utilizarse como salida por lo que su m'etodo admite un 
+Cada conjunto conoce su etiqueta a predecir. El conjunto \textit{google-guest} posee otras que pueden utilizarse como salida por lo que su método admite un 
 parámetro \textit{target}.  
 
 Consultar la figura: \ref{code:loader-function} para obtener más información respecto a la estructura de la función. 
@@ -302,8 +303,8 @@ def function_loader(self, format = "pandas", in_x_y = False ,samples =  2)
 \begin{flushleft} 
     { \textbf{ Método \textit{init}}}\label{method:create}
 \end{flushleft}
-El método \textit{init} inicializa el benchamrk. Para ello almacena en archivos los nombres, urls, las informaciones y los nombres de las funciones de carga de todos 
-los dataset que posee. las informaciones están previamente guardadas. 
+El método \textit{init} inicializa el benchmark. Para ello almacena en archivos los nombres, urls, las informaciones y los nombres de las funciones de carga de todos 
+los conjuntos que posee. 
 Luego construye y serializa las intancias de los conjuntos para su uso futuro. Es importante que este método solo se ejecute una sola vez, debido a que los cambios 
 que se realicen se perderán. El benchmark vuelve a su estado inicial por defecto, con sus conjuntos originales.
 
@@ -313,8 +314,8 @@ Este no recibe parámetros de entrada ni retorna nigún valor. Cualquier error e
     { \textbf{Método \textit{get\_dataset}}}\label{method:get-dataset}
 \end{flushleft}
 
-Una vez se inicializa el benchamrk para evaluar los sistemas se debe tener acceso a los conjuntos de datos.
-El método \textit{get\_dataset} a partir de un nombre obtiene la instancia de ese dataset almacenado.
+Una vez se inicializa el benchmark para evaluar los sistemas se debe tener acceso a los conjuntos de datos.
+El método \textit{get\_dataset} a partir de un nombre obtiene la instancia de ese conjunto almacenado.
 A tener la instancia se puede acceder a cada una de sus propiedades, su nombre, sus metadatos, url y su 
 función de carga.  
 Consultar la figura: \ref{code:get-dataset} para obtener más información respecto a la estructura del método. 
@@ -332,10 +333,10 @@ def get_dataset(name):
 \begin{flushleft} 
     { \textbf{Método \textit{add\_dataset} }}\label{method:new}
 \end{flushleft}
-El método \textit{add\_dataset} agrega un nuevo dataset al benchmark. 
+El método \textit{add\_dataset} agrega un nuevo conjunto al benchmark. 
 Recibe como entrada el nombre, la url, la función de carga y su parámetro opcional los metadatos.
 Si se introducen los metadatos estos pasan por un proceso de verificación con el fin de validar que se introduzcan correctamente.
-Sus campos son obligatorios sino se tiene información respecto a uno se deben marcar como \textit{None}.
+Sus campos son obligatorios; si no se tiene información respecto a uno se deben marcar como \textit{None}.
 Se debe tener en cuenta que si existe un conjunto con el mismo nombre se remplazará.
 
 La estructura de los datos de entrada y salida se pueden observar en la figura:\ref{code:add-dataset}. 
@@ -364,7 +365,7 @@ La estructura de los datos de entrada y salida se pueden observar en la figura:\
 \begin{flushleft} 
     { \textbf{Método \textit{remove\_dataset} }}\label{method:remove}
 \end{flushleft}
-Este método como su nombre lo indica remueve el dataset que coincida con el nombre que se introduce como parámetro de entrada. 
+Este método, como su nombre lo indica, remueve el conjunto que coincida con el nombre que se introduce como parámetro de entrada. 
 Produce error en caso de que exista algún problema durante la escritura de los archivos del estado del benchmark.
 
 La figura: \ref{code:remove-dataset} muestra detalles del método.
@@ -380,10 +381,9 @@ def remove_dataset(name):
 \begin{flushleft} 
     { \textbf{Método \textit{filter}}}\label{method:filter}
 \end{flushleft}
-El objetivo del método \textit{filter} es devolver una lista de dataset que cumpla con las restricciones de los parámetros de entrada. La primera 
-restricción que puede ser introducida es el tipo de tarea. El segundo parámetro es el cumplimiento de una propiedad numérica del 
-dataset, esta propiedad debe ser característica de los metadatos. 
-En caso de no establecer ninguna restricción se devuelve una lista con todos los dataset introducidos.
+El objetivo del método \textit{filter} es devolver una lista con los nombres de los conjuntos de datos que cumpla con las restricciones de los parámetros de entrada. 
+La primera restricción que puede ser introducida es el tipo de tarea. El segundo parámetro es el cumplimiento de una propiedad numérica del tipo Dataset, esta propiedad 
+debe ser característica de los metadatos. En caso de no establecer ninguna restricción se devuelve una lista con todos los conjuntos introducidos hasta el momento.
 Consulte la fig:\ref{code:filter} para ver la estructura de la entrada y salida del método.
 
 \begin{lstlisting}[caption=Método filter, label= code:filter]
@@ -402,7 +402,7 @@ def filter(cls, task = None,expresion = None):
 \end{flushleft}
 El método \textit{evaluate} mide el rendimiento de una herramienta de aprendizaje automático. 
 Posee parámetros obligatorios como el nombre del conjunto, la lista de valores verdaderos de la salida y los valores que fueron predecidos.
-Ambas secuencias deben coincidir en tipos y en tamaño. En el caso de que el conjunto pertenezca al benchamrk y que contenga sus metadatos 
+Ambas secuencias deben coincidir en tipos y en tamaño. En el caso de que el conjunto pertenezca al benchmark y que contenga sus metadatos 
 correctamente etiquetados se puede prescindir de introducir los parámetros opcionales. 
 Los parámetros opcionales corresponden a la tarea que se pretende evaluar. Además los distintos valores de la etiqueta de salida. Este es necesario para evaluar 
 tareas de clasificación multiclase. Otro parámetro opcional es la etiqueta de la clase positiva, es necesaria para clasificaciones binarias y cuando la salida tiene 
@@ -413,7 +413,7 @@ El método utiliza las métricas implementadas en el paquete de python \textit{s
 Para las métricas de entidades y relaciones se provee una Implementación de la \textit{precisión}, \textit{recobrado} y \textit{f1\_beta}. 
 
 La salida incluye cada una de las métricas y el valor obtenido para cada una de ellas. Durante la ejecución se escribe un archivo \textit{json} con los resultados 
-obtenidos. Este archivo es capaz de almacenar todos los resultados de un sistema en todos los dataset.
+obtenidos. Este archivo es capaz de almacenar todos los resultados de un sistema en todos los conjuntos.
 
 La figura muestra la estructura de la entrada y la salida del método \textit{evaluate} fig:\ref{code:evaluate} y la estructura del archivo que almacena los resultados 
 experimentales fig: \ref{code:archive-result}.
