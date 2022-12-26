@@ -181,20 +181,23 @@
   {\cleardoublepage%
    \phantomsection%
    \addcontentsline{toc}{chapter}{Conclusiones}%
-   \chapter*{Conclusiones}}%
+   \chapter*{Conclusiones}%
+   }%
   {}
 \newenvironment{recomendations}%
   {\cleardoublepage%
    \phantomsection%
    \addcontentsline{toc}{chapter}{Trabajos Futuros}%
-    \chapter*{Trabajos Futuros}}%
+    \chapter*{Trabajos Futuros}%
+    }%
   {}
 
 \newenvironment{annexes}%
   {\cleardoublepage%
    \phantomsection%
    \addcontentsline{toc}{chapter}{Anexos}%
-    \chapter*{Anexos}}%
+    \chapter*{Anexos}%
+   }%}%
   {}
 \newenvironment{dedication}%
   {\cleardoublepage%

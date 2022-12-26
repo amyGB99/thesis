@@ -2,68 +2,71 @@
 \addcontentsline{toc}{chapter}{Introducción}
 La inteligencia artificial juega un papel importante en el proceso de digitalización y automatización de la sociedad. El aprendizaje de máquinas (ML) es una rama de 
 investigación de la inteligencia artificial que ayuda a los humanos a resolver problemas de sectores de la industria y de ciencias como la biología y la medicina 
-[\cite{39}]. Los modelos que esta rama agrupa, son utilizados en tareas como la detección de fraude [\cite{4}], el procesamiento de imágenes [\cite{1},\cite{3}], 
-para solucionar problemas sociales y económicos [\cite{2}] entre muchas otras. Cada uno de los algoritmos de ML son un ascenso en la automatización del proceso de 
+[\cite{39}]. Los modelos agrupados en esta rama, son utilizados en tareas como la detección de fraude [\cite{4}], el procesamiento de imágenes [\cite{1},\cite{3}], 
+para solucionar problemas sociales y económicos [\cite{2}] entre muchas otras. Cada uno de los algoritmos de ML es un ascenso en la automatización del proceso de 
 toma de decisiones y en el análisis inteligente de la información. 
 
 A pesar de la gran popularidad de estos algoritmos, tienen mucha dependencia hacia los humanos. Los expertos en aprendizaje de máquinas son los encargados 
-de seleccionar el mejor, en dependencia de las características del problema que desea resolver. Además, es también tarea de los especialistas, encontrar 
-una mejor solución, mediante la optimización de los parámetros de entrada que poseen cada uno de estos algoritmos. 
+de seleccionar el mejor modelo teniendo en cuenta las características del problema que se desea resolver. Además, es tarea de los especialistas encontrar 
+la mejor solución posible, mediante la optimización de los parámetros de entrada que poseen cada uno de estos algoritmos. 
 
-Con la creciente popularidad del aprendizaje de máquinas, es difícil suplir la demanda de expertos que tengan un amplio conocimiento del tema [\cite{33}]. 
-Las tareas que involucra el entrenamiento de un modelo de ML, necesitan de muchos recursos de tiempo por parte de los humanos y de software para su realización.
+Con la creciente popularidad del aprendizaje de máquinas es difícil suplir la demanda de expertos que tengan un amplio conocimiento del tema [\cite{33}]. 
+Las tareas que involucra el entrenamiento de un modelo de ML necesitan de muchos recursos de tiempo por parte de los humanos y de software para su realización.
 
 Como parte de la solución a estos inconvenientes surgen nuevas técnicas que permiten reducir el costo de recursos humanos y de tiempo. Entre estas,
-los sistemas de aprendizaje de máquinas automáticos(Auto-ML), los cuales realizan una construcción de flujos de soluciones automáticas basadas en técnicas de ML, 
+los sistemas de aprendizaje de máquinas automatizado(Auto-ML) que realizan una construcción de flujos\footnote{Refiere al término pipeline dentro del aprendizaje de 
+máquinas} de soluciones automáticas, basadas en técnicas de ML,  
 para la resolución de problemas de la sociedad. Los sistemas Auto-ML varían en características como las propiedades de su espacio de búsqueda de soluciones y la 
-estrategia de optimización que sigue para recorrer este espacio de manera eficiente. El espacio de búsqueda está formado por todos los algoritmos que 
-implementa el sistema. Otra característica es la forma en que estima el rendimiento de cada una de las soluciones que encuentra [\cite{33},\cite{37},\cite{52}], dicha 
-característica le permite quedarse con la mejor solución posible.
+estrategia de optimización que siguen para recorrer este espacio de manera eficiente. El espacio de búsqueda está formado por todos los algoritmos que 
+implementa el sistema. Otra característica es la forma en que estiman el rendimiento de cada una de las soluciones que encuentran [\cite{33},\cite{37},\cite{52}], dicha 
+característica les permite seleccionar la mejor solución posible.
 
-Estos sistemas pretenden emplearse como baseline, ya que realizan predicciones bastante cercanas a la solución de las tareas que resuelven. Un experto, con el empleo de 
-los mismos, podría identificar qué tipo de modelos y parámetros, serían buenos para atacar su problema inicial. Las personas sin muchos conocimientos de ML, pueden 
+Estos sistemas pretenden emplearse como baseline\footnote{Refiere a un punto de referencia de la solución de un problema determinado}, ya que realizan predicciones bastante 
+cercanas a la mejor solución de las tareas que resuelven. Un experto, con el empleo de 
+los mismos, podría identificar qué tipo de modelos y parámetros, serían buenos para solucionar su problema inicial. Las personas con pocos conocimientos de ML pueden 
 emplearlos, pues son simples y fáciles de manipular.
 
-Las herramientas Auto-ML disminuyen la intervención de los humanos en comparación con los modelos de ML [\cite{36}]. Sin embargo; estas herramientas son muy lentas, y 
-existen tareas para la cuales no encuentran solución. La obtención de soluciones en estos sistemas, se encuentra limitada principalmente por el dominio de aplicación de 
-los datos del problema y por la estructura que presentan. Estas limitaciones están relacionadas con la forma en que los sistemas reciben los datos de entrada, las técnicas 
+Las herramientas Auto-ML disminuyen la intervención de los humanos en comparación con los modelos de ML [\cite{36}]. Sin embargo, estas herramientas son muy lentas, y 
+existen tareas para la cuales no encuentran solución. La obtención de soluciones en estos sistemas se encuentra limitada, principalmente, por la estructura y el dominio 
+de aplicación de los datos del problema. Estas limitaciones están relacionadas con la forma en que los sistemas reciben los datos de entrada, las técnicas 
 de procesamiento que incluyen y los algoritmos que implementan. 
 
 Las deficiencias anteriores conducen a crear nuevos enfoques que permitan desplegar una herramienta Auto-ML en diferentes dominios de aplicación, en distintas tareas 
 con variada estructura y variados tipos de entrada. Este despliegue debe realizarse sin la intervención de los humanos en el procesamiento de los datos de entrada y 
-sin grandes modificaciones en la estructura que los datos presentan. Para ello, surge una nueva línea de investigación de las herramientas Auto-ML que permite encontrar 
+sin grandes modificaciones en la estructura de los datos. Para ello, surge una nueva línea de investigación de las herramientas Auto-ML que permite encontrar 
 la mejor forma de transformar una entrada en una salida deseada, con el objetivo de diversificar la estructura y los tipos que se reciben como entrada, ya sean imágenes, 
 textos, datos tabulares y la mezcla de los mismos. A este nuevo enfoque se le denomina Auto-ML heterogéneo [\cite{33}].
 
 \begin{flushleft} 
 {\Large { \textbf{Motivación} }}
 \end{flushleft}
-Los marcos de Auto-ML heterogéneo disminuirían el esfuerzo de los usuarios que lo utilicen. Además, muchos problemas tendrían solución sin grandes modificaciones en 
+Los sistemas de Auto-ML heterogéneo disminuirían el esfuerzo de los usuarios que los utilicen. Además, muchos problemas tendrían solución sin grandes modificaciones en 
 la estructura de sus datos y sin pérdida de las propiedades de su dominio de aplicación. Con todas las ventajas que resaltan a la vista con el nuevo enfoque, 
 surge la necesidad de formas de evaluación para ver si los resultados que aportan son correctos.
 
 \begin{flushleft} 
     {\Large { \textbf{Antecedentes}}}
 \end{flushleft}
-Desde el surgimiento de los modelos de aprendizaje de máquina se han hecho notar las investigaciones sobre la construcción de conjuntos de datos para evaluación. 
-Existen muchos documentos científicos que proponen softwares para medir rendimiento en tareas de ML [\cite{1},\cite{3},\cite{2},\cite{7}], son denominados benchmark.
+Desde el surgimiento de los modelos de aprendizaje de máquina existen investigaciones sobre la construcción de conjuntos de datos para la evaluación de estos modelos. 
+Además, existen documentos científicos que proponen un sistema de pruebas para medir el rendimiento de modelos de ML [\cite{1},\cite{3},\cite{2},\cite{7}], son denominados 
+benchmarks, sistemas de evaluación comparativa o herramientas de benchmarking.
 
-Los investigadores de Auto-ML apoyados en los benchmark de ML han aportado puntos de referencia [\cite{10},\cite{15},\cite{31}] y conjuntos de datos [\cite{28}] para 
-evaluar y comparar la eficiencia de los sistemas en igualdad de condiciones.  Estos se nutren de sitios que posibilitan la obtención de sus conjuntos de datos de 
-evaluación: OpenML[\cite{43}], Kaggle[\cite{44}] y UCI[\cite{45}].
+Los investigadores de Auto-ML, apoyados en los benchmarks de ML, aportan herramientas de benchmarking [\cite{10},\cite{15},\cite{31}] y conjuntos de datos [\cite{28}] para 
+evaluar y comparar la eficiencia de los sistemas Auto-ML en igualdad de condiciones. Estas investigaciones se nutren de sitios que posibilitan la obtención de sus conjuntos de 
+datos de evaluación: OpenML[\cite{43}], Kaggle[\cite{44}] y UCI[\cite{45}].
 
 \begin{flushleft} 
     {\Large { \textbf{Problemática}}}
 \end{flushleft}
-Los benchmark de Auto-ML poseen muchas limitaciones en sus conjuntos de datos. Estos son transformados a una estructura común con el fin de poder ser evaluados en los 
-sistemas. Estas transformaciones provocan pérdida en las propiedades de los conjuntos; tales como el tipo de sus datos originales y el significado que poseen para el 
-dominio al que pertenecen. También, muchos de los conjuntos utilizados, se crean para evaluar las funcionalidades de sistemas antecesores y puede que no cuenten con 
+Los benchmarks de Auto-ML poseen muchas limitaciones en sus conjuntos de datos. Estos son transformados a una estructura común con el fin de poder ser evaluados en los 
+sistemas. Estas transformaciones en los datos provocan la pérdida de propiedades de los conjuntos como: el tipo de sus datos originales y el significado que 
+poseen para el dominio al que pertenecen. También, muchos de los conjuntos utilizados se crean para evaluar las funcionalidades de sistemas antecesores y puede que no cuenten con 
 todo el rigor necesario para evaluar los Auto-ML de nueva generación.
 
-Las evaluaciones de los sistemas Auto-ML presenten en los benchmark, muchas veces sufren de errores en su metodología que provocan una desigual comparación del 
+Las evaluaciones de los sistemas Auto-ML presentes en los benchmarks, muchas veces sufren de errores en su metodología que provocan una desigual comparación del 
 desempeño de las herramientas. Los errores más comunes, surgen por una incorrecta investigación de las propiedades de sus conjuntos y por disparidad 
-en las configuraciones de las evaluaciones. Más allá de los conjuntos que usualmente son empleados en las evaluaciones, existen otros, pero por carecer de uniformidad 
-en su estructura y por necesitar procesamiento, son apartados.
+en las configuraciones de las evaluaciones. Más allá de los conjuntos que usualmente son empleados en las evaluaciones, existen otros, que son descartados por carecer 
+de uniformidad en su estructura y por necesitar procesamiento.
 
 
 \textbf{Hipótesis}: Asumiendo que es posible que los sistemas Auto-ML sean heterogéneos y que se podrá establecer una comparación lo más 
@@ -79,10 +82,20 @@ variedad en sus metacaracterísticas, tipos de datos, dominio al que pertenece y
 \begin{flushleft} 
 \textbf{Objetivos Específicos:}
 \begin{itemize}
-    \item Realizar un estudio de los benchmark en la literatura.
+    \item Realizar un estudio de los benchmarks en la literatura.
     \item Recopilar conjuntos de datos que evalúen la heterogeneidad de los sistemas.
-    \item Implementar un sistema que permita descargar dichos datos y los retorne a un formato común.  
+    \item Implementar un sistema que permita descargar dichos datos y los retorne en un formato común.  
     \item Evaluar sistemas Auto-ML del estado del arte.
     \item Estudiar los resultados que se obtienen en las evaluaciones.
 \end{itemize}
 \end{flushleft} 
+
+\begin{flushleft} 
+    {\Large {\textbf{Organización de la Tesis}}}
+\end{flushleft}
+
+El resto del documento se encuentra organizado de la siguiente manera. En
+el capítulo \ref{chapter:state-of-the-art} se analizan una serie de benchmark que forman el estado
+del arte. El capítulo \ref{chapter:design} explica las estrategias de creación y los detalles de implementación de \textit{HAutoML-Bench}, un nuevo benchmark de Auto-ML.
+En el capítulo \ref{chapter:experiments} se presentan 3 marcos experimentales que evalúan cualitativamente y cuantitativamente sistemas Auto-ML en el benchmark. 
+Finalmente, se presentan las conclusiones de la investigación y una serie de recomendaciones para trabajos futuros. 

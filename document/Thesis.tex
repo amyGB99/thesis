@@ -14,6 +14,8 @@
 \usepackage{xcolor}
 \usepackage{multicol}
 \usepackage{graphicx}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 \floatstyle{plaintop}
 \restylefloat{table}
 
@@ -53,10 +55,10 @@
 
 \title{Benchmark de AutoML Heterogéneo}
 \author{\\\vspace{0.25cm}Amanda González Borrell}
-\advisor{\\\vspace{0.25cm}Lic. Ernesto Luis Estevanell Valladares\\\vspace{0.2cm}Dr. Suilan Estévez Velarde}
+\advisor{\\\vspace{0.2cm}Dr. Suilan Estévez Velarde\\\vspace{0.25cm}Lic. Ernesto Luis Estevanell Valladares}
 \degree{Licenciado en Ciencia de la Computación}
 \faculty{Facultad de Matemática y Computación}
-\date{noviembre, 2022\\\vspace{0.25cm}\href{https://github.com/username/repo}{github.com/username/repo}}
+\date{noviembre, 2022\\\vspace{0.25cm}\href{https://github.com/amyGB99/automl_benchmark.git}{automl\_bechmark}}
 \logo{Graphics/uhlogo}
 \makenomenclature
 
@@ -76,31 +78,38 @@
 \newcommand{\nnorm}[1]{\left\lvert #1 \right\rvert }
 \renewcommand{\lstlistingname}{Ejemplo de código}
 \renewcommand{\lstlistlistingname}{Ejemplos de código}
-
+\newcommand*\wildcard[2][6.5cm]{%
+  \mbox{%
+    \vbox to 3cm{%
+      \vfill
+      \hbox to #1{\hrulefill}\par
+      \hbox to #1{\strut\hfil#2\hfil}
+    }
+  }
+}
 \begin{document}
 
 \frontmatter
 \maketitle
 
-\include{FrontMatter/Dedication}
-\include{FrontMatter/Thanks}
+% \include{FrontMatter/Dedication}
+% \include{FrontMatter/Thanks}
 \include{FrontMatter/SupervisorOpinion}
-\include{FrontMatter/Abstract}
-\include{FrontMatter/Contents}
+% \include{FrontMatter/Abstract}
+% \include{FrontMatter/Contents}
 
 \mainmatter
 
-\include{MainMatter/Introduction}
-\include{MainMatter/Background}
-\include{MainMatter/Benchmark Design}
-%\include{MainMatter/AutoML}
-\include{MainMatter/Experiments}
+% \include{MainMatter/Introduction}
+% \include{MainMatter/Background}
+% \include{MainMatter/Benchmark Design}
+% \include{MainMatter/Experiments}
 
 \backmatter
 
-\include{BackMatter/Conclusions}
-\include{BackMatter/Recomendations}
-\include{BackMatter/Annexes}
-\include{BackMatter/Bibliography}
+% \include{BackMatter/Conclusions}
+% \include{BackMatter/Recomendations}
+% \include{BackMatter/Annexes}
+% \include{BackMatter/Bibliography}
 
 \end{document}

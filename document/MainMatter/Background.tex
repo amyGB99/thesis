@@ -2,20 +2,20 @@
 
 Los sistemas Auto-ML al automatizar el proceso de creación de un pipeline de ML disminuyen la intervención de los expertos de aprendizaje de máquinas en la resolución de 
 problemas. Su conformación suele incluir etapas de preprocesamiento de los datos, selección del mejor modelo y optimización de hiperparámetros (HPO)[\cite{36}].
-La forma en que construyen sus pipelines difiere de un sistema a otro, lo que hace necesario encontrar estrategias que determinen cúales brindan un 
-mejor resultado. Además, es necesario conocer según las características de un problema inicial, cuál sistema emplear para su resuolución. 
+La forma en que construyen sus pipelines difiere de un sistema a otro, lo que hace necesario encontrar estrategias que determinen cuáles brindan un 
+mejor resultado. Además, es necesario conocer según las características de un problema inicial, cuál sistema emplear para su resolución. 
 
 Un benchmark puede verse como una manera de identificar las debilidades y fortalezas de una metodología respecto a otra [\cite{2}]. En el ámbito de ML son de 
 gran ayuda como método de evaluación y comparación [\cite{5},\cite{6},\cite{46}]. Esta práctica es adoptada también por los sistemas Auto-ML. En la formación de estos 
 software de evaluación se escogen los conjuntos de datos, las métricas y un método que permitirá medir el rendimiento de una herramienta determinada. La selección del 
 tiempo de ejecución, memoria RAM y CPU, también son parte de este proceso si así el programador lo dispone. Estas selecciones comparan los sistemas Auto-ML o métodos ML 
 con respecto a la eficacia en sus predicciones. Al seleccionar restricciones de tiempo y software posibilitan que los resultados obtenidos sean referencia de cuál 
-sistema usar cuando el problema a resolver tenga limitantes de tiempo y software.
+sistema usar cuando el problema a resolver tenga dichas limitaciones.
 
 En aras de crear un nuevo benchmark se realiza un estudio de los ya presentes en la literatura para determinar sus características más importantes, 
 fallas y resultados más relevantes. De esta manera, evitar cometer los mismos errores e incursionar en sectores menos explorados. El estudio incluye los más 
-populares de ML para ver qué técnicas son reintegradas en los de Auto-ML e identificar las más novedosas que puedan incluirse en la nueva propuesta a crear. Además, 
-como trabajos relacionados, una breve reseña sobre los software que evalúan partes de un pipeline de Auto-ML. El estudio del estado del arte se divide en tres 
+populares de ML para determinar qué técnicas son reintegradas en los de Auto-ML e identificar las más novedosas que puedan incluirse en la nueva propuesta a crear. 
+Además, como trabajos relacionados, se reseña brevemente las herramientas de benchmarking que prueban partes de un pipeline de Auto-ML. El estudio del estado del arte se divide en tres 
 subsecciones:
 \begin{itemize}
 \item Benchmark de ML. 
@@ -23,83 +23,108 @@ subsecciones:
 \item Trabajos Relacionados.
 \end{itemize}
 \section{Benchmark de ML}\label{section:bench_ML}
+Para el estudio de los modelos de aprendizaje de máquinas existen muchas plataformas que permiten obtener conjuntos de evaluación [\cite{43}][\cite{45}]. 
+Sin embargo, existen pocos documentos que recojan todo el proceso de experimentación y ayuden a identificar cuáles modelos emplear en la resolución de un problema. 
+Los benchmark de ML se encargan de documentar su metodología de diseño y de mostrar los experimentos que realizan durante su investigación. 
 
-En los estudios relacionados a los modelos de aprendizaje de máquina existen muchos sitios[\cite{43}][\cite{45}] que permiten la descarga de conjuntos para su evaluación. 
-Sin embargo, existen muy pocos documentos que recojan todo el proceso de experimentación que ayuden a identificar cuáles modelos emplear en la resolución del problema. 
-Los benchmark de ML se encargan de construir toda su metodología de diseño y de mostrar las experimentaciones que realizan durante su investigación. 
-
-Un paso en la creación de un benchmark es escoger los conjuntos de datos. Existen criterios de selección como el dominio y los tipos de tareas que se resuelven. 
-En ML los dominios más abordados son imágenes [\cite{1},\cite{3}], texto [\cite{4}], tabular [\cite{2}] y series temporales [\cite{7}], los problemas de grafo son los más escasos [\cite{5}][\cite{6}]. 
-Cuando se habla de dominio se hace alusión al significado de cada una de las instancias del conjunto de datos. El formato o estructura en que se encuentran los datos 
-es independiente a este. El conjunto puede estar representado como vectores de características numéricas y que sus instancias semánticamente sean oraciones que fueron 
-procesadas. Cada uno necesita estar de una forma estandarizada para que los expertos puedan emplearlos sin muchas transformaciones. En la mayoría la forma estandarizada 
-encontrada es representado en tabla (filas y columnas) [\cite{4},\cite{1},\cite{3},\cite{2}].
+Uno de los pasos en la creación de un benchmark es escoger los conjuntos de datos. Existen criterios de selección como el dominio y los tipos de tareas que se resuelven. 
+En ML los dominios más abordados son imágenes [\cite{1},\cite{3}], texto [\cite{4}], tabular [\cite{2}] y series temporales [\cite{7}], los problemas de grafo son los más escasos 
+[\cite{5}][\cite{6}]. 
+Es importante destacar que cuando se habla de dominio se hace alusión al significado semántico de cada una de las instancias del conjunto de datos, además, el formato o estructura en que se 
+encuentran los datos es independiente a este. El conjunto puede estar representado como vectores de características numéricas y que sus instancias semánticamente sean oraciones que se encuentran 
+procesadas. Cada uno necesita estar de una forma estandarizada para que los expertos puedan emplearlos sin muchas transformaciones. En la mayoría, la forma estandarizada 
+encontrada es la representación en tabla (filas y columnas) [\cite{4},\cite{1},\cite{3},\cite{2}].
 
 Otro criterio de selección es la tarea que se pretende resolver con cada uno de ellos. Generalmente, solo se enfocan en una tarea, dígase clasificación 
-[\cite{4},\cite{1},\cite{3}], regresión [\cite{6}] y clustering [\cite{7}]. La clasificación es la más utilizada en cada una de sus modalidades: binaria 
-[\cite{4},\cite{2},\cite{5}] y multiclase [\cite{2},\cite{5}]. También en imágenes existen ejemplos de clasificación multilabel para identificar 
-defectos en las tuberías de alcantarillado [\cite{3}]. En el caso de series temporales, el clustering demuestra ser de gran utilidad [\cite{7}].
+[\cite{4},\cite{1},\cite{3}], regresión [\cite{6}] y agrupamiento [\cite{7}]. La clasificación es la más utilizada en cada una de sus modalidades: binaria 
+[\cite{4},\cite{2},\cite{5}] y multiclase [\cite{2},\cite{5}]. También en imágenes existen ejemplos de clasificación multi-etiqueta para identificar 
+defectos en las tuberías de alcantarillado [\cite{3}]. En el caso de series temporales, el agrupamiento demuestra ser de gran utilidad [\cite{7}].
 
-En la recopilación de los conjuntos el aspecto que más resalta es la búsqueda de diversidad [\cite{4},\cite{2},\cite{6},\cite{7}]. Los benchmark indican que incluir 
-variedad en las meta-características de los conjuntos reduce sesgos de selección[\cite{2}]. Debido a esto se centran en buscar distintos números de columnas, instancias, 
-número de clases y de valores faltantes, entre otras. A pesar de ello, existen ejemplos en donde los benchmark dejan de incluir datos con valores faltantes y 
-con un número de instancias grandes[\cite{2}].
+En la recopilación de los conjuntos el aspecto que más resalta es la búsqueda de diversidad [\cite{4},\cite{2},\cite{6},\cite{7}]. Los benchmarks indican que incluir 
+variedad en las metacaracterísticas de los conjuntos reduce sesgos de selección[\cite{2}]. Debido a esto, se centran en buscar distintos números de columnas, instancias, 
+número de clases y de valores faltantes, entre otras. A pesar de ello, existen ejemplos en donde los benchmarks dejan de incluir datos con valores faltantes y 
+con un número de instancias grande[\cite{2}].
 
-La variedad también puede estar relacionada con el dominio y con las tareas que se resuelven. Los benchmark de grafos buscan tareas que abarquen varios 
-tipos de predicciones, ya sea a nivel de nodo, enlace o grafo completo [\cite{5},\cite{6}]. También, imponen como característica que los grafos sean semejantes a 
-la grafos en que se estructura la información de los problemas de la vida real, los cuales sufren de gran escalabilidad. En benchmark relacionados el dominio texto, 
-específicamente detección de falsas noticias [\cite{4}], buscan variedad en el ámbito de aplicación de la noticia, ya sea política, económica entre otras. El entorno 
-en este tipo de predicciones influye más debido a que los ambientes son engañosos. El tamaño de la noticia es otro aspecto importante que intentan diversificar, 
+La variedad también puede estar relacionada con el dominio y con las tareas que se resuelven. Los benchmarks de grafos buscan tareas que abarquen varios 
+tipos de predicciones, ya sea a nivel de nodo, enlace o grafo completo [\cite{5},\cite{6}]. Además, necesitan que las estructuras de los grafos de entrada sean 
+escalables y se correspondan con las estructuras de los grafos que modelan problemas de la vida real. En benchmarks relacionados con el dominio texto, 
+específicamente detección de falsas noticias [\cite{4}], buscan variedad en el ámbito de aplicación de la noticia, ya sea política, económica, entre otras. El entorno 
+en este tipo de predicciones influye más que en otros casos debido a que los ambientes son engañosos. El tamaño de la noticia es otro aspecto importante que intentan diversificar, 
 mientras menor es la longitud de su texto, los sistemas suelen disminuir su rendimiento.
 
-La identificación de la métrica de evaluación es otro paso en la formación del benchmark. Estas se encargan de cuantificar el rendimiento de los modelos. Los software de 
-evaluación suelen emplear métricas generales para medir el rendimiento en todos los conjuntos [\cite{3},\cite{7},\cite{5},\cite{6}]. La más 
+La identificación de la métrica de evaluación es otro paso en la formación del benchmark. Estas se encargan de cuantificar el rendimiento de los modelos. Las herramientas 
+de evaluación comparativa suelen emplear métricas generales para medir el rendimiento en todos los conjuntos [\cite{3},\cite{7},\cite{5},\cite{6}]. La más 
 utilizada es \textit{precision}[\cite{4},\cite{1},\cite{2}].
 
-Una vez se tienen los conjuntos y la métrica seleccionada, sigue el proceso de evaluación. Para ello, los benchmark de ML recrean un ambiente que hace posible 
+Una vez se tienen los conjuntos y la métrica seleccionada, sigue el proceso de evaluación. Para ello, los benchmarks de ML recrean un ambiente que hace posible 
 descargar de una manera rápida sus conjuntos de manera individual [\cite{2},\cite{3},\cite{5},\cite{6}], y las partes en que se dividen para la evaluación 
-[\cite{3},\cite{4},\cite{7}]. Entre las estrategias de división emplean la aleatoriedad (k-fold) [\cite{1},\cite{2}]. Otros utilizan propiedades del dominio de 
-aplicación para realizar las divisiones [\cite{4},\cite{5},\cite{6}].
+[\cite{4},\cite{3},\cite{7}]. Entre las estrategias de división se encuentran la aleatoriedad (k-fold) [\cite{1},\cite{2}] y la utilización de propiedades del dominio de 
+aplicación [\cite{4},\cite{5},\cite{6}].
 
-Un ejemplo de utilización de las evaluaciones de los modelos de machine learning es su comparación. Estas comparaciones se realizan de manera incorrecta en muchas 
+Un ejemplo de utilización de las evaluaciones de los modelos de aprendizaje de máquinas es su comparación. Estas comparaciones se realizan de manera incorrecta en muchas 
 ocasiones, lo que hace necesario definir los pros y los contras de varias estrategias a seguir [\cite{1}]. Una de ellas es contar el número de veces en las que un 
 modelo obtiene un mejor desempeño, lo que podría conducir a sesgos producto a la distribución de los datos. Otra vía es comparar por pares, asumiendo que 
-todos los algoritmos están diseñados para lograr el mismo resultado. Por otra parte, el más utilizado es promediar las métricas de evaluación en el conjunto 
-de datos de prueba [\cite{3},\cite{2}]. Por último crear un método de evaluación basado en fases diseñado para comparar en igualdad de condiciones 
-y teniendo en cuenta las características de cada conjunto de datos[\cite{1},\cite{7}].  
+todos los algoritmos están diseñados para lograr el mismo resultado. Por otra parte, el más utilizado, es promediar las métricas de evaluación en el conjunto 
+de datos de prueba [\cite{3},\cite{2}]. Por último, crear un método de evaluación basado en fases diseñado para comparar en igualdad de condiciones 
+y teniendo en cuenta las características de cada conjunto de datos [\cite{1},\cite{7}].  
 
-Los benchmark de ML resuelven la limitación de muchas suites que carecen de la presentación de una métrica de optimización para sus conjuntos 
+Los benchmarks de ML resuelven la limitación de muchas \textit{suites} que carecen de la presentación de una métrica de optimización para sus conjuntos 
 [\cite{44}], como también de un análisis detallado de los metadatos que los conforman. 
-Entre las mejores experimentaciones realizadas y aportes de cada uno de ellos se encuentran: la agrupación de las características de los conjuntos 
-en clusters para determinar cuál aporta mejores y peores resultados [\cite{2}]. También la forma en que establecen la relación existente entre una correcta 
-extracción de features y el rendimiento del modelo [\cite{4}]. Además, en el dominio grafos los conjuntos de datos propuestos [\cite{5},\cite{6}] presentan un desafío 
-a gran escala. Estos han servido como muestra para incentivar a otras investigaciones.
+Entre los mejores experimentos realizados y aportes de cada uno de ellos se encuentran la agrupación de las características de los conjuntos 
+en clusters que permite determinar cuál aporta mejores y peores resultados [\cite{2}]. También, la forma en que establecen la relación existente entre una correcta 
+extracción de features y el rendimiento del modelo [\cite{4}]. Además, en el dominio grafos los conjuntos de datos propuestos presentan un desafío 
+a gran escala [\cite{5},\cite{6}] y sirven como muestra para incentivar otras investigaciones.
 
-Los benchmark de ML en su mayoría solo incluyen estudios basados en la predicción [\cite{4},\cite{3},\cite{2}] sin tener en cuenta los gastos de tiempo y software 
-que producen las evaluaciones de los modelos de ML. Estos son limitaciones a tener en cuenta ya que existen modelos clásicos y redes neuronales unas más 
+Los benchmarks de ML, en su mayoría, solo incluyen estudios basados en la predicción [\cite{4},\cite{3},\cite{2}] sin tener en cuenta los gastos de tiempo y software 
+que producen las evaluaciones de los modelos de ML. Esto es una limitación a tener en cuenta, ya que existen modelos clásicos y redes neuronales, unas más 
 rápidas que otras.
 
 
 \section{Benchmark de Auto-ML}\label{section:bench Auto-ML}
 
-Los frameworks de aprendizaje de máquinas automatizados (Auto-ML) realizan una selección del mejor modelo y escogen una combinación de hiperparámetros que permita 
-predecir resultados sobre un conjunto de datos inicial(problema CASH)[\cite{37}]. Existen dos direcciones de investiación de los sistemas Auto-ML.
-Por un lado se encuentran las herramientas que puramente utilizan redes neuronales para realizar sus tareas de predicción (problema NAS) [\cite{35}].En la otra 
-dirección se encuentran los restantes que se denominan Auto-ML clásicos, estos admiten modelos clásicos de ML y no necesariamente incluyen redes neuronales.
+Los sistemas de aprendizaje de máquinas automatizados (Auto-ML) realizan una selección del mejor modelo y escogen una combinación de hiperparámetros que permita 
+predecir resultados sobre un conjunto de datos inicial(problema CASH) [\cite{37}]. Existen dos direcciones de investigación de los sistemas Auto-ML.
+Por un lado se encuentran las herramientas que únicamente utilizan redes neuronales para realizar sus tareas de predicción (problema NAS) [\cite{35}] denominadas Auto-DL. 
+En la otra dirección se encuentran los restantes, denominados Auto-ML clásicos, estos admiten modelos clásicos de ML y no necesariamente incluyen redes neuronales.
 
-La mayoría de los benchmarks de Auto-ML están dirigidos a sistemas Auto-ML clásico aunque existen algunos ejemplos de benchmarks para AutoDL. 
-Entre los sistemas AutoDL se encuentran Auto-Keras [\cite{13}] y Auto-Pytorch [\cite{21}] y entre los Auto-ML clásicos están Auto-Weka [\cite{8}], Auto-Sklearn [\cite{9}] y 
-AutoGluon [\cite{17}]. Las evaluaciones de presentación de estas herramientas realizan un estudio sobre las estrategias y técnicas que ponen en práctica cada uno 
-de ellos. A pesar de que el objetivo de estas evaluaciones difiere de la creación de un benchmark, sus experimentaciones sirven de referencia para otras. Además, 
-proveen conjuntos de datos y métricas de evaluación que permiten establecer una comparación con otros sistemas.
+Uno de los primeros sistemas en darse a conocer es Auto-Weka [\cite{8}] que está implementado sobre la biblioteca Weka\footnote{Popular biblioteca de Java}. Luego 
+surgen otros como Auto-Sklearn [\cite{9}], TPOT [\cite{65}] y RECIPE [\cite{64}]. Auto-Sklearn de la biblioteca Scikit-Learn\footnote{Una de las bibliotecas más conocidas de ML} 
+extiende la propuesta de Auto-Weka mejorando su eficiencia y robustez. Ambos realizan la búsqueda de su mejor modelo mediante algoritmos basados en optimización bayesiana.
+TPOT también está implementado sobre Scikit-Learn e incluye además un algoritmo de la biblioteca XGBoost. TPOT difiere de los anteriores en los algoritmos que utiliza para 
+realizar la búsqueda, ya que utiliza programación evolutiva. RECIPE[\cite{64}] por otro lado, utiliza programación genética basada en gramáticas. Cada uno de estos sistemas pertenecen
+a Auto-ML clásico y están dirigidos a resolver tareas de clasificación y regresión, exceptuando a RECIPE que solo resuelve clasificación. La entrada y la salida de estos 
+sistemas se define mediante variables numéricas y/o booleanas.  
 
-Los challenges(competiciones) tiene como meta incentivar a los científicos a crear soluciones de problemas de manera automática. 
-En estas se describen estrategia que ayudan en el diseño nuevos softwares de evaluación. Muchos de los conjuntos de datos que en estas competiciones se proponen, se 
-utilizan en otros benchmark [\cite{14},\cite{15}]. 
-Además su naturaleza competitiva permite tomar estrategias de cómo evaluar y comparar frameworks de aprendizaje de máquinas automatizados.
-Estas competiciones se realizan tanto para los sistemas Auto-ML clásico [\cite{11},\cite{12}] como para los sistemas AutoDL [\cite{29}].
+Los sistemas antes mencionados no emplean redes neuronales en sus algoritmos. AutoGOAL y AutoGluon implementan tanto los modelos de ML clásicos como redes 
+neuronales. AutoGOAL [\cite{40},\cite{41}] es una propuesta de Auto-ML heterogéneo implementado sobre varias bibliotecas de Python como Pythorch, Keras, entre otras. 
+AutoGOAL resuelve tareas clásicas de aprendizaje automático como clasificación, regresión y 
+agrupamiento. Además, permite dar solución a problemas relacionados con dominios específicos como procesamiento del lenguaje natural, tareas con imágenes y tabulares puros, como un extra, 
+permite resolver problemas de reconocimiento de entidades y relaciones. Este sistema para la declaración de su entrada y salida utiliza una implementación de tipos semánticos que le permite abarcar diversas 
+formas de estructuras de los datos.
+AutoGluon [\cite{17},\cite{42}] utiliza funcionalidades del framework Pytorch\footnote{Es un framework de aprendizaje 
+profundo que se utiliza para tareas de procesamiento de imágenes y lenguaje natural} y resuelve los mismos tipos de tareas que AutoGOAL con excepción de agrupamiento. 
+También, posee modelos predictores para los diferentes 
+tipos de datos que permite como entrada: imágenes, texto, datos tabulares, series temporales y permite la mezcla de ellos. Los modelos predictores de AutoGluon 
+son capaces de inferir cada uno de los tipos de los datos de entrada y de salida, y además, la tarea que se quiere resolver. 
 
-Las siguiente se dividen en varios aspectos que denotan las características principales de los benchmark de Auto-ML:
+Entre los sistemas AutoDL se encuentran Auto-Keras [\cite{13}] y Auto-Pytorch [\cite{21}] que se basan en la optimización bayesiana. 
+Auto-Pytorch [\cite{21}], como su nombre lo indica, está implementado sobre el framework Pytorch mientras que Auto-Keras [\cite{13}] se encuentra implementado sobre la 
+biblioteca Keras\footnote{Es una bibllioteca de aprendizaje profundo que permite construir modelos de redes neuronales}. Ambos resuelven las tareas clásicas de ML y son aplicables a problemas de imágenes y tabulares. Auto-Keras posee una ventaja sobre Auto-Pytorch y 
+es que tiene componentes para tratar con el dominio texto y la mezcla de varios dominios.
+
+La mayoría de los benchmarks de Auto-ML están dirigidos a sistemas Auto-ML clásicos, aunque existen algunos ejemplos de benchmarks para Auto-DL. 
+
+Las investigaciones que presentan a las herramientas mencionadas realizan un estudio sobre las estrategias y técnicas vistas con anterioridad.
+A pesar de que el objetivo de las evaluaciones de prueba que se realizan en estas investigaciones difiere de la creación de un benchmark, sus resultados sirven de 
+referencia para otras. Además, proveen conjuntos de datos y métricas de evaluación que permiten establecer una comparación con otros sistemas.
+
+Existen \textit{challenges}(competiciones) que tienen como meta incentivar a los científicos a crear soluciones de problemas de manera automática. 
+En estas se describen estrategia que ayudan en el diseño de nuevas herramientas de benchmarking. Muchos de los conjuntos de datos que se proponen en estas competiciones, son 
+utilizados por otros benchmark [\cite{15},\cite{14}]. 
+Además, su naturaleza competitiva permite recopilar estrategias de cómo evaluar y comparar sistemas de aprendizaje de máquinas automatizados.
+Estas competiciones se realizan tanto para los sistemas Auto-ML clásicos [\cite{11},\cite{12}] como para los sistemas AutoDL [\cite{29}].
+
+Las siguientes secciones abordan varios aspectos que denotan las características principales de los benchmarks de Auto-ML:
 
 \begin{itemize}
     \item Dominios y Tipos-Estructuras de los Datos de Entrada.
@@ -115,39 +140,38 @@ Las siguiente se dividen en varios aspectos que denotan las características pri
         {\large { \textbf{Dominios y Tipos-Estructuras de los Datos de Entrada}}}\label{subsection:dom Auto-ML}
 \end{flushleft}
 
-Los conjuntos de datos de los benchmarks de Auto-ML al igual que los de ML, pertenecen a un determinado dominio de aplicación. Se agrupan en los que abarcan un 
-solo dominio en todos sus conjuntos, ya se texto[\cite{20}], imágenes[\cite{23}], tabulares [\cite{14},\cite{25},\cite{26},\cite{30},\cite{32}] y los que incluyen más 
-de uno [\cite{10},\cite{16},\cite{26},\cite{31}]. 
-En cada uno de los conjuntos sus intancias se encuentran en un formato entendible para los sistemas Auto-ML que se evalúan. 
+Los conjuntos de datos de los benchmarks de Auto-ML, al igual que los de ML, pertenecen a un determinado dominio de aplicación. Se agrupan en los que abarcan un 
+solo dominio en todos sus conjuntos, ya sea texto[\cite{20}], imágenes[\cite{23}], tabulares [\cite{14},\cite{25},\cite{26},\cite{30},\cite{32}] y los que incluyen más 
+de uno [\cite{10},\cite{31},\cite{26},\cite{16}]. 
+En cada uno de los conjuntos sus instancias se encuentran en un formato admisible para los sistemas Auto-ML que se evalúan. 
 Este formato suele ser estructurado a través de features que describen las características del conjunto de datos. 
-Cada uno de los features que forman las intancias, pueden incluir datos de tipo numérico, categóricas o tipos no estructurados 
-como texto e imágenes. Los conjuntos de datos de los benchmark de Auto-ML en su mayoría se presentan como vectores de features numéricos y/o categóricos 
-[\cite{10},\cite{11},\cite{15},\cite{18},\cite{19},\cite{31}]. Algunos presentan conjuntos con features no estructurados [\cite{13},\cite{20},\cite{23}] y 
-otros incluyen ambos [\cite{21},\cite{29}].
+Cada uno de los features que forman las instancias, pueden incluir datos de tipo numérico, categórico o tipos no estructurados 
+como texto e imágenes. Los conjuntos de datos de los benchmarks de Auto-ML, en su mayoría, se presentan como vectores de features numéricos y/o categóricos 
+[\cite{10},\cite{15},\cite{31},\cite{11},\cite{18},\cite{19}]. Algunos presentan conjuntos con features no estructurados [\cite{27}].
 
-Al formatear cada instancia como vectores de características se asume que son independientes, lo que muchas veces no se asocia con el significado general de los datos y 
+Al representar cada instancia como vectores de características se asume que son independientes, lo que muchas veces no se asocia con el significado general de los datos y 
 perjudica la semántica de los mismos. En ciertos puntos de evaluación es prioridad tratar a sus conjuntos como una entidad y no como features sin relación 
-alguna [\cite{23},\cite{29}]. En otros [\cite{27}], buscan la mejor forma de procesar las entradas de tal manera que los sistemas la entiendan y aprendan del 
+alguna [\cite{29},\cite{23}]. En otros [\cite{27}], buscan la mejor forma de procesar las entradas para que los sistemas la entiendan y aprendan del 
 dominio al que pertenecen.
 
-Para tener una relación entre las instancias y las salidas a predecir los benchmark generalmente utilizan tablas o vectores. En pocos casos se emplean otras estructuras 
+La relación entre las instancias de entrada y las salidas en los benchmarks generalmente se define mediante tablas o vectores. En pocos casos se emplean otras estructuras 
 como tensores [\cite{29}].
 
 \begin{flushleft} 
     {\large { \textbf{Objetivos Generales}}}\label{subsection:obj Auto-ML}
 \end{flushleft}
-Los benchmark de Auto-ML tienen como propósito general medir el desempeño de las 
+Los benchmarks de Auto-ML tienen como propósito general medir el desempeño de las 
 herramientas de aprendizaje de máquinas automatizado en tareas de ML. Algunos además de efectividad buscan eficiencia [\cite{11},\cite{12},\cite{29}].
 
 El desempeño de un sistema es la medición de su aprendizaje en varios conjuntos de datos que puede medirse de forma aislada\footnote{Los sistemas cada vez 
-que se entrenan aprenden desde cero, no acumulan el conocimiento [53].} o permanente.\footnote{Los sistemas aprenden continuamente. Acumulan el conocimiento, 
-aprendiendo del pasado, luego lo adaptan y lo utilizan para ayudar en el aprendizaje futuro [53].}. Existen pocos ejemplos de benchmark que utilicen el aprendizaje 
+que se entrenan aprenden desde cero y no acumulan el conocimiento [53].} o permanente\footnote{Los sistemas aprenden continuamente. Acumulan el conocimiento, 
+aprendiendo del pasado, luego lo adaptan y lo utilizan para ayudar en el aprendizaje futuro [53].}. Existen pocos ejemplos de benchmarks que utilicen el aprendizaje 
 permanente y el concepto drift\footnote{Este concepto hace alusión al cambio entre las relaciones de los datos de entrada y salida. Puede que las etiquetas con las que 
 se estrena el modelo a la hora de predecir ya no sean ciertas o no tan ciertas [\cite{54}] } [\cite{12}].
 
 Las evaluaciones realizadas en cada benchmark se utilizan para realizar comparaciones entre los sistemas Auto-ML
-[\cite{10},\cite{14},\cite{15},\cite{17},\cite{18},\cite{23},\cite{24},\cite{31},\cite{32}] y para comparar a los sistemas con expertos haciendo uso de los algoritmos de ML 
-[\cite{19},\cite{20},\cite{21}].
+[\cite{10},\cite{15},\cite{31},\cite{17},\cite{14},\cite{23},\cite{32},\cite{18},\cite{24}] y para comparar a los sistemas con expertos haciendo uso de los algoritmos 
+de ML [\cite{21},\cite{20},\cite{19}].
 
 En cada una de las propuestas de puntos de evaluación se observa variedad de opiniones respecto a los criterios de selección de los conjuntos, métricas y demás 
 procesos que intervienen en su creación.
@@ -161,32 +185,32 @@ procesos que intervienen en su creación.
 Cuando un sistema se evalúa para validar su efectividad, esta evaluación debe tratar de ser un desafío para las propiedades del sistema. 
 Los conjuntos de datos son los responsables de evidenciar las deficiencias de cada una de las funcionalidades de los sistemas Auto-ML[\cite{15}].
 Cada benchmark define su estrategia a seguir para la selección de sus conjuntos.
-Las normas varían entre darle más importancia a las tareas que se resuelven o a ciertas propiedades que presenta cada conjunto [\cite{18},\cite{26},\cite{32}]. 
-Otros de los criterios que predomina es la utilización de conjuntos que tengan más descargas [\cite{19}] o que hayan sido incluídos en otro estudio [\cite{9}]. 
+Las normas varían entre darle más importancia a las tareas que se resuelven o a ciertas propiedades que presenta cada conjunto [\cite{26},\cite{32},\cite{18}]. 
+Otros de los criterios que predomina es la utilización de conjuntos que tengan más descargas [\cite{19}] o que hayan sido incluidos en otro estudio [\cite{9}]. 
 Estos últimos criterios pueden causar sesgos de selección para las herramientas Auto-ML de nueva generación [\cite{15}].
-El criterio predominante es sus metacaracterísticas [\cite{10},\cite{11},\cite{15},\cite{16},\cite{17},\cite{27},\cite{28}] ya que provocan desajuste en el 
+El criterio predominante es sus metacaracterísticas [\cite{10},\cite{15},\cite{28},\cite{11},\cite{27},\cite{17},\cite{16}] porque provocan desajuste en el 
 rendimiento de los sistemas[\cite{10}].
 
 Entre las características que  resaltan para seleccionar un conjunto se encuentran:
 \begin{itemize}
-    \item Todos los conjuntos deben estar etiquetados, ya que solo se resuelven tareas de aprendizaje supervisado en todos los benchmark estudiados.
-    \item Selección de datos reales. Los datos artificiales, los sistemas los solucionan con facilidad [\cite{15}]. Existen ejemplos en donde sí 
-    se incluyeron datos artificiales [\cite{10},\cite{16}]. 
-    \item Diversidad en sus meta-características [\cite{10},\cite{15},\cite{16},\cite{17},\cite{18},\cite{22},\cite{28}]. Estas propiedades suelen ser
+    \item Todos los conjuntos deben estar etiquetados, ya que solo se resuelven tareas de aprendizaje supervisado en los benchmarks estudiados.
+    \item Selección de datos reales. Los sistemas solucionan con facilidad los datos artificiales [\cite{15}]. Existen ejemplos en donde sí 
+    se incluyen datos artificiales [\cite{10},\cite{16}]. 
+    \item Diversidad en sus metacaracterísticas [\cite{10},\cite{15},\cite{28},\cite{17},\cite{16},\cite{18},\cite{22}]. Estas propiedades suelen ser
     el número de features, instancias, variables categóricas, entre otras.
     \item Incluir conjuntos con desequilibrio\footnote{El desequilibrio en las clases está dado por la razón entre la clase minoritaria frente a la mayoritaria.} en 
-    las clases [\cite{16},\cite{31}]. Cuando estas carecen de información producto al desequilibrio, el rendimiento tiende a decaer [\cite{16}]. Este desbalance puede 
+    las clases [\cite{31}\cite{16}]. Cuando estas carecen de información producto al desequilibrio, el rendimiento tiende a decaer [\cite{16}]. Este desbalance puede 
     ser calculado en los datos de entrenamiento [\cite{11},\cite{29}]. En otros casos se calcula en todo el conjunto [\cite{31}]. 
-    \item Conjuntos con ruido. El ruido [\cite{47}] es una malformación en los datos ya puede ser por presencia de outliers, instancias mal etiquetadas, 
+    \item Conjuntos con ruido. El ruido [\cite{47}] es una malformación en los datos que puede ser por presencia de outliers, instancias mal etiquetadas o 
     redundantes. La mayoría de los conjuntos reales por naturaleza están sometidos a algún nivel de ruido producto a errores de recopilación u otros. 
-    El aumento de instancias suele provocarlo [\cite{24}]. 
+    El aumento de instancias suele provocar el aumento de ruido [\cite{24}]. 
     \item Conjuntos con valores faltantes. A pesar de que muchos sistemas carecen de técnicas de procesamiento de valores faltantes, algunos deciden incluirlos 
-    [\cite{10},\cite{11}]. En otros ejemplos [\cite{18}] limitan su empleo, para no requerir una limpieza previa.
-    \item Conjunto con alta dimensionalidad\footnote{La maldicion de la dimensionalidad puede verse como el bajo número de ejemplos para tantos features.}. 
-    Conjuntos con estas características [\cite{11},\cite{24}] complejizan la resolución de la tarea que proponen ya que los sistemas tienen muchos features básicos 
+    [\cite{10},\cite{11}]. En otros ejemplos limitan su empleo, para no requerir una limpieza previa [\cite{18}].
+    \item Conjunto con alta dimensionalidad\footnote{La maldición de la dimensionalidad puede verse como el bajo número de ejemplos para tantos features.}. 
+    Conjuntos con estas características [\cite{11},\cite{24}] complejizan la resolución de la tarea que proponen, ya que los sistemas tienen muchos features básicos 
     a seleccionar [\cite{47}].
     \item Conjuntos multimodales. Los desarrolladores de AutoGluon [\cite{42}] plantean que la mayoría de los trabajos de Auto-ML se centran en tratar a los datos 
-    tabulares (valores numéricos y categóricos), las imágenes y texto por separado. En la vida real estos tipos tienden a coexistir. Entre los benchmark recopilados 
+    tabulares (valores numéricos y categóricos), las imágenes y texto por separado. En la vida real estos tipos tienden a coexistir. Entre los benchmarks recopilados 
     existe un ejemplo de uso de estos conjuntos [\cite{27}]. 
    
     \end{itemize} 
@@ -196,193 +220,142 @@ Entre las características que  resaltan para seleccionar un conjunto se encuent
 %\subsection{Métodos de Evaluación y Métricas} \label{subsection:met Auto-ML}
 Una vez se tienen los conjuntos de datos se escoge el método de evaluación. Es necesario seleccionar una forma para dividir los conjuntos y una métrica de optimización. 
 La división interviene en el desempeño de las herramientas de aprendizaje y puede evitar que se ejecuten correctamente.
-En ejecuciones donde una clase completa queda en el conjunto de prueba al no tener referencias de esta en el entrenamiento, los marcos pueden fallar [\cite{10}]. 
-Las más utilizadas son hold-out y cross-validation.
+En ejecuciones donde una clase completa queda en el conjunto de prueba, al no tener referencias de esta en el entrenamiento, los marcos pueden fallar [\cite{10}]. 
+Las más utilizadas son hold-out [\cite{11},\cite{26},\cite{32}] y cross-validation [\cite{10},\cite{15},\cite{22}]. Existen ejemplos en donde emplean ambas 
+divisiones en dependencia de las características de sus datos [\cite{13},\cite{20}].
 
-Las métricas para cuantifican el rendimiento en cada uno de los puntos de referencia se seleccionan en dependencia de los datos o del tipo de tarea. Para clasificación 
-las más utilizadas son F1[\cite{10}], AUC [\cite{15}] y precisión [\cite{16},\cite{19},\cite{24}] y para regresión el error cuadrático medio 
-[\cite{10},\cite{16},\cite{19}]. La precisión desequilibrada también se emplea en aquellos conjuntos con mucho desequilibrio en sus clases [\cite{32}]. Cuando el 
-problema posee limitantes de tiempo, requiere utilizar métricas que permitan obtener las predicciones durante cualquier momento en la ejecución[\cite{29}]. La 
-estrategia de selección de la métrica más usada por los benchmark es seleccionar algunas de manera general 
-para todos los conjuntos [\cite{8},\cite{9},\cite{13},\cite{20},\cite{22},\cite{26}]. Estiman que estas son de utilidad en todos los ejemplos por igual y 
+Las métricas para cuantificar el rendimiento en cada uno de los puntos de referencia se seleccionan en dependencia de los datos o del tipo de tarea. Para clasificación 
+las más utilizadas son \textit{F1} [\cite{10}], \textit{AUC} [\cite{15}] y \textit{accurracy} [\cite{16},\cite{19},\cite{24}], y para regresión el error cuadrático medio 
+\textit{RMSE} [\cite{10},\cite{16},\cite{19}]. La precisión desequilibrada también se emplea en aquellos conjuntos con mucho desequilibrio en sus clases [\cite{32}]. Cuando el 
+problema posee limitantes de tiempo, se requiere utilizar métricas que permitan obtener las predicciones durante cualquier momento en la ejecución[\cite{29}]. La 
+estrategia de selección de la métrica más usada por los benchmarks es seleccionar algunas de manera general 
+para todos los conjuntos [\cite{8},\cite{9},\cite{13},\cite{20},\cite{26},\cite{22}]. Estiman que estas son de utilidad en todos los ejemplos por igual y 
 la más empleada es \textit{accuracy}.
 
 \begin{flushleft} 
     {\large { \textbf{Restricciones de Tiempo y Software}}}\label{subsection:tiempo Auto-ML}
 \end{flushleft}
 
-Los marcos Auto-ML deberían ejecutarse por tiempo indefinido hasta que converjan a una solución que ellos consideren óptima, pero esto es muy costoso [\cite{16}]. 
-Varios benchmark definen un tiempo de ejecución, ya sea distintivo para cada tarea [\cite{11},\cite{29}], o el mismo para todas (Ver figura 2). La metodología de 
-selección que más resalta consiste en probar con varios ejemplos de tiempo y determinar en cuál se obtienen mejores resultados [\cite{15},\cite{31}]. También escoger uno en 
-donde un porciento de las tareas hayan logrado completarse [\cite{16}] o en dependencia de la escala de los conjuntos que presentan [\cite{23}]. Algunos no 
-especifican el por qué de la selección [\cite{14},\cite{22}]. 
+Los marcos Auto-ML deberían ejecutarse por tiempo indefinido hasta que converjan a una solución que ellos consideren óptima, pero, esto es muy costoso [\cite{16}]. 
+Varios benchmark definen un tiempo de ejecución, ya sea distintivo para cada tarea [\cite{11},\cite{29}], o el mismo para todas [\cite{13},\cite{21},\cite{14},\cite{25}]. 
+La metodología de selección que más resalta consiste en probar con varios ejemplos de tiempo y determinar en cuál se obtienen mejores resultados [\cite{15},\cite{31}]. 
+También, escoger uno en donde un porciento de las tareas hayan logrado completarse [\cite{16}] o en dependencia de la escala de los conjuntos que presentan [\cite{23}]. 
+Algunos no especifican el por qué de la selección [\cite{14},\cite{22}]. 
 
-Los softwares de evaluación de las herramientas Auto-ML son extensibles y de código abierto. Ellos facilitan el proceso de variar el tiempo de 
-prueba, reproducir los experimentos y permitir una descarga rápida de sus conjuntos [\cite{10},\cite{15},\cite{23},\cite{28},\cite{31}].
-Existen ejemplos en donde aportan todo un entorno de máquina virtua; para ejecutar las evaluaciones [\cite{10},\cite{15},\cite{31}] . Algunos se limitan a 
-utilizar el software de otros benchmark [\cite{17},\cite{19},\cite{20},\cite{21},\cite{26},\cite{32}]. Las 
-competiciones [\cite{11},\cite{29}] tienen accesibles algunos de sus conjuntos de datos y mediante su plataforma facilitan la evaluación de soluciones y la 
-obtención de los resultados, todos con restricciones de CPU, tiempo y memoria RAM.
+Los benchmark de los sistemas Auto-ML son extensibles y de código abierto. Ellos facilitan el proceso de variar el tiempo de 
+prueba, reproducir los experimentos y permitir una descarga rápida de sus conjuntos [\cite{10},\cite{15},\cite{31},\cite{28},\cite{23}].
+Existen ejemplos en donde aportan todo un entorno de máquina virtual para ejecutar las evaluaciones [\cite{10},\cite{15},\cite{31}]. Algunos se limitan a 
+utilizar el software de otros benchmark [\cite{17},\cite{21},\cite{20},\cite{26},\cite{32},\cite{19}]. Las 
+competiciones permiten el acceso a algunos de sus conjuntos de datos y mediante su plataforma facilitan la evaluación de soluciones y la 
+obtención de los resultados, todos con restricciones de CPU, tiempo y memoria RAM [\cite{11},\cite{29}].
 
-Las experimentaciones en casi todos los benchmark se realizan bajo restricciones de RAM y CPU, solo los que proveen un entorno virtual para la evaluación 
-pueden hacer que esto se cumpla. La mayoría utiliza un baseline como límite del rendimiento mínimo obtenido, el más utilizado RandomForest [\cite{29},\cite{31}].
+Los experimentos en casi todos los benchmarks se realizan bajo restricciones de RAM y CPU, solo los que proveen un entorno virtual para la evaluación 
+pueden hacer que esto se cumpla. La mayoría utiliza un baseline como límite del rendimiento mínimo obtenido, el más utilizado RandomForest [\cite{31},\cite{29}].
 
 \begin{flushleft} 
     {\large { \textbf{Resultados Relevantes}}}\label{subsection:result Auto-ML}
 \end{flushleft}
 
-Muchos de los softwares de pruebas permiten la reproducción de sus experimentaciones aportándolas en su código fuente [\cite{10},\cite{15},\cite{23},\cite{31}]. 
-Las técnicas que emplean en las experimentaciones pueden ser reutilizables en otras investigaciones, ya que demuestran ser de gran utilidad. Entre estas se 
-encuentran la visualización de la relación entre las meta-características de los conjuntos y el rendimiento de los sistemas mediante gráficos [\cite{10},\cite{26},\cite{30}]. 
+Muchos de los benchmarks de sistemas Auto-ML permiten la reproducción de sus experimentos aportándolas en su código fuente [\cite{10},\cite{15},\cite{31},\cite{23}]. 
+Las técnicas que emplean en los experimentos pueden ser reutilizables en otras investigaciones, ya que demuestran ser de gran utilidad. Entre estas se 
+encuentran la visualización de la relación entre las metacaracterísticas de los conjuntos y el rendimiento de los sistemas mediante gráficos [\cite{10},\cite{26},\cite{30}]. 
 La obtención de diferencias entre los resultados de rendimiento mediante pruebas de distribución [\cite{18}] como Shapiro-Wilk, Wilcoxon y Friedman. La selección de 
-diagramas de cajas y bigotes [\cite{10},\cite{16},\cite{22},\cite{31}], árboles de Bradley-Terry [\cite{31}] u otros gráficos para visualizar la eficiencia de las 
-herramientas. También se evidencian técnicas para establecer la relación entre los resultados y el tiempo, a partir de qué momento tienden a sufrir sobreajuste los 
-sistemas [\cite{15}]. Además de verificar si este es suficiente para completar todas las tareas que presentan [\cite{29}].
+diagramas de cajas y bigotes [\cite{10},\cite{31},\cite{16},\cite{22}], árboles de Bradley-Terry [\cite{31}] u otros gráficos para visualizar la eficiencia de las 
+herramientas. Se utilizan técnicas para establecer la relación entre los resultados y el tiempo, a partir de qué momento tienden a sufrir sobreajuste los 
+sistemas [\cite{15}]. Además, de verificar si este es suficiente para completar todas las tareas que presentan [\cite{29}].
 
-Las estrategias de comparación son otra de sus contribuciones. La metodología de definición del sistema ganador, al igual que en los benchmark de ML, suele variar. 
-La más empleada es el promedio de la métrica de rendimiento [\cite{15}][\cite{31}] y escoger como ganador al que mejores resultados obtuvo en la mayor cantidad de 
-conjuntos [\cite{18},\cite{10},\cite{9}]. También, se evidencia la comparación por pares [\cite{10}]. Además, presentan nuevas estrategias siguiendo enfoques 
+Las estrategias de comparación son otra de sus contribuciones. La metodología de definición del sistema ganador, al igual que en los benchmarks de ML, suele variar. 
+La más empleada es el promedio de la métrica de rendimiento [\cite{15},\cite{31}] y escoger como ganador al que mejores resultados obtuvo en la mayor cantidad de 
+conjuntos [\cite{10},\cite{9},\cite{18}]. También, se evidencia la comparación por pares [\cite{10}]. Además, presentan nuevas estrategias siguiendo enfoques 
 lexicográficos [\cite{25}] y mediante comparación narrativa[\cite{14}] para dar un sistema vencedor.
 
-Las evaluaciones realizadas [\cite{19},\cite{20},\cite{21}] en algunos ejemplos permite conocer las diferencias de rendimiento entre un experto que utiliza modelos de 
+Las evaluaciones realizadas [\cite{21},\cite{20},\cite{19}] en algunos ejemplos permite conocer las diferencias de rendimiento entre un experto que utiliza modelos de 
 ML y un sistema Auto-ML. Esto permite cuantificar el acercamiento de los sistemas Auto-ML a llegar a imitar a los humanos. A pesar de que los resultados de los 
-expertos superan a las herramientas de aprendizaje, estos son más rápidos, lo que hace que los resultados sean notables [\cite{22}]. Respecto a los conjuntos de datos 
-[\cite{30}] dejan en claro las limitaciones de alcance que sufren de manera general y más cuando están relacionados con sectores en los que son confidenciales. 
-En conjuntos de fraude [\cite{33}]los datos están formados por identidades, estados de cuenta. Los que utilizan datos médicos [\cite{33}] contienen 
+expertos superan a las herramientas de aprendizaje, estos son más rápidos, lo que hace que los resultados sean notables [\cite{22}]. Los benchmarks dejan claro 
+las limitaciones que sufre el acceso a conjuntos de datos de manera general y más cuando están relacionados con sectores que son confidenciales [\cite{30}]. 
+En conjuntos de fraude [\cite{30}] los datos están formados por identidades, estados de cuenta. Los que utilizan datos médicos [\cite{32}] contienen 
 información de seguros y demás. Ambos se vuelven inaccesibles para utilizarlos en un estudio.
 
 Además, con las evaluaciones y comparaciones que realizan, los estudios de oblación [\cite{17},\cite{29}] y los análisis cualitativos [\cite{31}] reflejan las 
-deficiencias y ventajas de utilizar ciertos sistemas. Resaltando su incapacidad de utilizar datos no etiquetados [\cite{26}] y bajo rendimientos en conjuntos 
-desequilibrados [\cite{30},\cite{32}]. También están restringidos respecto a los formatos de los datos de entrada que reciben [\cite{27}]. Una de las más importantes 
-es la inferioridad de estos ante los humanos debido a su baja capacidad de reconocimiento de características de los dominios [\cite{19}].
+deficiencias y ventajas de utilizar ciertos sistemas. De los sistemas resaltan la incapacidad de utilizar datos no etiquetados [\cite{26}] y los bajo rendimientos en 
+conjuntos desequilibrados [\cite{30},\cite{32}]. También, las restricciones que imponen respecto a los formatos de los datos de entrada que reciben [\cite{27}]. 
+Una de las más importantes es la inferioridad de estos ante los humanos debido a su baja capacidad de reconocimiento de características de los dominios [\cite{19}].
 
 \begin{flushleft} 
     {\large { \textbf{Fallas}}}\label{subsection:fallas Auto-ML}
 \end{flushleft}
-Las fallas que se presentan en cada software de prueba son igual de importantes que los resultados que se derivan de ellos, permiten aprender de los errores. 
+Las fallas que se presentan en cada benchmark son igual de importantes que los resultados que se derivan de ellos, ya que permiten aprender de los errores. 
 Estas pueden dividirse en fallas en las ejecuciones de los sistemas, de los experimentos realizados y las fallas en la metodología de su creación.
 
 Los problemas en las ejecuciones de los sistemas Auto-ML que más se repiten en cada evaluación es la incapacidad de tratar con valores faltantes 
-[\cite{10},\cite{22},\cite{32}] y con algunos tipos de variables [\cite{30}]. También por conjuntos con un tamaño muy grande que no logran predecir todos los resultados 
-[\cite{12},\cite{22}]. Las que más predominan son las fallas en la memoria [\cite{10},\cite{11},\cite{12},\cite{22},\cite{29}] y ejecuciones no terminadas producto a limitantes 
-tiempo [\cite{10},\cite{12},\cite{19},\cite{20},\cite{29}].
+[\cite{10},\cite{32},\cite{22}] y con algunos tipos de variables [\cite{30}]. También por conjuntos con un tamaño muy grande que no logran predecir todos los resultados 
+[\cite{12},\cite{22}]. Las que más predominan son las fallas en la memoria [\cite{10},\cite{11},\cite{12},\cite{29},\cite{22}] y ejecuciones no terminadas producto a limitaciones de 
+tiempo [\cite{10},\cite{12},\cite{29},\cite{20},\cite{19}].
 
 Los errores en los experimentos son afectaciones que sufren las comparaciones y resultados producto de las fallas de los sistemas y malas decisiones para abordarlas. 
 Entre estas resaltan la ejecución de las pruebas con desigualdad de recursos para cada herramienta [\cite{10},\cite{25}] rompiendo con la equidad de las evaluaciones.
 
-Respecto a la metodología de los sistemas de prueba se presentan algunos inconvenientes como la incapacidad de descargar los conjuntos que utilizan [\cite{14},\cite{32}] y 
-sus divisiones para la evaluación [\cite{10}, \cite{14},\cite{16},\cite{34}]. Los challenges [\cite{11},\cite{12},\cite{29}] ocultan muchos de sus conjuntos de datos 
-al público. A pesar de esto, a través de la plataforma sí permiten la obtención de resultados, aunque estos son difíciles de interpretar y de que sobrepasen la línea 
-base de rendimiento, debido a su carácter competitivo [\cite{31}]. También existen limitaciones relacionadas a las características de los conjuntos, son demasiado pequeños 
-[\cite{15},\cite{23}], sin valores faltantes [\cite{18},\cite{24},\cite{25}] y el dominio de los mismos es irrelevante en su selección 
-[\cite{10},\cite{16},\cite{18},\cite{22},\cite{31}]. Además, se encuentran muy procesados\footnote{Limpieza en los conjuntos puede incluir imputación de valores 
+Respecto a la metodología de las herramientas de benchmarking se presentan algunos inconvenientes como la incapacidad de descargar los conjuntos que utilizan [\cite{14},\cite{32}] y 
+sus divisiones para la evaluación [\cite{10}, \cite{14},\cite{16},\cite{34}]. Los challenges ocultan muchos de sus conjuntos de datos 
+al público [\cite{11},\cite{12},\cite{29}]. A pesar de esto, a través de la plataforma sí permiten la obtención de resultados, aunque estos son difíciles de interpretar y de que sobrepasen la línea 
+base de rendimiento, debido a su carácter competitivo [\cite{31}]. También existen limitaciones relacionadas a las características de los conjuntos: son demasiado pequeños 
+[\cite{15},\cite{23}], sin valores faltantes [\cite{25},\cite{18},\cite{24}] y el dominio de los mismos es irrelevante en su selección 
+[\cite{10},\cite{31},\cite{16},\cite{18},\cite{22}]. Además, se encuentran tan procesados\footnote{Limpieza en los conjuntos puede incluir imputación de valores 
 faltantes, codificación de variables categóricas, o de string.} que sufren de falta de similitud con los datos reales [\cite{18},\cite{22}]. Los recursos de software y 
-tiempo para las evaluaciones en algunos ejemplos se escogieron arbitrariamente [\cite{8}] o no se especifica el porqué de la selección [\cite{13},\cite{22},\cite{24}].
+tiempo para las evaluaciones en algunos ejemplos se escogieron arbitrariamente [\cite{8}] o no se especifica el porqué de la selección [\cite{13},\cite{24},\cite{22}].
 
 \section{Trabajos Relacionados}\label{section:trabajos_relacionados}
 
-% \begin{table}
-%     \centering
-%     \resizebox{15cm}{!} {
-%         \begin{tabular}{|l|c|c|c|c|c|c|}
-%             \hline
-%     Bench&Tabular&Sustituto&Tarea& \# Conjunt &Varias Tareas&Consultante\\ \hline
-%     NAS-Bench101  & \checkmark  &  & Image & 1  &  &  \checkmark  \\
-%     NAS-Bench1-Shot & \checkmark & &Image  & 1 & & \checkmark   \\
-%     NAS-Bench-201  & \checkmark  &   & Image & 3 & &  \checkmark   \\ 
-%     NAS-Bench-301  & & \checkmark &  Image & 1  & &   \checkmark   \\
-%     NAS-Bench-111  & & \checkmark &  Image & 1  & &   \checkmark   \\
-%     NAS-Bench-311  & & \checkmark &  Image & 1  & &   \checkmark   \\
-%     NASBenchNLP11  & & \checkmark &  NLP & 1 & &  \checkmark     \\
-%     Suite  & \checkmark  & \checkmark & Image/NLP/VC & 25 & \checkmark &      \checkmark         \\
-%     NAS-Bench-360  & &  & NAS & 10 & \checkmark &  \\ \hline
-% \end{tabular}
-%     \caption{benchmark NAS}
-%     \label{fig:NAS}
-%     }
-% \end{table}
 
-En lugar de comparar frameworks completos de aprendizaje de máquinas automatizado, a menudo es útil centrarse en varias subpartes y optimizarlas paso a paso.
-Entre estas partes se encuentra la optimización de hiperparámetros la cual es un problema central en la línea de aprendizaje automático. Esta aún presenta 
+En lugar de comparar frameworks completos de aprendizaje de máquinas automatizado (Auto-ML), a menudo es útil centrarse en varias partes y optimizarlas paso a paso.
+Entre estas partes se encuentra la optimización de hiperparámetros la cual es un problema central en la línea de aprendizaje de máquinas automatizado. Esta aún presenta 
 inconvenientes en la evaluación de sus modelos debido a las limitaciones computacionales para abordar el tamaño de los espacios de búsqueda de cada uno de ellos. Estos 
-algoritmos están divididos en dos grandes ramas: Caja Negra[\cite{35}] y Multi-Fidelidad[\cite{35}]. El estudio de estas dos categorías nincluye un gran número de investigaciones. 
+algoritmos están divididos en dos grandes ramas: Caja Negra [\cite{35}] y Multi-Fidelidad [\cite{35}]. El estudio de estas dos categorías incluye un gran número de investigaciones. 
 Los investigadores proponen crear benchmarks que permitan resolver un problema general, la verificación de su rendimiento. Esta necesidad surge cuando los resultados de 
 un método que funciona bien en el protocolo experimental de una publicación no se pueden replicar; o cuando el método tiene un rendimiento inferior en un protocolo 
 empírico ligeramente diferente [\cite{61}]. 
 
 Entre los métodos de Caja Negra se encuentran los de optimización bayesiana que son ampliamente utilizados en las implementaciones de sistemas Auto-ML. Estos modelos
-aportan mejores resultados que Búsqueda en Cuadrícula y Aleatoria y superan en muchos casos a los humanos. HPOlib[\cite{63}] es una de las primeras 
+aportan mejores resultados que búsqueda en cuadrícula y aleatoria, y superan en muchos casos a los humanos. HPOlib [\cite{63}] es una de las primeras 
 bibliotecas que recoge puntos de referencias de la literatura y evalúa métodos bayesianos. Esta está formada por 3 benchmarks que abarcan dimensionalidad alta, baja y 
-media de hiperparámetros a optimizar. Utiliza datos reales y pruebas sintéticas. AClib[\cite{62}] está encaminado a algoritmos de Búsqueda Local Estocástica (SLS) 
+media de hiperparámetros a optimizar. Utiliza datos reales y pruebas sintéticas. AClib [\cite{62}] está encaminado a algoritmos de Búsqueda Local Estocástica (SLS) 
 de manera general. Este emplea contenedores para cada espacio de configuración de hiperparámetro, le permite garantizar que los límites de memoria y tiempo que imponen 
 se cumplen. 
 
-HPO-B[\cite{61}] y COCO[\cite{60}] también están dirigidos a métodos de Caja Negra. HPO-B es uno de los más grande hasta el momento y sus conjuntos de datos son 
-tomados de OpenML[\cite{43}]. Estos se encuentran en un inicio sin procesar y luego son sometidos a limpieza, pre-procesamiento y organización. 
-Su objetivo específico es evaluar métodos por transferencia mediante un protocolo empírico. COCO por otro lado solo compara los de dimensión cero en donde los datos 
+HPO-B [\cite{61}] y COCO [\cite{60}] también están dirigidos a métodos de Caja Negra. HPO-B es uno de los más grandes hasta el momento y sus conjuntos de datos son 
+tomados de OpenML [\cite{43}]. Estos se encuentran en un inicio sin procesar y luego son sometidos a limpieza, preprocesamiento y organización. 
+Su objetivo específico es evaluar métodos por transferencia mediante un protocolo empírico. Por otro lado, COCO solo compara los de dimensión cero en donde los datos 
 provienen de naturaleza estocástica y deterministas y se evalúan en problemas mono y multiobjetos.
 
-Un sucesor de HPO-B en escalabilidad y en proveer varios puntos de referencia es HPO-Bench[\cite{50}]. Este tiene su enfoque en problemas de multifidelidad y 
+Un sucesor de HPO-B en escalabilidad y que provee varios puntos de referencia es HPO-Bench [\cite{50}]. Este tiene su enfoque en problemas de multifidelidad y 
 dispone sus conjuntos tanto en formato tabular como no estructurado. 
 
-NAS[\cite{35}] es otra de las partes que pueden formar una canalización de Auto-ML. Estos métodos tienen una fuerte atención debido a su efectividad en el diseño de 
-redes neuronales de última generación. Sin embargo, al igual que HPO[\cite{35}] producto a su gran complejidad computacional hacen extremadamente difícil sus 
-comparaciones y la reproducción de investigaciones [\cite{55}][\cite{59}].
+NAS [\cite{35}] es otra de las partes que pueden formar una canalización de Auto-ML. Estos métodos tienen una fuerte atención debido a su efectividad en el diseño de 
+redes neuronales de última generación. Sin embargo, al igual que HPO [\cite{35}] producto a su gran complejidad computacional hacen extremadamente difícil sus 
+comparaciones y la reproducción de investigaciones [\cite{55},\cite{59}].
 
 Una forma de abordar limitaciones de costo y tiempo es construir benchmark de NAS tabulares. Estos permiten tener las evaluaciones 
-pre calculadas para todas las arquitecturas posibles del espacio de búsqueda que describen. NAS-Bench-101[\cite{49}] es uno de los primeros en surgir con estas 
-características. Este posibilita la evaluación de muchos métodos NAS en un corto período de tiempo, pero aún tiene ciertas limitantes. Entre estas la incapacidad de 
-evaluación y comparación de métodos one-shot. NAS-Bench-1-shot[\cite{55}] mediante una adaptación del espacio de búsqueda de NAS-Bench-101 resuelve este inconveniente. 
-NAS-Bench-201[\cite{56}] persigue el mismo propósito que NAS-Bench-Shot-101 pero crea un punto de referencia totalmente nuevo en vez de adaptar el existente. 
-NAS-Bench-201 por otro lado pretende ser independiente del modelo de evaluación buscando aún más generalidad aumentando el número de celdas entrenadas de su antecesor 
+pre calculadas para todas las arquitecturas posibles del espacio de búsqueda que describen. NAS-Bench-101 [\cite{49}] es uno de los primeros en surgir con estas 
+características. Este posibilita la evaluación de muchos métodos NAS en un corto período de tiempo, pero aún tiene ciertas limitantes, entre estas está la incapacidad de 
+evaluación y comparación de métodos one-shot. NAS-Bench-1-shot [\cite{55}] mediante una adaptación del espacio de búsqueda de NAS-Bench-101 resuelve este inconveniente. 
+NAS-Bench-201 [\cite{56}] persigue el mismo propósito que NAS-Bench-Shot-101, pero crea un punto de referencia totalmente nuevo en vez de adaptar el existente. 
+NAS-Bench-201, por otro lado, pretende ser independiente del modelo de evaluación, buscando aún más generalidad, aumentando el número de celdas entrenadas de su antecesor 
 NAS-Bench-101.
 
 Estos benchmarks cumplen con su objetivo de verificar el rendimiento de los modelos de NAS. Sin embargo, al representarse tabularmente se basan en una 
-evaluación exhaustiva de todas las arquitecturas en un espacio de búsqueda poco realista. Surrugate-NAS[\cite{66}] presenta un nuevo enfoque para puntos de 
-referencia de NAS denominado surrugate (sustituto). Estos proveen un método sustituto el cual pueden utilizar para predecir el rendimiento de cualquier arquitectura 
-en el espacio de búsqueda. Surrugate-NAS define una metodología general para la creación de benchmark sustitutos. Al igual que los tabulares, estos permiten la 
-misma interfaz de consultar el rendimiento económicamente. En esta categoría se encuentran NAS-Bench-301[\cite{57}] ,NAS-Bench-111[\cite{58}], 
-NAS-Bench-311[\cite{58}], NAS-Bench-NLP111[\cite{58}].
+evaluación exhaustiva de todas las arquitecturas en un espacio de búsqueda poco realista. Surrugate-NAS [\cite{66}] presenta un nuevo enfoque para puntos de 
+referencia de NAS denominado surrugate (sustituto). Estos proveen un método sustituto, el cual pueden utilizar para predecir el rendimiento de cualquier arquitectura 
+en el espacio de búsqueda. Surrugate-NAS define una metodología general para la creación de benchmarks sustitutos. Al igual que los tabulares, estos permiten la 
+misma interfaz de consultar el rendimiento económicamente. En esta categoría se encuentran NAS-Bench-301 [\cite{57}], NAS-Bench-111 [\cite{58}], 
+NAS-Bench-311 [\cite{58}], NAS-Bench-NLP111 [\cite{58}].
 
 Todos estos benchmarks se centran en crear espacios de búsqueda más grandes y sofisticados, pero están restringidos a tareas específicas como clasificación de imágenes 
-y procesamiento del lenguaje natural. NAS-Bench-360[\cite{51}] por otro lado deja de buscar el mejor espacio de búsqueda para ampliar el dominio de aplicación, el 
+y procesamiento del lenguaje natural. NAS-Bench-360 [\cite{51}] por otro lado, deja de buscar el mejor espacio de búsqueda para ampliar el dominio de aplicación, el 
 tamaño de los conjuntos de datos, dimensionalidad del problema y los objetivos de aprendizaje.
 
-NAS-Bench-Suite[\cite{58}] es un conjunto de benchmark para NAS. Este agrupa casi todos los benchmark anteriores. Esto permite probar tareas tanto de 
-imágenes como procesamiento del lenguaje natural, y reconocimiento de voz. Al contrario de NAS-Bench-360 que la evaluación puede tardar horas de CPU, esta suite al 
+NAS-Bench-Suite [\cite{58}] es un conjunto de benchmarks para NAS. Este agrupa casi todos los benchmarks anteriores. Esto permite probar tareas tanto de 
+imágenes como procesamiento del lenguaje natural, y reconocimiento de voz. Al contrario de NAS-Bench-360, que la evaluación puede tardar horas de CPU, esta suite al 
 utilizar benchmarks consultables tarda 5 minutos en obtener resultados.
 
 
 
-
-%\begin{table}[]
- %   \caption{benchmark NAS}
- %  \vspace{20pt}
- % \centering
- %\begin{tabular}{|c|c|c|c|c|c|}
-    
-    %\begin{tabular}{p{2.2cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}}
-        %   \hline
-        % Feature & NAS-Bench101 & NAS-Bench201 & NAS-Bench-301 & NAS-Bench-111 & NAS-Bench-311 & NASBenchNLP11 & Suite & NAS Bench 
-        %\multicolumn{1,4}{ |c| }{Feature} \\ \hline
-      %  Bench  & Tabular  & Sustituto & Tarea & Cantidad (Tareas) & tipos de tareas & Benchmark consultante  \\
-      
-       % NAS-Bench101  & \checkmark  & \checkmark &  &  & &     \\ \hline
-       
-        %NAS-Bench1-Shot  & \checkmark & \checkmark &  &  & &  \\ \hline
-       
-        %NAS-Bench201  & \checkmark  & \checkmark &  &  & & \\ \hline
-       % NAS-Bench-301  & \checkmark  & \checkmark &  &  & & \\ \hline
-       % NAS-Bench-111  & \checkmark  & \checkmark &  &  & &  \\ \hline
-       % NAS-Bench-311  & \checkmark  & \checkmark &  &  & & \\ \hline
-       %NASBenchNLP11  & \checkmark  & \checkmark &  &  & &  \\ \hline
-       %Suite  & \checkmark  & \checkmark &  &  & &  \\ \hline
-        %NAS-Bench-360  & \checkmark  & \checkmark &  &  & & \\
-        %\hline
-    %\end{tabular}
-    %\label{bs2}
-%{table}
-
-
-% El entrenamiento de redes neuronales requiere de una gran cantidad de recursos computacionales que frena los experimentos y pone una barrera de 
-% entrada a los investigadores sin acceso a computación a gran escala [\cite{49},\cite{46}]. La mayoría de los benchmark de Auto-ML están dirigidos a sistemas 

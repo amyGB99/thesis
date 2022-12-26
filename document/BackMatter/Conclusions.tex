@@ -1,16 +1,48 @@
 \begin{conclusions}
-Se propuso \textit{HAutoML-Bench} un software encaminado a la evaluación de herramientas de aprendizaje automático en escenarios heterogéneos.
-Este benchmark permite la descarga de conjuntos de datos en un formato común que somenten a pruebas complejas a los sistemas AutoML. 
-Se apoya en las experiencias y trata de no cometer los errores de las metodologías del diseño de los benchmark antecesores. Los conjuntos de datos que agrupa 
-poseen variedad en su forma de modelado, en sus tipos de datos y pertenecen a variados dominios de aplicación. Cada uno fue seleccionado llevando a cabo una estrategia 
-que disminuye los sesgos de selección y que pone como prioridad respetar la estructura e interpretación de cada uno de su tipos de datos.
+Esta investigación tiene como objetivo general el desarrollo de un benchmark encaminado a la evaluación de herramientas de aprendizaje de máquinas automatizado (Auto-ML) 
+en escenarios heterogéneos. 
+Para cumplir con el objetivo se realizó un estudio del estado del arte de los benchmarks creados para evaluar modelos ML, sistemas Auto-ML y 
+partes de un pipeline de Auto-ML. Con este se determinaron los criterios de diseño fundamentales en la creación de una herramienta de benchmarking, así como los posibles 
+errores que se pueden cometer durante este proceso.
 
-\textit{HAutoML-Bench} es fácil de usar, se instala y se inicializa de una manera sencilla. Además, brinda para cada prueba un entorno de evaluación para cuantificar 
-el rendimiento de los sistemas AutoML. También, cada una de las funcionalidades que implementa se pueden emplear sin muchas complicaciones consultando su documetación 
-oficial.
+Partiendo de las experiencias de los benchmarks anteriores, se propuso el benchmark \textit{HAutoML-Bench}, que permite la descarga y utilización de conjuntos de datos complejos 
+para la evaluación de sistemas Auto-ML. Se seleccionaron 27 conjuntos de datos que poseen variedad en su forma de modelado, en sus tipos de datos y pertenecen a variados 
+dominios de aplicación. Cada uno de los conjuntos mantiene la semántica y estructura original de los tipos de datos que lo conforman. 
 
-Las evaluaciones cualitativas realizadas sobre los sistemas AutoML permitieron afirmar que si existen sistemas que puede ser evaluados utilizando \textit{HAutoML-Bench}.
-Las evaluaciones cuantitativas sobre el sistema AutoGluon confirmaron que sí es posible cuantificar la flexibildad de una herramienta de aprendizaje automático. Esta 
-flexibilidad es medida en su capacidad de enfrentarse a problemas de la vida real en donde la información se encuentra muy poco procesada y que necesita técnicas del dominio 
-para su solución.
+Una vez definida la propuesta se implementó un software que es fácil de usar, se instala y se inicializa de una manera sencilla. Además, brinda para cada prueba un 
+entorno de evaluación para cuantificar el rendimiento de los sistemas Auto-ML. También, posee funcionalidades para agregar nuevos conjuntos, remover los existentes y 
+filtrar por una propiedad que cumplan. Cada una de las funcionalidades que implementa se pueden emplear sin muchas complicaciones consultando su documentación oficial.
+
+Los experimentos realizados incluyeron evaluaciones cualitativas de algunos sistemas Auto-ML en los conjuntos de datos de \textit{HAutoML-Bench}, que confirmaron que 
+estos son un desafío para los sistemas. Las evaluaciones cuantitativas del sistema Auto-ML AutoGluon arrojaron resultados ineficientes y permitieron afirmar 
+que es posible medir la eficiencia que presentan las herramientas Auto-ML en la resolución de tareas en donde la información se encuentra poco procesada y que 
+necesita técnicas del dominio para su solución.
+
+
+
+
+    % Se propuso \textit{HAutoML-Bench} un benchmark encaminado a la evaluación de herramientas de aprendizaje de máquinas automatizado (Auto-ML) en escenarios heterogéneos.
+% Este benchmark permite la descarga y utilización de conjuntos de datos complejos para la evaluación de sistemas Auto-ML. Agrupa 27 conjuntos de datos a poseen 
+% variedad en su forma de modelado, en sus tipos de datos y pertenecen a variados dominios de aplicación. Cada uno de los conjuntos mantiene la estructura original de 
+% los tipos de datos que lo conforman y su significado semántico.
+% a variados dominios de aplicación. Cada uno de los conjuntos mantiene la estructura original de los tipos de datos que lo conforman y su significado semántico.
+
+    % El objetivo general de esta investigación es el desarrollo de un benchmark encaminado a la evaluación de herramientas de aprendizaje de máquinas automatizado (Auto-ML) 
+% en escenarios heterogéneos.
+
+% Primeramente se realizó un estudio del estado del arte de los benchmarks utilizados para evaluar sistemas ML y Auto-ML. Con este 
+% se determinaron los criterios de diseño fundamentales en la creación de una herramienta de benchmarking, así como los posibles errores que se pueden cometer durante 
+% este proceso.
+% se propuso el benchmark \textit{HAutoML-Bench}, que permite la descarga y utilización de conjuntos de datos 
+% complejos para la evaluación de sistemas Auto-ML. Los conjuntos de datos que agrupa poseen variedad en su forma de modelado, en sus tipos de datos y pertenecen 
+% a variados dominios de aplicación. Cada uno de los conjuntos mantiene la estructura original de los tipos de datos que lo conforman y su significado semántico. 
+
+% Una vez definida la propuesta se implementó un software que es fácil de usar, se instala y se inicializa de una manera sencilla. Además, brinda para cada prueba un entorno de evaluación para 
+% cuantificar el rendimiento de los sistemas Auto-ML. También, cada una de las funcionalidades que implementa se pueden emplear sin muchas complicaciones consultando su 
+% documentación oficial.
+
+% Los experimentos realizados, haciendo uso de \textit{HAutoML-Bench}, confirman que sus conjuntos de datos son un desafío y que miden la flexibilidad que presentan las herramientas 
+% Auto-ML en la resolución de tareas en donde la información se encuentra poco procesada y que necesita técnicas del dominio para su solución.
+
 \end{conclusions}
+%Se apoya en las experiencias y trata de no cometer los errores de los anteriores diseños de benchmarks
